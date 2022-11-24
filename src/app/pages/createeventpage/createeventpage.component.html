@@ -1,0 +1,338 @@
+<div class="content">
+  <div class="header">
+    <h1 class="header-title">Create A New Event</h1>
+    <div class="header-nav">
+      <div class="nav-item" (click)="eventDetail()">
+        <div [ngClass]="{'active':page == 'one','not-active':page != 'one'}">✔️</div>
+        <p>Event Details</p>
+      </div>
+      <hr />
+      <div class="nav-item" (click)="tickets()">
+        <div [ngClass]="{'active':page == 'two','not-active':page != 'two'}">✔️</div>
+        <p>Tickets</p>
+      </div>
+      <hr />
+      <div class="nav-item" (click)="review()">
+        <div [ngClass]="{'active':page == 'three','not-active':page != 'three'}">✔️</div>
+        <p>Review</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content2">
+
+    <ng-template [ngIf]="page == 'one'">
+      <!-- <app-header></app-header> -->
+      <div class="create-event">
+        <div class="create-content">
+          <div class="create__content-header">
+            <h2>Basic Info</h2>
+            <p class="create__content-text">
+              Name your event-goers why they should come. Add details that higlights
+              what makes it unique
+            </p>
+          </div>
+
+          <div class="create-event__form">
+            <div class="create-event__form-form">
+              <label for="title" class="input">Title</label>
+              <input type="text" name="title" />
+            </div>
+            <div class="create-event__form-form">
+              <label for="eventDetails" class="textarea">Event Details</label>
+              <textarea name="eventDetails"> </textarea>
+            </div>
+            <div class="create-event__selects">
+              <select name="" id="">
+                <option value="Type">Type</option>
+              </select>
+              <select name="" id="">
+                <option value="Type">Category</option>
+              </select>
+            </div>
+            <div class="imagepicker">
+              <h5>Attached files</h5>
+              <!-- <img src="https://www.htmlhints.com/image/article/drag.png" alt="" /> -->
+              <img class="picker" src="/assets/picker.png" alt="" />
+              <div class="rendered-img">
+                <img class="displayed-img"
+                  src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F184375039%2F474927372937%2F1%2Foriginal.20211111-155142?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C236%2C4724%2C2362&s=ff52e826c551abbd9a90a39cccc5c303"
+                  alt="" />
+                <div class="image-text">
+                  <p class="image-name">Image.png</p>
+                  <p class="image-size">36.87kb</p>
+                </div>
+              </div>
+              <hr />
+            </div>
+            <div class="location">
+              <h2>Location</h2>
+              <p class="create-event__dt-subtext">
+                Help people in your are discover your event and let's attendees know
+                where to show up
+              </p>
+              <div class="create-event__selects">
+                <label for="state">State</label>
+                <select name="state" id="">
+                  <option value="Type">State</option>
+                </select>
+                <label for="lga">LGA</label>
+                <select name="lga" id="">
+                  <option value="Type">LGA</option>
+                </select>
+              </div>
+              <div class="create-event__form-form" style="margin-top: 2.5rem">
+                <label for="title" class="input">Address</label>
+                <input type="text" name="address" />
+              </div>
+            </div>
+            <hr />
+            <div class="create-event__dt">
+              <h2>Date and Time</h2>
+              <p class="create-event__dt-subtext">
+                Name your event-goers why they should come. Add details that higlights
+                what makes it unique
+              </p>
+              <div class="create-event__btn">
+                <button class="create-event__btn-active">Single Event</button>
+                <button class="create-event__btn-normal">Recurring Event</button>
+              </div>
+              <div class="create-event__selects-long" style="margin-top: 2.5rem">
+                <select name="" id="">
+                  <option value="Type">GMT(0100) Nigerian Time</option>
+                </select>
+              </div>
+              <div class="create-event__selects" style="margin-top: 2.5rem">
+                <div class="create-event-date__">
+                  <div class="ce__start-dt">
+                    <span>Start Date</span>
+                    <input type="date" name="start-date" />
+                  </div>
+                  <div class="ce__start-time">
+                    <span>Start Time</span>
+                    <input type="time" name="start-time" />
+                  </div>
+                </div>
+              </div>
+              <div class="create-event__selects" style="margin-top: 2.5rem">
+                <div class="create-event-date__">
+                  <div class="ce__start-dt">
+                    <span>End Date</span>
+                    <input type="date" name="end-time" />
+                  </div>
+                  <div class="ce__start-time">
+                    <span>End Time</span>
+                    <input type="time" name="end-time" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="create-event__submit">
+              <button class="create-event__btn-cancel">Cancel</button>
+              <button class="create-event__btn-continue">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="page == 'two'">
+      <div class="create-ticket">
+        <div class="create-ticket__banner">
+          <div class="create-banner__text">
+            <img class="create-ticket__img" src="/assets/images/tickets.png" alt="" />
+            <h2>Let's Create Tickets</h2>
+            <p>You don't have any tickets created yet, create your ticket</p>
+            <button (click)="openLg(content)">Add Tickets</button>
+          </div>
+        </div>
+        <div class="create-banner__btn">
+          <button>Skip and do this Later</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="page == 'twoo'">
+      <div class="event__table">
+        <div class="event__table-title">
+          <h1>Tickets</h1>
+          <button>Add Tickets</button>
+        </div>
+        <!-- Table -->
+      
+        <table class="table event__table-table">
+          <thead class="event__table-head">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Ticket Name</th>
+              <th scope="col">Ticket Quantity</th>
+              <th scope="col">Ticket Price</th>
+              <th scope="col">Status</th>
+              <th scope="col">Sales End</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="event__table-row"
+              *ngFor="let country of countries; index as i"
+            >
+              <td>{{ country.index }}</td>
+              <td>
+                {{ country.ticket_Name }}
+              </td>
+      
+              <td>{{ country.ticket_Quantity }}</td>
+              <td>#{{ country.ticket_Price | number }}</td>
+              <td>🟢{{ country.status }}</td>
+              <td>{{ country.salesEnd }}</td>
+              <td>
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  fontIcon="more_vert"
+                ></mat-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <div class="event__table-save">
+          <p></p>
+          <button class="btn-save">Save and Continue</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Add A Ticket</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-form">
+          <h5>Type of Tickets</h5>
+          <div class="modal__bttn">
+            <button class="modal__btn-active">Single Event</button>
+            <button class="modal__btn-normal">Recurring Event</button>
+          </div>
+          <div class="modal__event-form">
+            <label for="title" class="input">Name of Tickets</label>
+            <input type="text" name="title" />
+          </div>
+          <div class="modal__selects">
+            <select name="type" id="">
+              <option value="Type"></option>
+            </select>
+            <span class="modal__tag"> Available Quantity </span>
+          </div>
+          <div class="modal__event-form">
+            <label for="eventDetails" class="textarea">Ticket Description</label>
+            <textarea name="eventDetails"> </textarea>
+          </div>
+
+          <div class="modal__dt">
+            <div class="modal__selects">
+              <div class="modal-date__">
+                <div class="modal__start-dt">
+                  <span>Start Date</span>
+                  <input type="date" name="start-date" />
+                </div>
+                <div class="modal__start-time">
+                  <span>Start Time</span>
+                  <input type="time" name="start-time" />
+                </div>
+              </div>
+            </div>
+            <div class="modal__selects" style="margin-top: 2.5rem">
+              <div class="modal-date__">
+                <div class="modal__start-dt">
+                  <span>End Date</span>
+                  <input type="date" name="end-time" />
+                </div>
+                <div class="modal__start-time">
+                  <span>End Time</span>
+                  <input type="time" name="end-time" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal__submit">
+            <button class="modal__btn-cancel">Cancel</button>
+            <button class="modal__btn-continue">Continue</button>
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+
+    <ng-template [ngIf]="page == 'three'">
+
+      <!-- <app-header></app-header> -->
+      <div class="review">
+        <div class="review-main">
+          <div class="review-img">
+            <img
+              src="/assets/images/bg.png"
+              alt="" />
+          </div>
+
+          <div class="review-text">
+            <div class="header">
+              <h1>Arcade Fire</h1>
+              <h3>Thursday, September 8 . 7:00 PM - 10:00PM WAT</h3>
+            </div>
+            <div class="mid">
+              <h3>Event Details</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam, quis nostrud exercitation ullamco strud exercitation
+                ullamco
+              </p>
+            </div>
+
+            <div class="end mid">
+              <div>
+                <p><span>⚓</span> Lorem ipsum dolor</p>
+                <p class="special">Lorem ipsum dolor</p>
+              </div>
+              <p><span>🔔</span> 10 mins before</p>
+              <p><span>🔒</span> Public</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bttn">
+          <button class="btns btn-draft">Draft</button>
+          <button class="btns btn-publish">Publish</button>
+        </div>
+
+        <div class="share">
+          <h3>Share your event</h3>
+          <div class="share-links">
+            <div class="share-link">
+              <p class="url">event URL</p>
+              <p class="link">
+                http://www.google.com/search?Loremipsumdolor
+                <span><img src="/assets/images/copy.png" alt="" /></span>
+              </p>
+            </div>
+            <div class="socials">
+              <img src="/assets/images/fb.png" alt="" />
+              <img src="/assets/images/ig.png" alt="" />
+              <img src="/assets/images/red.png" alt="" />
+              <img src="/assets/images/twitter.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-template>
+  </div>
+
+</div>

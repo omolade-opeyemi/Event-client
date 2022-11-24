@@ -1,0 +1,117 @@
+<div class="foodDetails">
+    <div class="foodDetails__header">
+      <div class="foodDetails__header-back" (click)="backToDetail()">
+        <h2 class="foodDetails__header-backText"><mat-icon>arrow_back_ios</mat-icon> Back</h2>
+      </div>
+      <div class="foodDetails__header-sort">
+        <h4 class="foodDetails__header-sortText">Sort By</h4>
+        <select name="" id="">
+          <option value="">Popularity</option>
+        </select>
+      </div>
+    </div>
+    <p class="foodDetails__header-search">Found 86 items on your serach</p>
+    <div class="foodDetails__bottom">
+      <div class="foodDetails__left">
+        <div class="foodDetails__food-img">
+          <!-- <img src="{{ vendor.image }}" />
+          <div class="carousel">
+            <img src="/assets/less.png" alt="" />
+            <hr class="active" />
+            <hr />
+            <hr />
+  
+            <img src="/assets/great.png" alt="" />
+          </div> -->
+          <app-carousel></app-carousel>
+          <div class="foodDetails__food-title">
+            <h2>Balo Chops</h2>
+            <p class="foodDetails__item-rating">
+              ⭐⭐⭐⭐⭐
+              <span class="foodDetails__review">[45 reviews]</span>
+            </p>
+            <p>
+              <span class="foodDetails__location"><mat-icon>location_on</mat-icon> Ipsum magna Lorem quis
+                est quis</span>
+            </p>
+          </div>
+          <div class="foodDetails__food-description">
+            <mat-tab-group mat-align-tabs="start">
+              <mat-tab label="Description">
+                <p>
+                  Velit officia mollit in minim. Non voluptate amet exercitation velit ex fugiat enim reprehenderit culpa
+                  excepteur qui. IrureVelit officia mollit in minim. Non voluptate amet exercitation velit ex fugiat enim
+                  reprehenderit culpa excepteur qui. Irure
+                </p>
+              </mat-tab>
+              <mat-tab label="Review">
+                <p>Content 2</p>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+      <div class="vl"></div>
+  
+      <div class="foodDetails__right">
+        <div class="foodDetails__service">
+          <div class="foodDetails__service-head">
+            <div class="foodDetails__service-title">
+              <h2>Services</h2>
+              <p>Found 86 Items on your search</p>
+            </div>
+            <div class="foodDetails__service-search">
+              <input type="text" placeholder="Search services" />
+              <div class="foodDetails__service-btn">
+                <img src="/assets/search.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="foodDetails__service-body">
+            <div class="foodDetails__service-items">
+              <div class="foodDetails__service-item">
+                <div class="foodDetails__service-left">
+                  <div class="foodDetails__service-itemImg">
+                    <img
+                      src="https://img.freepik.com/premium-photo/concept-indian-cuisine-baked-chicken-wings-legs-honey-mustard-sauce-serving-dishes-restaurant-black-plate-indian-spices-wooden-table-background-image_127425-18.jpg?w=2000"
+                      alt="" />
+                  </div>
+                  <div class="foodDetails__service-itemDesc">
+                    <h3>Small Chops And Chicken</h3>
+                    <p>special dish</p>
+                    <h3>$36.00</h3>
+                  </div>
+                </div>
+                <div class="foodDetails__service-right">
+                  <button class="foodDetails__btn">-</button>
+                  <span class="foodDetails__btnSpan">3</span>
+                  <button class="foodDetails__btn">+</button>
+                  <button class="foodDetails__btn-add">Add to Plan</button>
+                </div>
+              </div>
+              <div class="foodDetails__service-item">
+                <div class="foodDetails__service-left">
+                  <div class="foodDetails__service-itemImg">
+                    <img
+                      src="https://img.freepik.com/premium-photo/concept-indian-cuisine-baked-chicken-wings-legs-honey-mustard-sauce-serving-dishes-restaurant-black-plate-indian-spices-wooden-table-background-image_127425-18.jpg?w=2000"
+                      alt="" />
+                  </div>
+                  <div class="foodDetails__service-itemDesc">
+                    <h3>Small Chops And Chicken</h3>
+                    <p>special dish</p>
+                    <h3>$36.00</h3>
+                  </div>
+                </div>
+                <div class="foodDetails__service-right">
+                  <button class="foodDetails__btn">-</button>
+                  <span class="foodDetails__btnSpan">3</span>
+                  <button class="foodDetails__btn">+</button>
+                  <button class="foodDetails__btn-add">Add to Plan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

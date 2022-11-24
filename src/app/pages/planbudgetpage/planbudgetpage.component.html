@@ -1,0 +1,148 @@
+<div class="event">
+  <div class="event-page">
+    <div class="event-banner"></div>
+
+    <div class="event-main">
+      <div class="event-top">
+        <div class="left">
+          <h1 class="event-title">Arcade Fire</h1>
+          <div class="event-desc">
+            <p>Created by <span>You</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="event-location">
+        <div class="location-items">
+          <mat-icon>event</mat-icon>
+          <p>Tuesday, March 01</p>
+        </div>
+        <div class="location-items">
+          <mat-icon>location_on</mat-icon>
+          <p>Descasio Lounge</p>
+        </div>
+        <div class="location-items">
+          <mat-icon>schedule</mat-icon>
+          <p>4:00 PM WAT</p>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="cards">
+        <div class="card-item estimate">
+          <h5>Budget Estimate</h5>
+          <h2>$3,100</h2>
+        </div>
+        <div class="card-item build">
+          <h5>Budget Build</h5>
+          <h2>$1,805</h2>
+        </div>
+        <div class="card-item act">
+          <h5>Actualized</h5>
+          <h2>$1,805</h2>
+        </div>
+        <div class="card-item plan">
+          <img class="card-img" src="/assets/images/food.png" alt="" />
+          <div class="p">
+            <p>🟩 Budget Build</p>
+            <p>🟦 Actualized</p>
+          </div>
+        </div>
+      </div>
+      <!-- category -->
+      <div class="category">
+        <div class="categories" (click)="openXl(content)">
+          <h2>Request Categories</h2>
+          <div class="categories_add">
+            <mat-icon>add</mat-icon>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="cat-item cat" (click)="foodToggle()">
+            <img class="cat-img" src="/assets/images/food.png" alt="" />
+            <div class="cat-text">
+              <h3>Food</h3>
+              <p>135 vendors registered under this category</p>
+            </div>
+            <p class="cancel">❌</p>
+          </div>
+          <div class="cat-item cat">
+            <img class="cat-img" src="/assets/images/food.png" alt="" />
+            <div class="cat-text">
+              <h3>Music</h3>
+              <p>135 vendors registered under this category</p>
+            </div>
+            <p class="cancel">❌</p>
+          </div>
+          <div class="cat-item cat">
+            <img class="cat-img" src="/assets/images/food.png" alt="" />
+            <div class="cat-text">
+              <h3>Print</h3>
+              <p>135 vendors registered under this category</p>
+            </div>
+            <p class="cancel">❌</p>
+          </div>
+          <div class="cat-item cat">
+            <img class="cat-img" src="/assets/images/food.png" alt="" />
+            <div class="cat-text">
+              <h3>Print</h3>
+              <p>135 vendors registered under this category</p>
+            </div>
+            <p class="cancel">❌</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-img">
+      <img
+        src="https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414"
+        alt="" />
+    </div>
+    <ng-container *ngIf="toggle">
+      <ng-template [ngIf]="page == 'list'">
+        <app-foodvendor> </app-foodvendor>
+      </ng-template>
+
+      <ng-template [ngIf]="page == 'detail'">
+        <app-food-detail></app-food-detail>
+      </ng-template>
+    </ng-container>
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Food Vendor</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="categories__modal">
+          <div class="categories__modal-header">
+            <h3 class="categories__modal-headerTitle">
+              Select list of request categories you need for your event
+            </h3>
+            <p class="categories__modal-headerText">You can select multiple times</p>
+          </div>
+          <div class="categories__modal-body">
+            <div
+              *ngFor="let vendor of vendors"
+              (dblclick)="vendor.active = !vendor.active"
+              [className]="
+                vendor.active
+                  ? 'categories__modal-bodyItems-active categories__modal-bodyItems'
+                  : 'categories__modal-bodyItems-notActive categories__modal-bodyItems'
+              "
+            >
+              <img class="categories__modal-bodyImg" src="{{ vendor.image }}" alt="" />
+              <p class="categories__modal-bodyText " [style.color]="vendor.color">{{ vendor.type }}</p>
+            </div>
+          </div>
+          <div class="categories__modal-btn">
+            <button class="categories__modal-btnCancel" (click)="modal.close('Close click')">Cancel</button>
+            <button class="categories__modal-btnContinue">Continue</button>
+          </div>
+        </div>
+      </div>
+     
+    </ng-template>
+
+  </div>
+</div>

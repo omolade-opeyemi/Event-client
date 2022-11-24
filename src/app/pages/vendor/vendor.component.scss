@@ -1,0 +1,55 @@
+.vendors{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    width: 65em;
+}
+.vendor-item {
+    flex-basis: 15em;
+    height: fit-content;
+    /* width: 530px; */
+    width: auto;
+    border: 0.5px solid rgba(28, 43, 102, 0.25);
+    border-radius: 10px;
+    background: #fff;
+  }
+  .vendor-item img {
+    height: 175px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .item-header {
+    padding: 0rem 1.5rem;
+  }
+  .item-header h3 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    font-weight: 700;
+  }
+  .item-body {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+  .item-rating {
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+  }
+  .item-rating span {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.35);
+  }
+  .item-btn {
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .item-btn button {
+    padding: 0.7rem 6rem;
+    font-size: 1.2rem;
+    background: #1c2b66;
+    border-radius: 26px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }

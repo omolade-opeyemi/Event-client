@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="side1">
+        <app-schedular></app-schedular>
+    </div>
+
+    <div class="side2">
+        <mat-card class="demo-inline-calendar-card">
+            <mat-calendar [(selected)]="selected"></mat-calendar>
+        </mat-card>
+        <div class="create">
+            <mat-icon>add</mat-icon>
+            <h4>Create New Event</h4>
+        </div>
+        <div class="feel">
+            <div class="best">
+                <b>Your Best Month</b>
+                <div class="cal">
+                    <div class="word">
+                        <h5>March</h5>
+                        <small>200 Hrs Worked</small>
+                    </div>
+                    <mat-icon>more_vert</mat-icon>
+                </div>
+            </div>
+            <div class="best">
+                <b>Your Best Month</b>
+                <div class="cal">
+                    <div class="word">
+                        <h5>March</h5>
+                        <small>200 Hrs Worked</small>
+                    </div>
+                    <mat-icon>more_vert</mat-icon>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="reminders">
+            <div class="top">
+                <h5>Reminders</h5>
+                <mat-icon>notifications</mat-icon>
+            </div>
+            <div class="reminder">
+                <div class="state">
+                    <mat-icon>refresh</mat-icon>
+                    <div class="sub">
+                        <small>Your subscription expires</small>
+                        <small class="renew">Renew Now</small>
+                    </div>
+                </div>
+                <small>6:30 PM</small>
+            </div>
+        </div>
+    </div>
+
+</div>

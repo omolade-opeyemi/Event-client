@@ -1,0 +1,20 @@
+
+
+<div class="vendors">
+<div class="vendor-item" *ngFor="let vendor of vendordata">
+    <img src="{{ vendor.image }}" alt="" />
+    <div class="item-header">
+      <h3>{{ vendor.name }}</h3>
+      <h5>#{{ vendor.b_range }}</h5>
+      <p class="item-body">
+        {{ vendor.desc }}
+      </p>
+      <p class="item-rating">
+        {{ vendor.rating }} <span>[{{ vendor.reviews }} reviews]</span>
+      </p>
+    </div>
+    <div class="item-btn">
+      <button type="button" (click)="detailPage()">Select</button>
+    </div>
+  </div>
+</div>

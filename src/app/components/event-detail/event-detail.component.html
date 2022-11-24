@@ -1,0 +1,249 @@
+<app-header></app-header>
+
+    <div class="event-page">
+      <div class="event-banner">blue banner</div>
+      <div class="event-img">
+        <img
+          src="https://acrisurearena.com/wp-content/uploads/2022/10/Static_Outdoor_ConcertVision_1920x1080_RockChappelle_2023_AcrisureArena_1214.jpg"
+          alt="" />
+      </div>
+
+      <div class="event-main">
+        <div class="event-top">
+          <div class="left">
+            <h1 class="event-title">Chris Rock & Dave Chapelle</h1>
+            <div class="event-desc">
+              <p>By <span>Abelsworth</span></p>
+              <button>Follow</button>
+            </div>
+          </div>
+          <div class="right">
+            <h2>Free</h2>
+            <button (click)="openTicketting(ticketting)">Register</button>
+          </div>
+        </div>
+        <div class="event-location">
+          <div class="location-items">
+            <span>📆</span>
+            <p>Tuesday, March 01</p>
+          </div>
+          <div class="location-items">
+            <span>⚓</span>
+            <p>Descasio Lounge</p>
+          </div>
+          <div class="location-items">
+            <span>🕒</span>
+            <p>4:00 PM WAT</p>
+          </div>
+        </div>
+        <div class="event-details">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Fermentum odio eu feugiat pretium. Iaculis nunc sed augue lacus
+            viverra vitae congue eu consequat. Placerat duis ultricies lacus sed
+            turpis tincidunt id aliquet. In est ante in nibh mauris cursus. Sit
+            amet est placerat in egestas erat imperdiet sed euismod. Ultricies
+            lacus sed turpis tincidunt id aliquet risus feugiat. A condimentum
+            vitae sapien
+          </p>
+          <p>
+            pellentesque habitant morbi. Pellentesque adipiscing commodo elit at
+            imperdiet dui accumsan. Non diam phasellus vestibulum lorem sed
+            risus. Ac feugiat sed lectus vestibulum mattis ullamcorper velit
+            sed. Odio pellentesque diam volutpat commodo sed egestas. Vitae
+            justo eget magna fermentum iaculis eu non diam. Vulputate eu
+            scelerisque felis imperdiet proin fermentum leo vel. Sed vulputate
+            odio ut enim blandit volutpat maecenas. Enim ut tellus elementum
+            sagittis vitae et leo duis ut. Eleifend mi in nulla posuere. Egestas
+            quis ipsum suspendisse ultrices gravida dictum fusce ut placerat.
+            Pretium nibh ipsum consequat nisl vel pretium lectus.
+          </p>
+          <p>
+            pellentesque habitant morbi. Pellentesque adipiscing commodo elit at
+            imperdiet dui accumsan. Non diam phasellus vestibulum lorem sed
+            risus. Ac feugiat sed lectus vestibulum mattis ullamcorper velit
+            sed. Odio pellentesque diam volutpat commodo sed egestas. Vitae
+            justo eget magna fermentum iaculis eu non diam. Vulputate eu
+            scelerisque felis imperdiet proin fermentum leo vel. Sed vulputate
+            odio ut enim blandit volutpat maecenas. Enim ut tellus elementum
+            sagittis vitae et leo duis ut. Eleifend mi in nulla posuere. Egestas
+            quis ipsum suspendisse ultrices gravida dictum fusce ut placerat.
+            Pretium nibh ipsum consequat nisl vel pretium lectus.
+          </p>
+        </div>
+      </div>
+      <div class="event-map">
+        <img
+          src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"
+          alt="" />
+      </div>
+      <ng-template #ticketting let-modal>
+        <!-- <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark close" (click)="modal.close('Save click')"><mat-icon>close</mat-icon></button>
+        </div>
+         <div class="modal-body">
+          <div class="acade"> 
+            <h2 class="colour">Arcade Fire</h2>
+            <div class="event-desc">
+              <p>By <span>Abelsworth</span></p>
+              <button>Follow</button>
+            </div>
+              <b>Thursday, September 8 . 7:00 PM - 10:00 PM WAT</b>
+              <hr>
+              <h4>Select Ticket</h4>
+              <div class="general">
+                <b>GENERAL ADMISSION</b>
+                <div class="group">
+                  <section>
+                    <span>
+                      <b class="colour">&#8358; 7,500 </b> + &#8358; 650 fee
+                    </span>
+                    <span>Sales end on September 2</span>
+                  </section>
+                  <section>
+                    <select name="" id="">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                    </select>
+                  </section>
+                </div>
+              </div>
+              
+              <div class="general">
+                <b>VIP</b>
+                <div class="group">
+                  <section>
+                    <span>
+                      <b class="colour">&#8358; 7,500 </b> + &#8358; 650 fee
+                    </span>
+                    <span>Sales end on September 2</span>
+                  </section>
+                  <section>
+                    <select name="" id="">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                    </select>
+                  </section> 
+                </div>
+              </div>
+              <hr>
+              <p>Powered By <strong class="colour">Event</strong></p>
+          </div>
+          <div class="purchase">
+            <h2 class="colour">Purchase Summary</h2>
+
+            <div class="table">
+              <p>3x General Admission</p>
+              <hr>
+              <div class="tabs">
+                <p>Fees</p>
+                <p>&#8358; 1950</p>
+              </div>
+              <div class="tabs">
+                <p>Subtotal</p>
+                <p>&#8358; 24,450</p>
+              </div>
+              <hr>
+              <div class="tabs">
+                <p>Total</p>
+                <h2 class="colour">&#8358; 24,450</h2>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-dark checkout" (click)="openCheckout(checkout)">Checkout</button>
+
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #checkout let-modal>
+        <!-- <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark close" (click)="modal.close('Save click')"><mat-icon>close</mat-icon></button>
+        </div>
+         <div class="modal-body">
+          <div class="check"> 
+            <p>Your ticket has been reserved, complete checkout within 15:00 to secure your ticket.</p>
+            <div class="fom">
+            <h3 class="colour"><mat-icon>arrow_back_ios</mat-icon>Check Out</h3>
+            <form class="row g-3">
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4">
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword4">
+              </div>
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4">
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword4">
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    Keep me updated on more events & new from this event organizer
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    Send emails about events happening nearby
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">Place order</button>
+              </div>
+            </form>
+          </div>
+
+            </div>
+
+          <div class="purchase">
+            <h2 class="colour">Purchase Summary</h2>
+
+            <div class="table">
+              <p>3x General Admission</p>
+              <hr>
+              <div class="tabs">
+                <p>Fees</p>
+                <p>&#8358; 1950</p>
+              </div>
+              <div class="tabs">
+                <p>Subtotal</p>
+                <p>&#8358; 24,450</p>
+              </div>
+              <hr>
+              <div class="tabs">
+                <p>Total</p>
+                <h2 class="colour">&#8358; 24,450</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <app-footer></app-footer>
+    </div>
+    
+  
+  
+

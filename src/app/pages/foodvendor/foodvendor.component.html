@@ -1,0 +1,84 @@
+<div class="foodVendor">
+    <!-- left -->
+    <div class="foodVendor__left">
+      <div class="foodVendor__filter">
+        <div class="foodVendor__filter-header">
+          <h2>Filter</h2>
+          <button>Reset</button>
+        </div>
+        <div class="foodVendor__filter-search">
+          <input
+            type="text"
+            #searchtext
+            (keyup.enter)="searchVendor(searchtext.value)"
+          />
+          <!-- {{ searchtext.value }} -->
+          <div class="foodVendor__filter-btn">
+            <img
+              src="/assets/search.png"
+              alt=""
+              (click)="searchVendor(searchtext.value)"
+            />
+          </div>
+        </div>
+        <hr class="foodVendor__hr" />
+        <div class="foodVendor__filter-location">
+          <h4>Location</h4>
+          <select name="" id="">
+            <option value="">Select Location</option>
+          </select>
+        </div>
+        <hr class="foodVendor__hr" />
+        <div class="foodVendor__filter-budget">
+          <h4>Budget Range</h4>
+          <div class="foodVendor__filter-range">
+            <div class="min">
+              <p>3$</p>
+              <P>Min.</P>
+            </div>
+            <div class="max">
+              <p>500$</p>
+              <P>Min.</P>
+            </div>
+          </div>
+          <div class="foodVendor__filter-budgetProgress">
+            <progress id="file" value="400" max="500">32%</progress>
+            <div class="foodVendor__filter-progressBtn">
+              <button>20</button>
+              <p>-</p>
+              <button>100</button>
+            </div>
+          </div>
+          <hr class="foodVendor__hr" />
+          <div class="foodVendor__filter-budgetSubmit">
+            <button>Apply Filter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- right -->
+    <div class="foodVendor__right">
+      <div class="foodVendor__right-header">
+        <div class="foodVendor__right-headerTitle">
+          <h2>Looking for food vendors?</h2>
+          <div class="foodVendor__right-headerRight">
+            <p>Sort by:</p>
+            <select name="" id="">
+              <option value="">Popularity</option>
+            </select>
+          </div>
+        </div>
+        <p class="foodVendor__found">
+          Found {{ vendors.length }} items on your search
+        </p>
+      </div>
+      <div class="foodVendor__bottom">
+        <div class="foodVendor__vendors">
+          <app-vendor ></app-vendor>
+        </div>
+        <div class="foodVendor__bottom-btn">
+          <button>Load More</button>
+        </div>
+      </div>
+    </div>
+  </div>
