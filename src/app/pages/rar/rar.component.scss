@@ -1,0 +1,33 @@
+  
+  .rar__table-table {
+    font-size: clamp(0.75rem, 0.4375rem + 1vw, 1rem);
+  }
+  
+  .rar__table-head {
+    background: #F6F7FC;
+  }
+  
+  .rar__column {
+    min-width: 10rem;
+  }
+  
+  .rar__row {
+    min-height: 4rem;
+  }
+  
+  .rar__row:nth-child(even) {
+    background: #F6F7FC;
+  
+  
+  
+  }
+  
+  @media screen and (max-width:500px) {
+    .rar__top {
+      width: 100%;
+    }
+  
+    .rar__header {
+      flex-direction: column;
+    }
+  }

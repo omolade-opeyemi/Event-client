@@ -1,0 +1,360 @@
+.bodyPart{
+    display: flex;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    
+}
+.WalletBoard .section1{
+    display: flex;
+    flex-direction: column;
+    min-width: 30%;
+    /* margin: 10px 0; */
+
+}
+#error{
+    margin: 0px;
+    padding: 0px;
+    color: red;
+}
+.WalletBoard .section1 > *{
+    margin: 10px ;
+}
+.part1{
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 10px;
+}
+.part1 b{
+    padding-left: 30px;
+}
+.cardbody{
+    /* border: 2px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pagination{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+    bottom: 0;
+}
+ .ballance{
+    /* width: 20rem; */
+        min-height: 200px;
+    width: 100%;
+    /* min-width: 400px;
+    min-height: 200px; */
+    max-width: 400px;
+    /* max-height: 200px; */
+    position: relative;
+    background-image: url("/assets/images/Card.png");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #f4f7fa;
+    border-radius: 10px;
+    padding-left: 20px;
+    line-height: 10px;
+    font-family: poppins;
+    /* margin:0 30px; */
+}
+.ballance p{
+    position: relative;
+    /* padding-left: 10px; */
+    font-size: 20px;
+    font-weight: 600;
+}
+.ballance h1{
+    font-size: 25px;
+    font-weight: 600;
+}
+.options{
+    margin-top: 15px;
+    /* border: 2px solid; */
+    display: flex;
+    justify-content: center;
+}
+.option1, .option2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+    cursor: pointer;
+}
+.option1:hover, .option2:hover{
+    color: #1C2B66;
+}
+.option1 .icon1, .option2 .icon2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#1C2B66 ;
+    width: 2.813rem;
+    height: 2.813rem;
+    background: rgba(124, 139, 200, 0.25);
+box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+}
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.moree:hover{
+    background: rgba(124, 139, 200, 0.25);
+}
+.moree{
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // gap: 5px;
+    padding: 0;
+    .icon{
+        background: rgba(124, 139, 200, 0.25);
+        border-radius: 50%;
+        display: flex;
+        padding: 10px;
+        margin: 0;
+        mat-icon{
+            color: #1C2B66;
+            margin: 0;
+                padding: 0;
+        }
+    }
+    .optionss{
+        display: flex;
+        width: 90%;
+        align-items: center;
+        justify-content: space-between;
+        .details{
+            line-height: 1;
+            p,small,b{
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.part2{
+    
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+.progres{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 10px 0;
+}
+b{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.circular-progress{
+	position: relative;
+	height: 120px;
+	width: 120px;
+	border-radius: 50%;
+	display: grid;
+	place-items:center;
+    color:#78C000;
+    color:#C7E596;
+    color: #53a9ff;
+
+}
+.circular-progress:before{
+	content: "";
+	position: absolute;
+	height: 80%;
+	width: 80%;
+	background-color: red;
+	border-radius: 50%
+}
+.value-container{
+	position: relative;
+	font-size: 20px;
+	color: #231c3d;
+	font-weight: 700;
+}
+/* progress bar ends here */
+
+.topUp,.payment{
+    font-weight: 600;
+    font-size: 12px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-between;
+    flex-wrap: nowrap; */
+
+}
+.topUp mat-icon{
+    color: #52CEB8;
+    font-size: 12px;
+   
+}
+.payment mat-icon{
+    color: #007AFF;
+    font-size: 12px;
+}
+.topUp span,.payment span{
+    margin-right: 25px;
+}
+
+.WalletBoard .section2{
+    width: 69%;
+    background-color: #fff;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.recentActivity{
+   
+}
+thead{
+    background: rgba(244, 247, 252, 0.75);
+backdrop-filter: blur(8px);
+}
+tbody img{
+    width: 24.64px;
+height: 25px;
+
+}
+tbody{
+    font-weight: 400;
+font-size: 14px;
+}
+.success{
+    color:  #14804A;;
+}
+.fail{
+   color: #D12953;
+}
+.credit{
+    color: #007AFF;
+}
+.debit{
+    color: orange;
+}
+th,td{
+    font-family: poppins;
+    padding: 10px 5px;
+    font-size: 14px;
+}
+.paymentOptionGroup{
+    display: flex;
+    align-items: center;
+    /* border: 2px solid; */
+    padding: 0 10px;
+    justify-content: space-between;
+}
+.paymentOptionGroup img{
+    width: 50%;
+}
+.paymentOption{
+ 
+}
+.paymentGateway{
+    margin:10px;
+}
+.paymentGateway label{
+    margin-left: 10px;
+    font-weight: 600;
+font-size: 15px;
+}
+.paymentGateway input{
+    opacity: 0.5;
+    
+}
+.paymentGateway img{
+    width: 25px;
+    margin-right: 5px;
+}
+.amount{
+    display: flex;
+    justify-content: center;
+}
+.amount p{
+    margin-top: 30px;
+}
+.amount .enterAmount{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    
+}
+.amount .enterAmount input{
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+border-radius: 10px;
+outline-color: #007AFF;
+width: 100%;
+height: 45px;
+padding: 10px;
+}
+.amount .enterAmount button{
+    background: #2FA84F;
+border-radius: 10px;
+width: 100%;
+height: 45px;
+border: 0;
+}
+.amount .enterAmount >*{
+    margin: 5px ;
+}
+.modal-footer {
+    text-align:left;
+}
+.closebtn{
+    text-align: right;
+}
+.closebtn button{
+    margin: 10px;
+    background-color: #fff;
+    color: #373737;
+    font-weight: 600;
+    font-size: 16px;
+    border: 0;
+}
+@media only screen and (max-width: 700px){
+    body{
+        padding: 1rem;
+
+    }
+    .section2Image,.walletImage{
+        display: none;
+    }
+    #hide{
+        display: none;
+    }
+    .firstPin .section1{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .otp{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .bodyPart{
+        flex-wrap: wrap;
+    }
+    .bodyPart .section2,.bodyPart .section1{
+        width: 100%;
+    }
+}

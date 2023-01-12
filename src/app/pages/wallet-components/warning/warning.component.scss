@@ -1,0 +1,15 @@
+.warning {
+    min-height: 61px;
+    padding: 1.5rem 0;
+    background: rgba(255, 96, 91, 0.28);
+    border-radius: 10px;
+    color: #FF605B;
+    width: 100%;
+  }
+  
+  .warning__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }

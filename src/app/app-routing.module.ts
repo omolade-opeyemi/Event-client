@@ -8,6 +8,8 @@ import { EventDetailComponent } from './components/event-detail/event-detail.com
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { PlanBudgetComponent } from './components/plan-budget/plan-budget.component';
+import { SpecialRequestComponent } from './components/special-request/special-request.component';
+import { WalletComponent } from './components/wallet/wallet.component';
 
 const routes: Routes = [
   {path: 'header',component:HeaderComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'event-detail', component:EventDetailComponent},
   {path: 'create-event', component:CreateEventComponent},
   {path: 'schedule', component:ScheduleComponent},
-  {path: 'plan-budget', component:PlanBudgetComponent}
+  {path: 'plan-budget', component:PlanBudgetComponent},
+  {path: 'special-request', component:SpecialRequestComponent},
+  {path: 'wallet', component:WalletComponent}
   
 ];
 

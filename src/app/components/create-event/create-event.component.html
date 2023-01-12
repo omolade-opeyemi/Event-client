@@ -2,6 +2,7 @@
 
 <div class="body" [ngClass]="getBodyClass()">
     <app-header></app-header>
+    <ng-template>
     <div class="main-header">
         <div class="welcome">
             <ng-template [ngIf]="page != 'requests'">
@@ -20,6 +21,7 @@
             <button class="btn btn-primary" >+ Add Service</button>
         </div>
     </div>
+</ng-template>
     <div class="main">
         <app-createeventpage></app-createeventpage>
     </div>    

@@ -3,6 +3,7 @@
   align-items: flex-start;
   justify-content: space-between;
   max-width: 100%;
+  gap: 5px;
 }
 
 .color {
@@ -12,7 +13,7 @@
 .side1 {
   display: flex;
   flex-direction: column;
-  flex-basis: 70%;
+  flex-basis: 75%;
   gap: 20px;
 
   .row1 {
@@ -103,7 +104,8 @@ width: 200px;
     display: grid;
     // grid-template-columns: repeat(3, 350px);
     grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
-    grid-gap: 15px;
+    grid-gap: 5px;
+    justify-content: space-around;
     .event{
       background: #fff;
       box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
@@ -181,7 +183,7 @@ border-radius: 10px;
 
 .side2 {
   border-radius: 10px;
-  flex-basis: 28%;
+  flex-basis: 23%;
   background: #fff;
   padding: 20px;
   display: flex;

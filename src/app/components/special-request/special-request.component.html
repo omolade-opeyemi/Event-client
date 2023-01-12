@@ -1,0 +1,52 @@
+<app-sidebar *ngIf="!isauthRouth()"></app-sidebar>
+
+<div class="body" [ngClass]="getBodyClass()">
+  <app-header></app-header>
+
+  <ng-template [ngIf]="header == 'main'">
+    <div class="main-header">
+      <div class="welcome">
+        <ng-template [ngIf]="page != 'requests'">
+          <h5 class="colour">👋 Hi Lucy</h5>
+          <h3>Let's Get Productive Today !</h3>
+        </ng-template>
+
+        <ng-template [ngIf]="page == 'requests'">
+          <h2 class="colour">Dashboard</h2>
+          <h5 class="colour">
+            <mat-icon>chevron_left</mat-icon> Back
+          </h5>
+        </ng-template>
+      </div>
+      <div>
+        <input type="search" name="" id="" placeholder="search">
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="header == 'ipr' || header == 'rar'">
+    <div class="iprheader">
+      <div class="ipr__back" (click)="back()">
+        <mat-icon>arrow_back_ios</mat-icon>
+        <p>Back</p>
+      </div>
+      <div class="ipr__header">
+        <h3 [hidden]="header != 'ipr'">Invoice Per Request</h3>
+        <h3 [hidden]="header != 'rar'">Requets Awaiting Response</h3>
+
+        <div class="ipr__btns">
+          <select class="ipr__btns-select" name="" id="">
+            <option value="">Export As</option>
+          </select>
+          <button class="ipr__btns-btn">Print Report</button>
+        </div>
+      </div>
+      <div class="ipr__top">
+        <app-daterange></app-daterange>
+      </div>
+    </div>
+  </ng-template>
+  <div class="main">
+    <app-specialrequestpage></app-specialrequestpage>
+  </div>
+</div>

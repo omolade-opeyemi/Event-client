@@ -16,7 +16,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -44,6 +45,21 @@ import { FoodvendorComponent } from './pages/foodvendor/foodvendor.component';
 import { VendorComponent } from './pages/vendor/vendor.component';
 import { FoodDetailComponent } from './pages/food-detail/food-detail.component';
 import { CarouselComponent } from './pages/carousel/carousel.component';
+import { SpecialRequestComponent } from './components/special-request/special-request.component';
+import { SpecialrequestpageComponent } from './pages/specialrequestpage/specialrequestpage.component';
+import { IprComponent } from './pages/ipr/ipr.component';
+import { DaterangeComponent } from './pages/daterange/daterange.component';
+import { RarComponent } from './pages/rar/rar.component';
+import { WalletComponent } from './components/wallet/wallet.component';
+import { WalletpageComponent } from './pages/wallet-components/walletpage/walletpage.component';
+import { WpasscodeComponent } from './pages/wallet-components/wpasscode/wpasscode.component';
+import { WarningComponent } from './pages/wallet-components/warning/warning.component';
+import { InfoComponent } from './pages/wallet-components/info/info.component';
+import { WalletlandingComponent } from './pages/wallet-components/walletlanding/walletlanding.component';
+import { PasscodeComponent } from './pages/wallet-components/passcode/passcode.component';
+import { TrpasscodeComponent } from './pages/wallet-components/trpasscode/trpasscode.component';
+import { UpdatePinComponent } from './pages/wallet-components/update-pin/update-pin.component';
+import { WalletDashboardComponent } from './pages/wallet-components/wallet-dashboard/wallet-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +83,21 @@ import { CarouselComponent } from './pages/carousel/carousel.component';
     VendorComponent,
     FoodDetailComponent,
     CarouselComponent,
+    SpecialRequestComponent,
+    SpecialrequestpageComponent,
+    IprComponent,
+    DaterangeComponent,
+    RarComponent,
+    WalletComponent,
+    WalletpageComponent,
+    WpasscodeComponent,
+    WarningComponent,
+    InfoComponent,
+    WalletlandingComponent,
+    PasscodeComponent,
+    TrpasscodeComponent,
+    UpdatePinComponent,
+    WalletDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +120,9 @@ import { CarouselComponent } from './pages/carousel/carousel.component';
       useFactory: adapterFactory,
     }),
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxPaginationModule,
+
   ],
   providers: [{provide: MatStepperIntl},],
   bootstrap: [AppComponent]

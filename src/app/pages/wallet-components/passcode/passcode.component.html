@@ -1,0 +1,43 @@
+<div class="passcode">
+  <div>
+    <button class="passcode__back" routerLink="/welcome">
+      <mat-icon>chevron_left</mat-icon> Back
+    </button>
+  </div>
+  <h2 class="passcode__header">
+    Set Your Passcode To Protect Your E-Wallet
+  </h2>
+  <div class="passcode__validation">
+    <app-warning></app-warning>
+  </div>
+
+  <div class="passcode__pin">
+    <div class="new__pin">
+      <p>New Pin</p>
+      <div class="pin__inputs">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+      </div>
+    </div>
+    <div class="confirm__pin">
+      <p>Confirm Pin</p>
+      <div class="pin__inputs">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+        <input type="password">
+      </div>
+    </div>
+  </div>
+  <div class="passcode__btn">
+    <button class="" (click)="dashBoard()">
+      Proceed
+    </button>
+  </div>
+</div>

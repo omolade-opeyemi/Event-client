@@ -1,0 +1,18 @@
+.info {
+    min-height: 61px;
+    padding: 1rem 2rem;
+    background: rgba(124, 139, 200, 0.25);
+    border-radius: 10px;
+    color: #1C2B66;
+    width: 100%;
+    p{
+      margin: 0;
+    }
+  }
+  
+  .info__text {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+  }

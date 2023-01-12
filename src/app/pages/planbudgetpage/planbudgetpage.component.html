@@ -1,6 +1,12 @@
 <div class="event">
   <div class="event-page">
-    <div class="event-banner"></div>
+    <div class="event-banner">
+      <div class="event-img">
+        <img
+          src="https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414"
+          alt="" />
+      </div>
+    </div>
 
     <div class="event-main">
       <div class="event-top">
@@ -29,19 +35,19 @@
       <!-- CARDS -->
       <div class="cards">
         <div class="card-item estimate">
-          <h5>Budget Estimate</h5>
-          <h2>$3,100</h2>
+          <h3>Budget Estimate <mat-icon>more_horiz</mat-icon></h3>
+          <h2>$3,100 <mat-icon>edit</mat-icon></h2>
         </div>
         <div class="card-item build">
-          <h5>Budget Build</h5>
-          <h2>$1,805</h2>
+          <h3>Budget Build <mat-icon>more_horiz</mat-icon></h3>
+          <h2>$1,805 <button class="btn btn-primary">view</button></h2>
         </div>
         <div class="card-item act">
-          <h5>Actualized</h5>
+          <h3>Actualized <mat-icon>more_horiz</mat-icon></h3>
           <h2>$1,805</h2>
         </div>
         <div class="card-item plan">
-          <img class="card-img" src="/assets/images/food.png" alt="" />
+          <img class="card-img" src="/assets/images/Group 663.png" alt="" />
           <div class="p">
             <p>🟩 Budget Build</p>
             <p>🟦 Actualized</p>
@@ -93,11 +99,7 @@
       </div>
     </div>
 
-    <div class="event-img">
-      <img
-        src="https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414"
-        alt="" />
-    </div>
+
     <ng-container *ngIf="toggle">
       <ng-template [ngIf]="page == 'list'">
         <app-foodvendor> </app-foodvendor>
@@ -122,15 +124,11 @@
             <p class="categories__modal-headerText">You can select multiple times</p>
           </div>
           <div class="categories__modal-body">
-            <div
-              *ngFor="let vendor of vendors"
-              (dblclick)="vendor.active = !vendor.active"
-              [className]="
+            <div *ngFor="let vendor of vendors" (dblclick)="vendor.active = !vendor.active" [className]="
                 vendor.active
                   ? 'categories__modal-bodyItems-active categories__modal-bodyItems'
                   : 'categories__modal-bodyItems-notActive categories__modal-bodyItems'
-              "
-            >
+              ">
               <img class="categories__modal-bodyImg" src="{{ vendor.image }}" alt="" />
               <p class="categories__modal-bodyText " [style.color]="vendor.color">{{ vendor.type }}</p>
             </div>
@@ -141,7 +139,7 @@
           </div>
         </div>
       </div>
-     
+
     </ng-template>
 
   </div>

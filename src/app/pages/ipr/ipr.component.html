@@ -1,0 +1,59 @@
+<div class="ipr">
+    <!-- <div class="ipr__back">
+      <mat-icon>arrow_back_ios</mat-icon>
+      <p>Back</p>
+    </div>
+    <div class="ipr__header">
+      <h3>Invoice Per Request</h3>
+  
+      <div class="ipr__btns">
+        <select class="ipr__btns-select" name="" id="">
+          <option value="">Export As</option>
+        </select>
+        <button class="ipr__btns-btn">Print Report</button>
+      </div>
+    </div>
+    <div class="ipr__top">
+  
+      <app-daterange></app-daterange>
+    </div>
+    <div class="ipr__hr">
+  
+    </div> -->
+
+    <div class="ipr__table table-responsive">
+      <table class="ipr__table-table table">
+        <thead class="ipr__table-head">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">INVOICE ID</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">INVOICE DATE</th>
+            <th scope="col">DUE DATE</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">AMOUNT</th>
+            <th scope="col">
+              <mat-icon>delete</mat-icon>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let invoice of invoices" class="ipr__row">
+            <th scope="row"><input type="checkbox" name="" id=""></th>
+            <td class="ipr__column">
+  
+              #{{ invoice.invoiceId }}
+            </td>
+            <td class="ipr__column">{{ invoice.description}}</td>
+            <td class="ipr__column">{{ invoice.invoiceDate}}</td>
+            <td class="ipr__column">{{ invoice.dueDate}}</td>
+            <td class="ipr__column"><span class="ipr__status">{{ invoice.status}}</span></td>
+            <td class="ipr__column">{{ invoice.amount| currency}}</td>
+            <td class="ipr__column">
+              <mat-icon>more_horiz</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

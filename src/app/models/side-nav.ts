@@ -13,21 +13,6 @@ export const navbarData = [
         label: 'Dashboard'
     },
     {
-        routerLink: '/invoice',
-        icon:'receipt_long',
-        label: 'Invoice'
-    },
-    {
-        routerLink: '/ongoing-trip',
-        icon:'sms',
-        label: 'Messages'
-    },
-    {
-        routerLink: '/accreditation',
-        icon:'insights',
-        label: 'Accreditation'
-    },
-    {
         routerLink: '/schedule',
         icon:'calendar_today',
         label: 'Schedule'
@@ -36,7 +21,16 @@ export const navbarData = [
         routerLink: '/plan-budget',
         icon:'shutter_speed',
         label: 'Plan Budget'
+    },{
+        routerLink: '/special-request',
+        icon:'folder_special',
+        label: 'Special Requests'
+    },{
+        routerLink: '/wallet',
+        icon:'account_balance_wallet',
+        label: 'Wallet'
     },
+
     
     
 ];

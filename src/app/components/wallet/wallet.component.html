@@ -1,0 +1,34 @@
+<app-sidebar *ngIf="!isauthRouth()"></app-sidebar>
+
+<div class="body" [ngClass]="getBodyClass()">
+    <app-header></app-header>
+    <ng-template [ngIf]="header == 'request' || page == 'dashboard'">
+        <div class="main-header">
+            <div class="welcome">
+                <h2 class="colour">Wallet</h2>
+                <h5 class="colour">
+                    <mat-icon>chevron_left</mat-icon> Back
+                </h5>
+            </div>
+            <div>
+                <button class="btn btn-primary">+ Add Service</button>
+            </div>
+
+        </div>
+    </ng-template>
+
+
+    <ng-template [ngIf]="page == 'wpasscode'">
+        <app-wpasscode></app-wpasscode>
+    </ng-template>
+
+    <ng-template [ngIf]="page == 'walletlanding'">
+        <app-walletlanding></app-walletlanding>
+    </ng-template>
+
+    <ng-template [ngIf]="page !== ('walletlanding' || 'wpasscode')">
+        <div class="main">
+            <app-walletpage></app-walletpage>
+        </div>
+    </ng-template>
+</div>
