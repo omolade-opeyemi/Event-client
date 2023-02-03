@@ -14,10 +14,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { Angular4PaystackModule } from 'angular4-paystack';
+
+
 
 
 
@@ -60,6 +66,12 @@ import { PasscodeComponent } from './pages/wallet-components/passcode/passcode.c
 import { TrpasscodeComponent } from './pages/wallet-components/trpasscode/trpasscode.component';
 import { UpdatePinComponent } from './pages/wallet-components/update-pin/update-pin.component';
 import { WalletDashboardComponent } from './pages/wallet-components/wallet-dashboard/wallet-dashboard.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { AuthenticationPageComponent } from './pages/authentication-page/authentication-page.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { PricingPageComponent } from './pages/pricing-page/pricing-page.component';
+import { InterceptorService } from './service/interceptor.service';
+import { InteractionService } from './service/interaction.service';
 
 @NgModule({
   declarations: [
@@ -98,6 +110,10 @@ import { WalletDashboardComponent } from './pages/wallet-components/wallet-dashb
     TrpasscodeComponent,
     UpdatePinComponent,
     WalletDashboardComponent,
+    AuthenticationComponent,
+    AuthenticationPageComponent,
+    PricingComponent,
+    PricingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +131,7 @@ import { WalletDashboardComponent } from './pages/wallet-components/wallet-dashb
     MatBadgeModule,
     MatSidenavModule,
     MatTableModule,
+    ToastrModule.forRoot(), // ToastrModule \
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
@@ -122,9 +139,16 @@ import { WalletDashboardComponent } from './pages/wallet-components/wallet-dashb
     HttpClientModule,
     MatTabsModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
+    NgxDropzoneModule,
+    Angular4PaystackModule.forRoot('pk_test_xxxxxxxxxxxxxxxxxxxxxxxx'),
+
 
   ],
-  providers: [{provide: MatStepperIntl},],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass:  InterceptorService,
+    multi: true},InteractionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

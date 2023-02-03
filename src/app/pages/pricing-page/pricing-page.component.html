@@ -1,0 +1,174 @@
+<div class="main">
+    <ng-template [ngIf]="page == 'one'">
+        <section class="header">
+            <div class="banner">
+                <!-- <img src="bg.png" alt="" /> -->
+                <div class="title">
+                    <h2>Pricing to Match your event type</h2>
+                    <div class="text">
+                        <p>We are all about making your event seamless</p>
+                        <p>All plans come with online support and all prices exclude tax</p>
+                    </div>
+                </div>
+
+                <div class="cta">
+                    <button class="btn btn-monthly">Monthly</button>
+                    <button class="btn btn-annually">&nbsp; &nbsp; Annually</button>
+                </div>
+            </div>
+        </section>
+        <section class="pricing">
+            <div class="card" *ngFor="let data of pricingDetail">
+                <div class="card-title">
+                    <h3>{{data.serviceName}}</h3>
+                    <p>{{data.fee}} <span>/month</span></p>
+
+                    <h4>Upgrade your event experience</h4>
+                </div>
+
+                <div>
+                    <ul class="list" *ngFor="let benefit of data.benefits ; index as i">
+                        <li> {{benefit.name}}</li>
+
+                    </ul>
+                </div>
+                <button class="card-btn" (click)="choosePlan(data)">Choose Plan</button>
+            </div>
+
+            <!-- <div class="card color-card">
+                    <div class="card-title">
+                        <h3>Standard</h3>
+                        <p>#15,000 <span>/month</span></p>
+
+                        <h4>Upgrade your event experience</h4>
+                    </div>
+                    <div>
+                        <ul class="list">
+                            <li>⚪ Event Creation</li>
+                            <li>⚪ Ticketing</li>
+                            <li>⚪ Access Control</li>
+                            <li>⚪ Reporting</li>
+                            <li>⚪ Monitoring</li>
+                            <li>⚪ Parking</li>
+                            <li>⚪ Collaborations</li>
+                        </ul>
+                    </div>
+                    <button class="card-btn">Choose Plan</button>
+                </div> -->
+
+            <!-- <div class="card">
+                    <div class="card-title">
+                        <h3>Premium</h3>
+                        <p>#15,000 <span>/month</span></p>
+
+                        <h4>Upgrade your event experience</h4>
+                    </div>
+
+                    <div>
+                        <ul class="list">
+                            <li>⚫ Event Creation</li>
+                            <li>⚫ Ticketing</li>
+                            <li>⚫ Access Control</li>
+                            <li>⚫ Reporting</li>
+                            <li>⚫ Monitoring</li>
+                            <li>⚫ Parking</li>
+                            <li>⚫ Collaborations</li>
+
+                        </ul>
+                    </div>
+                    <button class="card-btn">Choose Plan</button>
+                </div> -->
+        </section>
+    </ng-template>
+
+    <ng-template [ngIf]="page == 'two'">
+        <div class="detailclass">
+            <div class="inner">
+            <h1>{{detail.serviceName}}</h1>
+
+            <ul *ngFor="let benefit of detail.benefits ; index as i">
+                <li>{{benefit.name}}</li>
+            </ul>
+            <h2>&#8358; {{detail.fee}} / Month</h2>
+            <button class="btn btn-primary" (click)="paymentPage(content)">Proceed to checkout</button>
+        </div>
+        </div>
+
+    </ng-template>
+
+
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="closebtn">
+            <button (click)="d('Cross click')">&#x2715;</button>
+        </div>
+        <div class="modal-body">
+            <h1>How would you like to top-up</h1>
+            <div class="paymentOptionGroup">
+                <div class="paymentOption">
+                    <div class="paymentGateway">
+                        <input type="radio" id="flutterwave" ngModel name="payment" id="flutterwave" disabled="true"
+                            value="flutterwave" ngModel [(ngModel)]="paymentDetails.paymentGateway">
+                        <label for="flutter"><img src="/assets/images/Flutterwave-logo 2.png" alt="">Flutterwave</label>
+                    </div>
+                    <div class="paymentGateway">
+                        <input type="radio" id="paystack" ngModel name="payment" id="paystack" value= 1
+                            [(ngModel)]="servicePayment.paymentGateway">
+                        <label for="flutter"><img src="/assets/images/Paystack-mark-white-twitter 2.png" alt="">
+                            Paystack</label>
+                    </div>
+                    <div class="paymentGateway">
+                        <input type="radio" ngModel name="payment" id="remita" value="remita" disabled="true"
+                            [(ngModel)]="paymentDetails.paymentGateway">
+                        <label for="flutter"><img src="/assets/images/unnamed 2.png" alt="">Remita</label>
+                    </div>
+                    <div class="paymentGateway">
+                        <input type="radio" ngModel name="payment" id="inter" value="inter" disabled="true"
+                            [(ngModel)]="paymentDetails.paymentGateway">
+                        <label for="flutter"><img src="/assets/images/cropped-favicon 2.png" alt="">Interswitch
+                            webpay</label>
+                    </div>
+                </div>
+                <img src="/assets/images/Wallet-rafiki 2 (1).png" alt="" width="100%">
+            </div>
+
+            <div class="amount">
+                <p>Amount(&#8358;)</p>
+                <div class="enterAmount">
+                    <span style="color: red;">{{paymentStatus}}</span>
+                    <input type="text" placeholder="min 100" ngModel name="long" #long="ngModel"
+                        [(ngModel)]="servicePayment.amount" disabled="true">
+                    <button
+                        [hidden]="(servicePayment.paymentGateway != 1 || servicePayment.paymentGateway == 0)"
+                        angular4-paystack [email]="email" [amount]="amount * 100" [ref]="reference"
+                        [key]="key" [class]="'btn btn-primary'" (paymentInit)="paymentInit()"
+                        (onClose)="paymentCancel()" (callback)="paymentDone($event)">Pay with
+                        Paystack</button>
+                    <button
+                        [hidden]="(paymentDetails.paymentGateway == 'remita' || paymentDetails.paymentGateway == 'inter' || paymentDetails.paymentGateway == 'paystack' || paymentDetails.paymentGateway == '')">Pay
+                        with Flutter</button>
+                    <button (click)="paymentInit()" disabled
+                        [hidden]="(paymentDetails.paymentGateway == 'flutterwave' || paymentDetails.paymentGateway == 'inter' || paymentDetails.paymentGateway == 'paystack' || paymentDetails.paymentGateway == '')">Pay
+                        with Remita</button>
+                    <button (click)="paymentInit()" disabled
+                        [hidden]="(paymentDetails.paymentGateway == 'remita' || paymentDetails.paymentGateway == 'flutterwave' || paymentDetails.paymentGateway == 'paystack' || paymentDetails.paymentGateway == '')">Pay
+                        with Interswitch</button>
+                </div>
+            </div>
+
+            <hr>
+            <div class="notes">
+                <b>Please note</b>
+                <ol>
+                    <li>Minimum top-up amount is NGN 100.00 - you can top-up at least NGN 100.00 in one
+                        transaction.
+                    </li>
+                    <li>Maximum per transaction is NGN 9,999,999.00 - you can deposit up to NGN 9,999,999.00
+                        in
+                        one
+                        transaction.</li>
+                    <li>Top-up is free, there are no transaction fees.</li>
+                </ol>
+            </div>
+        </div>
+    </ng-template>
+</div>

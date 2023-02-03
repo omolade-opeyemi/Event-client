@@ -63,15 +63,15 @@
           </div>
         </div>
         <div class="cards">
-          <div class="cat-item cat" (click)="foodToggle()">
+          <div class="cat-item cat" *ngFor="let item of selected" (click)="foodToggle()">
             <img class="cat-img" src="/assets/images/food.png" alt="" />
             <div class="cat-text">
-              <h3>Food</h3>
+              <h3>{{item.categoryName}}</h3>
               <p>135 vendors registered under this category</p>
             </div>
-            <p class="cancel">❌</p>
+            <p class="cancel" (click)="removeFood(item)">❌</p>
           </div>
-          <div class="cat-item cat">
+          <!-- <div class="cat-item cat">
             <img class="cat-img" src="/assets/images/food.png" alt="" />
             <div class="cat-text">
               <h3>Music</h3>
@@ -94,7 +94,7 @@
               <p>135 vendors registered under this category</p>
             </div>
             <p class="cancel">❌</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -123,14 +123,21 @@
             </h3>
             <p class="categories__modal-headerText">You can select multiple times</p>
           </div>
-          <div class="categories__modal-body">
-            <div *ngFor="let vendor of vendors" (dblclick)="vendor.active = !vendor.active" [className]="
-                vendor.active
+          <!-- (dblclick)="vendor.active = !vendor.active" -->
+
+          <!-- [className]="
+            toggleFood
                   ? 'categories__modal-bodyItems-active categories__modal-bodyItems'
                   : 'categories__modal-bodyItems-notActive categories__modal-bodyItems'
-              ">
-              <img class="categories__modal-bodyImg" src="{{ vendor.image }}" alt="" />
-              <p class="categories__modal-bodyText " [style.color]="vendor.color">{{ vendor.type }}</p>
+              " -->
+
+          <div class="categories__modal-body">
+            <div *ngFor="let vendor of vendorCategories;let i = index" (click)="selectFood(i,vendor)" 
+            class=" categories__modal-bodyItems"
+            [ngClass]="{'categories__modal-bodyItems-active':toggleFood == i,
+          'categories__modal-bodyItems-notActive':  toggleFood != i}">
+              <img class="categories__modal-bodyImg" src="/assets/images/food.png" alt="" />
+              <p class="categories__modal-bodyText " [style.color]="vendor.color">{{ vendor.categoryName }}</p>
             </div>
           </div>
           <div class="categories__modal-btn">

@@ -3,7 +3,7 @@
     <h1 class="header-title">Create A New Event</h1>
     <div class="header-nav">
       <div class="nav-item" (click)="eventDetail()">
-        <div [ngClass]="{'active':page == 'one','not-active':page != 'one'}">✔️</div>
+        <div [ngClass]="{'active':page == 'one'|| 'twoo','not-active':page != 'one' || 'twoo'}">✔️</div>
         <p>Event Details</p>
       </div>
       <hr />
@@ -32,35 +32,55 @@
               what makes it unique
             </p>
           </div>
-
+          <form action="">
           <div class="create-event__form">
             <div class="create-event__form-form">
-              <label for="title" class="input">Title</label>
-              <input type="text" name="title" />
+              <label for="title" id="title" class="input">Title</label>
+              <input type="text"  name="title" ngModel [(ngModel)]="events.name" />
             </div>
             <div class="create-event__form-form">
               <label for="eventDetails" class="textarea">Event Details</label>
-              <textarea name="eventDetails"> </textarea>
+              <textarea name="eventDetails" ngModel [(ngModel)]="events.description" > </textarea>
             </div>
             <div class="create-event__selects">
-              <select name="" id="">
-                <option value="Type">Type</option>
+              <select name="category" id="category" ngModel [(ngModel)]="singleEvent"
+              #category="ngModel" (change)="getEventTypes(category.value)" >
+                <option [ngValue]="null" [disabled]="true" >Category</option>
+                <option *ngFor="let item of eventCategories" value="{{item.id}},{{item.name}}">{{item.name}}</option>
               </select>
-              <select name="" id="">
-                <option value="Type">Category</option>
+              <select name="types" id="types" ngModel [(ngModel)]="events.type" >
+                <option selected value="">Type</option>
+                <option *ngFor="let item of eventTypes" value="{{item.name}}">{{item.name}}</option>
+
               </select>
+              
             </div>
             <div class="imagepicker">
               <h5>Attached files</h5>
               <!-- <img src="https://www.htmlhints.com/image/article/drag.png" alt="" /> -->
-              <img class="picker" src="/assets/picker.png" alt="" />
-              <div class="rendered-img">
+              <!-- <img class="picker" src="/assets/picker.png" alt="" /> -->
+              <!-- <div class="rendered-img">
                 <img class="displayed-img"
                   src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F184375039%2F474927372937%2F1%2Foriginal.20211111-155142?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C236%2C4724%2C2362&s=ff52e826c551abbd9a90a39cccc5c303"
                   alt="" />
                 <div class="image-text">
                   <p class="image-name">Image.png</p>
                   <p class="image-size">36.87kb</p>
+                </div>
+              </div> -->
+              <div class="mb-3">
+                <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" [maxFileSize]="2000000"  (change)="onSelect($event)">
+                  <ngx-dropzone-label>
+                    <div>
+                      <mat-icon>cloud_upload</mat-icon>
+                      <h3>Drop images here or click to select</h3>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                    [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-preview>
+                  
                 </div>
               </div>
               <hr />
@@ -73,17 +93,21 @@
               </p>
               <div class="create-event__selects">
                 <label for="state">State</label>
-                <select name="state" id="">
-                  <option value="Type">State</option>
+                <select name="state" id="" ngModel [(ngModel)]="statelga"
+                #state="ngModel" (change)="getlga(state.value)">
+                  <option [ngValue]="null" [disabled]="true">State</option>
+                  <option *ngFor="let item of states"  value="{{item.stateId}},{{item.stateName}}">{{item.stateName}}</option>
                 </select>
                 <label for="lga">LGA</label>
-                <select name="lga" id="">
-                  <option value="Type">LGA</option>
+                <select name="lga" id="" ngModel [(ngModel)]="eventLocationDtos.lgaId"
+                >
+                  <option selected value="0">LGA</option>
+                  <option *ngFor="let item of lga"  value="{{item.lgaId}}">{{item.lgaName}}</option>
                 </select>
               </div>
               <div class="create-event__form-form" style="margin-top: 2.5rem">
                 <label for="title" class="input">Address</label>
-                <input type="text" name="address" />
+                <input type="text" name="address" ngModel [(ngModel)]="eventLocationDtos.address"/>
               </div>
             </div>
             <hr />
@@ -106,11 +130,11 @@
                 <div class="create-event-date__">
                   <div class="ce__start-dt">
                     <span>Start Date</span>
-                    <input type="date" name="start-date" />
+                    <input type="date" name="start-date" ngModel [(ngModel)]="eventsDateDtos.eventStartDate"/>
                   </div>
                   <div class="ce__start-time">
                     <span>Start Time</span>
-                    <input type="time" name="start-time" />
+                    <input type="time" name="start-time" ngModel [(ngModel)]="eventsDateDtos.eventStartTime" />
                   </div>
                 </div>
               </div>
@@ -118,11 +142,11 @@
                 <div class="create-event-date__">
                   <div class="ce__start-dt">
                     <span>End Date</span>
-                    <input type="date" name="end-time" />
+                    <input type="date" name="end-time" ngModel [(ngModel)]="eventsDateDtos.eventEndDate" />
                   </div>
                   <div class="ce__start-time">
                     <span>End Time</span>
-                    <input type="time" name="end-time" />
+                    <input type="time" name="end-time" ngModel [(ngModel)]="eventsDateDtos.eventEndTime"/>
                   </div>
                 </div>
               </div>
@@ -130,9 +154,10 @@
 
             <div class="create-event__submit">
               <button class="create-event__btn-cancel">Cancel</button>
-              <button class="create-event__btn-continue">Continue</button>
+              <button class="create-event__btn-continue" (click)="tickets()">Continue</button>
             </div>
           </div>
+        </form>
         </div>
       </div>
     </ng-template>
@@ -148,7 +173,7 @@
           </div>
         </div>
         <div class="create-banner__btn">
-          <button>Skip and do this Later</button>
+          <button (click)="review()">Skip and do this Later</button>
         </div>
       </div>
     </ng-template>
@@ -157,7 +182,7 @@
       <div class="event__table">
         <div class="event__table-title">
           <h1>Tickets</h1>
-          <button>Add Tickets</button>
+          <button (click)="openLg(content)">Add Tickets</button>
         </div>
         <!-- Table -->
       
@@ -176,17 +201,17 @@
           <tbody>
             <tr
               class="event__table-row"
-              *ngFor="let country of countries; index as i"
+              *ngFor="let country of eventTICKETS; index as i"
             >
-              <td>{{ country.index }}</td>
+              <td>{{i+1}}</td>
               <td>
-                {{ country.ticket_Name }}
+                {{ country.ticketName }}
               </td>
       
-              <td>{{ country.ticket_Quantity }}</td>
-              <td>#{{ country.ticket_Price | number }}</td>
-              <td>🟢{{ country.status }}</td>
-              <td>{{ country.salesEnd }}</td>
+              <td>{{ country.availableQuantity }}</td>
+              <td>&#8358; {{ country.price }}</td>
+              <td>🟢 on sale</td>
+              <td>{{ country.eventEndTime }}</td>
               <td>
                 <mat-icon
                   aria-hidden="false"
@@ -200,7 +225,7 @@
       
         <div class="event__table-save">
           <p></p>
-          <button class="btn-save">Save and Continue</button>
+          <button class="btn-save" (click)="review()">Save and Continue</button>
         </div>
       </div>
 
@@ -220,17 +245,25 @@
           </div>
           <div class="modal__event-form">
             <label for="title" class="input">Name of Tickets</label>
-            <input type="text" name="title" />
-          </div>
-          <div class="modal__selects">
-            <select name="type" id="">
-              <option value="Type"></option>
-            </select>
-            <span class="modal__tag"> Available Quantity </span>
+            <input type="text" name="title" ngModel [(ngModel)]="eventTickets.ticketName"/>
           </div>
           <div class="modal__event-form">
+            <label for="title" class="input">Price</label>
+            <input type="number" name="title" ngModel [(ngModel)]="eventTickets.price"/>
+          </div>
+          <div class="modal__event-form">
+            <label for="title" class="input">Available Quantity</label>
+            <input type="number" name="title" ngModel [(ngModel)]="eventTickets.availableQuantity"/>
+          </div>
+          <!-- <div class="modal__selects">
+            <select name="type" id="" ngModel [(ngModel)]="eventTickets.availableQuantity">
+              <option value=1></option>
+            </select>
+            <span class="modal__tag"> Available Quantity </span>
+          </div> -->
+          <div class="modal__event-form">
             <label for="eventDetails" class="textarea">Ticket Description</label>
-            <textarea name="eventDetails"> </textarea>
+            <textarea name="eventDetails" ngModel [(ngModel)]="eventTickets.ticketDescription"> </textarea>
           </div>
 
           <div class="modal__dt">
@@ -238,11 +271,11 @@
               <div class="modal-date__">
                 <div class="modal__start-dt">
                   <span>Start Date</span>
-                  <input type="date" name="start-date" />
+                  <input type="date" name="start-date" ngModel [(ngModel)]="eventTickets.eventStartDate"/>
                 </div>
                 <div class="modal__start-time">
                   <span>Start Time</span>
-                  <input type="time" name="start-time" />
+                  <input type="time" name="start-time" ngModel [(ngModel)]="eventTickets.eventStartTime"/>
                 </div>
               </div>
             </div>
@@ -250,11 +283,11 @@
               <div class="modal-date__">
                 <div class="modal__start-dt">
                   <span>End Date</span>
-                  <input type="date" name="end-time" />
+                  <input type="date" name="end-time" ngModel [(ngModel)]="eventTickets.eventEndDate"/>
                 </div>
                 <div class="modal__start-time">
                   <span>End Time</span>
-                  <input type="time" name="end-time" />
+                  <input type="time" name="end-time" ngModel [(ngModel)]="eventTickets.eventEndTime"/>
                 </div>
               </div>
             </div>
@@ -262,7 +295,7 @@
 
           <div class="modal__submit">
             <button class="modal__btn-cancel">Cancel</button>
-            <button class="modal__btn-continue">Continue</button>
+            <button class="modal__btn-continue" (click)="createTicket()">Continue</button>
           </div>
         </div>
       </div>
@@ -307,8 +340,8 @@
         </div>
 
         <div class="bttn">
-          <button class="btns btn-draft">Draft</button>
-          <button class="btns btn-publish">Publish</button>
+          <button class="btns btn-draft" (click)="draftEvent()">Draft</button>
+          <button class="btns btn-publish" (click)="publishEvent()">Publish</button>
         </div>
 
         <div class="share">

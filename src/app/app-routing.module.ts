@@ -10,18 +10,22 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { PlanBudgetComponent } from './components/plan-budget/plan-budget.component';
 import { SpecialRequestComponent } from './components/special-request/special-request.component';
 import { WalletComponent } from './components/wallet/wallet.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { PricingComponent } from './components/pricing/pricing.component';
 
 const routes: Routes = [
   {path: 'header',component:HeaderComponent},
   {path: 'footer', component:FooterComponent},
   {path: 'dashboard', component:DashboardComponent},
-  {path: '',component:EventsComponent},
+  {path: 'events',component:EventsComponent},
   {path: 'event-detail', component:EventDetailComponent},
   {path: 'create-event', component:CreateEventComponent},
   {path: 'schedule', component:ScheduleComponent},
   {path: 'plan-budget', component:PlanBudgetComponent},
   {path: 'special-request', component:SpecialRequestComponent},
-  {path: 'wallet', component:WalletComponent}
+  {path: 'wallet', component:WalletComponent},
+  {path: '', component:AuthenticationComponent},
+  {path: 'pricing', component:PricingComponent}
   
 ];
 
