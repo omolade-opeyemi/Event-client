@@ -2,21 +2,19 @@
 
 <div class="vendors">
 <div class="vendor-item" *ngFor="let vendor of vendordata">
-    <img src="{{ vendor.image }}" alt="" />
+    <img [src]="vendor.image ? vendor.image: '/assets/images/person.jpg'" alt="" />
     <div class="item-header">
-      <h3>{{ vendor.vendorName
-      }}</h3>
-      <h5>&#8358;{{ vendor.price }}</h5>
+      <h3>{{ vendor.vendorName}}</h3>
+      <small>{{ vendor.location }}</small>
       <p class="item-body">
-        {{ vendor.serviceDescrition
-        }}
+        {{ vendor.supplierDescription}}
       </p>
       <p class="item-rating">
         ⭐⭐⭐⭐⭐ <span>[{{ vendor.rating }} reviews]</span>
       </p>
     </div>
     <div class="item-btn">
-      <button type="button" (click)="detailPage()">Select</button>
+      <button type="button" (click)="detailPage(vendor.supplierId)">Select</button>
     </div>
   </div>
 </div>

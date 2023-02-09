@@ -10,7 +10,7 @@
         </select>
       </div>
     </div>
-    <p class="foodDetails__header-search">Found 86 items on your serach</p>
+    <p class="foodDetails__header-search">Found {{vendorServices.length}} items on your serach</p>
     <div class="foodDetails__bottom">
       <div class="foodDetails__left">
         <div class="foodDetails__food-img">
@@ -25,27 +25,24 @@
           </div> -->
           <app-carousel></app-carousel>
           <div class="foodDetails__food-title">
-            <h2>Balo Chops</h2>
+            <h2>lol</h2>
             <p class="foodDetails__item-rating">
               ⭐⭐⭐⭐⭐
-              <span class="foodDetails__review">[45 reviews]</span>
+              <span class="foodDetails__review">[700 reviews]</span>
             </p>
             <p>
-              <span class="foodDetails__location"><mat-icon>location_on</mat-icon> Ipsum magna Lorem quis
-                est quis</span>
+              <span class="foodDetails__location"><mat-icon>location_on</mat-icon>{{vendorDetail.location}}</span>
             </p>
           </div>
           <div class="foodDetails__food-description">
             <mat-tab-group mat-align-tabs="start">
               <mat-tab label="Description">
                 <p>
-                  Velit officia mollit in minim. Non voluptate amet exercitation velit ex fugiat enim reprehenderit culpa
-                  excepteur qui. IrureVelit officia mollit in minim. Non voluptate amet exercitation velit ex fugiat enim
-                  reprehenderit culpa excepteur qui. Irure
+                  {{vendorDetail.serviceDescription}}
                 </p>
               </mat-tab>
               <mat-tab label="Review">
-                <p>Content 2</p>
+                <p>{{vendorDetail.reviews}}</p>
               </mat-tab>
             </mat-tab-group>
           </div>
@@ -58,7 +55,7 @@
           <div class="foodDetails__service-head">
             <div class="foodDetails__service-title">
               <h2>Services</h2>
-              <p>Found 86 Items on your search</p>
+              <p>Found {{vendorServices.length}} Items on your search</p>
             </div>
             <div class="foodDetails__service-search">
               <input type="text" placeholder="Search services" />
@@ -69,7 +66,27 @@
           </div>
           <div class="foodDetails__service-body">
             <div class="foodDetails__service-items">
-              <div class="foodDetails__service-item">
+              <div class="foodDetails__service-item" *ngFor="let item in vendorServices">
+                <div class="foodDetails__service-left">
+                  <div class="foodDetails__service-itemImg">
+                    <img
+                      src="https://img.freepik.com/premium-photo/concept-indian-cuisine-baked-chicken-wings-legs-honey-mustard-sauce-serving-dishes-restaurant-black-plate-indian-spices-wooden-table-background-image_127425-18.jpg?w=2000"
+                      alt="" />
+                  </div>
+                  <div class="foodDetails__service-itemDesc">
+                    <h3>{{item.serviceName}}</h3>
+                    <p>{{item.erviceDescription}}</p>
+                    <h3>&#8358; {{item.price}}</h3>
+                  </div>
+                </div>
+                <div class="foodDetails__service-right">
+                  <button class="foodDetails__btn">-</button>
+                  <span class="foodDetails__btnSpan">3</span>
+                  <button class="foodDetails__btn">+</button>
+                  <button class="foodDetails__btn-add">Add to Plan</button>
+                </div>
+              </div>
+              <!-- <div class="foodDetails__service-item">
                 <div class="foodDetails__service-left">
                   <div class="foodDetails__service-itemImg">
                     <img
@@ -89,27 +106,7 @@
                   <button class="foodDetails__btn-add">Add to Plan</button>
                 </div>
               </div>
-              <div class="foodDetails__service-item">
-                <div class="foodDetails__service-left">
-                  <div class="foodDetails__service-itemImg">
-                    <img
-                      src="https://img.freepik.com/premium-photo/concept-indian-cuisine-baked-chicken-wings-legs-honey-mustard-sauce-serving-dishes-restaurant-black-plate-indian-spices-wooden-table-background-image_127425-18.jpg?w=2000"
-                      alt="" />
-                  </div>
-                  <div class="foodDetails__service-itemDesc">
-                    <h3>Small Chops And Chicken</h3>
-                    <p>special dish</p>
-                    <h3>$36.00</h3>
-                  </div>
-                </div>
-                <div class="foodDetails__service-right">
-                  <button class="foodDetails__btn">-</button>
-                  <span class="foodDetails__btnSpan">3</span>
-                  <button class="foodDetails__btn">+</button>
-                  <button class="foodDetails__btn-add">Add to Plan</button>
-                </div>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

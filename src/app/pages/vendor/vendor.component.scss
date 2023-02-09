@@ -22,6 +22,10 @@
   }
   .item-header {
     padding: 0rem 1.5rem;
+    small{
+      margin: 0;
+      padding: 0;
+    }
   }
   .item-header h3 {
     font-size: 1.5rem;
@@ -29,7 +33,7 @@
     font-weight: 700;
   }
   .item-body {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-top: 1rem;
   }
   .item-rating {

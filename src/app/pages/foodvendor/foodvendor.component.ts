@@ -25,32 +25,31 @@ export class FoodvendorComponent implements OnInit {
     private notify: NotificationService
     ) { 
       
-    
   }
 
   response:any
-
+  category=''
   ngOnInit(): void {
-    this.getServiceByCategory()
+    // this.getServiceByCategory(this.category)
     
   }
-  searchVendor(searchTerm: string) {
-    if (searchTerm) {
-      this.router.navigateByUrl('food/search/' + searchTerm)
-    }
-    else if (searchTerm == null || undefined || " ") {
-      this.router.navigateByUrl('food')
-    }
-  }
+  // searchVendor(searchTerm: string) {
+  //   if (searchTerm) {
+  //     this.router.navigateByUrl('food/search/' + searchTerm)
+  //   }
+  //   else if (searchTerm == null || undefined || " ") {
+  //     this.router.navigateByUrl('food')
+  //   }
+  // }
 
   something() {
     console.log("a")
   }
   serviceCategories:any
-  getServiceByCategory(){    
-    this.endpoint.getServiceByCategory('food').subscribe((data)=>{
+  getServiceByCategory(data:string){        
+    this.endpoint.getVendorByCategory(data).subscribe((data)=>{
       this.response = data;
-      console.log(data);
+      // console.log(data);
 
       if(this.response.responseCode == '00'){
         this.serviceCategories = this.response.responseData

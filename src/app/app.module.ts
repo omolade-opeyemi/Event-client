@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { Angular4PaystackModule } from 'angular4-paystack';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -72,6 +73,7 @@ import { PricingComponent } from './components/pricing/pricing.component';
 import { PricingPageComponent } from './pages/pricing-page/pricing-page.component';
 import { InterceptorService } from './service/interceptor.service';
 import { InteractionService } from './service/interaction.service';
+import { SplitPipe } from './pipes/split.pipe';
 
 @NgModule({
   declarations: [
@@ -114,6 +116,7 @@ import { InteractionService } from './service/interaction.service';
     AuthenticationPageComponent,
     PricingComponent,
     PricingPageComponent,
+    SplitPipe,
   ],
   imports: [
     BrowserModule,
@@ -142,13 +145,15 @@ import { InteractionService } from './service/interaction.service';
     NgxSpinnerModule,
     NgxDropzoneModule,
     Angular4PaystackModule.forRoot('pk_test_xxxxxxxxxxxxxxxxxxxxxxxx'),
+    MatListModule
 
 
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass:  InterceptorService,
-    multi: true},InteractionService],
+    multi: true},InteractionService,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

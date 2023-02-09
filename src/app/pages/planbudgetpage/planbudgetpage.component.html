@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="cards">
-          <div class="cat-item cat" *ngFor="let item of selected" (click)="foodToggle()">
+          <div class="cat-item cat" *ngFor="let item of selected" (click)="foodToggle(item.categoryName)">
             <img class="cat-img" src="/assets/images/food.png" alt="" />
             <div class="cat-text">
               <h3>{{item.categoryName}}</h3>
@@ -71,44 +71,226 @@
             </div>
             <p class="cancel" (click)="removeFood(item)">❌</p>
           </div>
-          <!-- <div class="cat-item cat">
-            <img class="cat-img" src="/assets/images/food.png" alt="" />
-            <div class="cat-text">
-              <h3>Music</h3>
-              <p>135 vendors registered under this category</p>
-            </div>
-            <p class="cancel">❌</p>
-          </div>
-          <div class="cat-item cat">
-            <img class="cat-img" src="/assets/images/food.png" alt="" />
-            <div class="cat-text">
-              <h3>Print</h3>
-              <p>135 vendors registered under this category</p>
-            </div>
-            <p class="cancel">❌</p>
-          </div>
-          <div class="cat-item cat">
-            <img class="cat-img" src="/assets/images/food.png" alt="" />
-            <div class="cat-text">
-              <h3>Print</h3>
-              <p>135 vendors registered under this category</p>
-            </div>
-            <p class="cancel">❌</p>
-          </div> -->
         </div>
       </div>
     </div>
 
 
-    <ng-container *ngIf="toggle">
-      <ng-template [ngIf]="page == 'list'">
-        <app-foodvendor> </app-foodvendor>
-      </ng-template>
+    <!-- <ng-container *ngIf="toggle"> -->
+    <ng-template [ngIf]="page == 'list'">
+      <!-- <app-foodvendor> </app-foodvendor> -->
+      <div class="foodVendor">
+        <!-- left -->
+        <div class="foodVendor__left">
+          <div class="foodVendor__filter">
+            <div class="foodVendor__filter-header">
+              <h2>Filter</h2>
+              <button>Reset</button>
+            </div>
+            <div class="foodVendor__filter-search">
+              <input type="text" #searchtext />
+              <!-- {{ searchtext.value }} -->
+              <div class="foodVendor__filter-btn">
+                <img src="/assets/search.png" alt="" />
+              </div>
+            </div>
+            <hr class="foodVendor__hr" />
+            <div class="foodVendor__filter-location">
+              <h4>Location</h4>
+              <select name="" id="">
+                <option value="">Select Location</option>
+              </select>
+            </div>
+            <hr class="foodVendor__hr" />
+            <div class="foodVendor__filter-budget">
+              <h4>Budget Range</h4>
+              <div class="foodVendor__filter-range">
+                <div class="min">
+                  <p>3$</p>
+                  <P>Min.</P>
+                </div>
+                <div class="max">
+                  <p>500$</p>
+                  <P>Min.</P>
+                </div>
+              </div>
+              <div class="foodVendor__filter-budgetProgress">
+                <progress id="file" value="400" max="500">32%</progress>
+                <div class="foodVendor__filter-progressBtn">
+                  <button>20</button>
+                  <p>-</p>
+                  <button>100</button>
+                </div>
+              </div>
+              <hr class="foodVendor__hr" />
+              <div class="foodVendor__filter-budgetSubmit">
+                <button>Apply Filter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- right -->
+        <div class="foodVendor__right">
+          <div class="foodVendor__right-header">
+            <div class="foodVendor__right-headerTitle">
+              <h2>Looking for food vendors?</h2>
+              <div class="foodVendor__right-headerRight">
+                <p>Sort by:</p>
+                <select name="" id="">
+                  <option value="">Popularity</option>
+                </select>
+              </div>
+            </div>
+            <p class="foodVendor__found">
+              Found 12 items on your search
+            </p>
+          </div>
+          <div class="foodVendor__bottom">
+            <div class="foodVendor__vendors">
+              <!-- <app-vendor ></app-vendor> -->
+              <!-- ////////////////  Vendor ////////////// -->
 
-      <ng-template [ngIf]="page == 'detail'">
-        <app-food-detail></app-food-detail>
-      </ng-template>
-    </ng-container>
+              <div class="vendors">
+                <div class="vendor-item" *ngFor="let vendor of vendordata">
+                  <img [src]="vendor.image ? vendor.image: '/assets/images/person.jpg'" alt="" />
+                  <div class="item-header">
+                    <h3>{{ vendor.vendorName}}</h3>
+                    <small>{{ vendor.location }}</small>
+                    <p class="item-body">
+                      {{ vendor.supplierDescription}}
+                    </p>
+                    <p class="item-rating">
+                      ⭐⭐⭐⭐⭐ <span>[{{ vendor.rating }} reviews]</span>
+                    </p>
+                  </div>
+                  <div class="item-btn">
+                    <button type="button" (click)="detailPage(vendor.supplierId)">Select</button>
+                  </div>
+                </div>
+              </div>
+              <!-- ///////////////////////// Vendor End   /////////////////////// -->
+
+            </div>
+            <div class="foodVendor__bottom-btn">
+              <button>Load More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+
+    <!-- ///////////////////////////  Vendor Detail Detail ///////////////// -->
+    <ng-template [ngIf]="page == 'detail'">
+      <!-- <app-food-detail></app-food-detail> -->
+      <div class="foodDetails">
+        <div class="foodDetails__header">
+          <div class="foodDetails__header-back">
+            <h2 class="foodDetails__header-backText"><mat-icon>arrow_back_ios</mat-icon> Back</h2>
+          </div>
+          <div class="foodDetails__header-sort">
+            <h4 class="foodDetails__header-sortText">Sort By</h4>
+            <select name="" id="">
+              <option value="">Popularity</option>
+            </select>
+          </div>
+        </div>
+        <p class="foodDetails__header-search">Found {{vendorServices.length}} items on your serach</p>
+        <div class="foodDetails__bottom">
+          <div class="foodDetails__left">
+            <div class="foodDetails__food-img">
+              <!-- <img src="{{ vendor.image }}" />
+              <div class="carousel">
+                <img src="/assets/less.png" alt="" />
+                <hr class="active" />
+                <hr />
+                <hr />
+      
+                <img src="/assets/great.png" alt="" />
+              </div> -->
+              <!-- <app-carousel></app-carousel> -->
+              <!-- //////////// Carousel ///////////// -->
+
+              <ngb-carousel *ngIf="images">
+                <ng-template ngbSlide *ngFor="let item of carousel; let i index">
+                  <div class="picsum-img-wrapper">
+                    <img [src]="item ? item : '/assets/images/person.jpg'" alt="Random first slide" />
+                  </div>
+                </ng-template>
+
+              </ngb-carousel>
+
+
+              <!-- ////////////////// Carousel Ends ///////// -->
+              <div class="foodDetails__food-title">
+                <h2>{{vendorDetail.vendorName}}</h2>
+                <p class="foodDetails__item-rating">
+                  ⭐⭐⭐⭐⭐
+                  <span class="foodDetails__review">[{{vendorDetail.reviews}} reviews]</span>
+                </p>
+                <p>
+                  <span class="foodDetails__location"><mat-icon>location_on</mat-icon>{{vendorDetail.location}}</span>
+                </p>
+              </div>
+              <div class="foodDetails__food-description">
+                <mat-tab-group mat-align-tabs="start">
+                  <mat-tab label="Description">
+                    <p>
+                      {{vendorDetail.serviceDescription}}
+                    </p>
+                  </mat-tab>
+                  <mat-tab label="Review">
+                    <p>{{vendorDetail.reviews}}</p>
+                  </mat-tab>
+                </mat-tab-group>
+              </div>
+            </div>
+          </div>
+          <div class="vl"></div>
+
+          <div class="foodDetails__right">
+            <div class="foodDetails__service">
+              <div class="foodDetails__service-head">
+                <div class="foodDetails__service-title">
+                  <h2>Services</h2>
+                  <p>Found {{vendorServices.length}} Items on your search</p>
+                </div>
+                <div class="foodDetails__service-search">
+                  <input type="text" placeholder="Search services" />
+                  <div class="foodDetails__service-btn">
+                    <img src="/assets/search.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="foodDetails__service-body">
+                <div class="foodDetails__service-items">
+                  <div class="foodDetails__service-item" *ngFor="let item of vendorServices">
+                    <div class="foodDetails__service-left">
+                      <div class="foodDetails__service-itemImg">
+                        <img [src]="item.imageUrls[0] ? item.imageUrls[0] : '/assets/images/person.jpg'" alt="" />
+                      </div>
+                      <div class="foodDetails__service-itemDesc">
+                        <h3>{{item.serviceName}}</h3>
+                        <p>{{item.serviceDescription}}</p>
+                        <h3>&#8358; {{item.price}}</h3>
+                      </div>
+                    </div>
+                    <div class="foodDetails__service-right">
+                      <button class="foodDetails__btn">-</button>
+                      <span class="foodDetails__btnSpan">3</span>
+                      <button class="foodDetails__btn">+</button>
+                      <button class="foodDetails__btn-add">Add to Plan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- /////////////////////////  Vendor Detail End ///////////////// -->
+    <!-- </ng-container> -->
 
     <ng-template #content let-modal>
       <div class="modal-header">
@@ -132,9 +314,8 @@
               " -->
 
           <div class="categories__modal-body">
-            <div *ngFor="let vendor of vendorCategories;let i = index" (click)="selectFood(i,vendor)" 
-            class=" categories__modal-bodyItems"
-            [ngClass]="{'categories__modal-bodyItems-active':toggleFood == i,
+            <div *ngFor="let vendor of vendorCategories;let i = index" (click)="selectFood(i,vendor)"
+              class=" categories__modal-bodyItems" [ngClass]="{'categories__modal-bodyItems-active':toggleFood == i,
           'categories__modal-bodyItems-notActive':  toggleFood != i}">
               <img class="categories__modal-bodyImg" src="/assets/images/food.png" alt="" />
               <p class="categories__modal-bodyText " [style.color]="vendor.color">{{ vendor.categoryName }}</p>

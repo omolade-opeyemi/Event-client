@@ -10,14 +10,14 @@
           <input
             type="text"
             #searchtext
-            (keyup.enter)="searchVendor(searchtext.value)"
+            
           />
           <!-- {{ searchtext.value }} -->
           <div class="foodVendor__filter-btn">
             <img
               src="/assets/search.png"
               alt=""
-              (click)="searchVendor(searchtext.value)"
+              
             />
           </div>
         </div>
@@ -69,7 +69,7 @@
           </div>
         </div>
         <p class="foodVendor__found">
-          Found {{ serviceCategories.length }} items on your search
+          Found 12 items on your search
         </p>
       </div>
       <div class="foodVendor__bottom">

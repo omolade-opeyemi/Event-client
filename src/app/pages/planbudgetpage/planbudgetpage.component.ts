@@ -222,12 +222,13 @@ export class PlanbudgetpageComponent implements OnInit {
     this.endpoint.getVendorCategories().subscribe((data)=>{
       this.response = data;
       this.vendorCategories = this.response.responseData;
-      console.log(this.vendorCategories);
     })
   }
   
-  foodToggle() {
-    this.toggle = !this.toggle;
+  foodToggle(data:string) {
+    this.vendorService.getCategoy(data)
+    // this.toggle = !this.toggle;
+    this.getVendorByCategory(data)
     this.page = 'list'
   }
 
@@ -235,4 +236,45 @@ export class PlanbudgetpageComponent implements OnInit {
 		this.modalService.open(content, { size: 'xl', centered: true });
 	}
   
+  /////// Vendors //////
+  
+  serviceCategories:any
+  vendordata:any;
+  getVendorByCategory(data:any){    
+    this.endpoint.getVendorByCategory(data).subscribe((data)=>{
+      this.response = data;
+      if(this.response.responseCode == '00'){
+        this.vendordata = this.response.responseData
+      }
+      else{
+        this.notify.showError(this.response.responseMsg)
+      }
+    })
+  }
+  detail=''
+  detailPage(data:any){
+    console.log(data);
+    this.page = 'detail'
+   this.getVendorServiceDetail(data)
+  }
+
+  ///////// Vendor Detail ////////////////
+  vendorDetail:any
+  vendorServices:any[] = []
+  images:any[] = [];
+  carousel:any[]=[];
+  getVendorServiceDetail(data:any){
+    this.endpoint.getVendorServiceDetail(data).subscribe((result)=>{
+      this.response = result;
+      console.warn(this.response);
+      if(this.response.responseCode == '00'){
+        this.vendorDetail = this.response.responseData;
+        this.vendorServices = this.vendorDetail.vendorServices;
+        this.carousel = this.vendorDetail.images
+      }
+      else{
+        this.notify.showError(this.response.responseMsg)
+      }
+    })
+  }
 }

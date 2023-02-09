@@ -315,23 +315,20 @@
 
           <div class="review-text">
             <div class="header">
-              <h1>Arcade Fire</h1>
-              <h3>Thursday, September 8 . 7:00 PM - 10:00PM WAT</h3>
+              <h1>{{events.name}}</h1>
+              <h3>{{eventsDateDtos.eventStartDate}} . {{eventsDateDtos.eventStartTime}} - {{eventsDateDtos.eventEndTime}} WAT</h3>
             </div>
             <div class="mid">
               <h3>Event Details</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco strud exercitation
-                ullamco
+                {{events.description}}
               </p>
             </div>
 
             <div class="end mid">
               <div>
-                <p><span>⚓</span> Lorem ipsum dolor</p>
-                <p class="special">Lorem ipsum dolor</p>
+                <p><span>⚓</span>{{eventLocationDtos.address}}</p>
+                <p class="special"> {{eventLocationDtos.state}}</p>
               </div>
               <p><span>🔔</span> 10 mins before</p>
               <p><span>🔒</span> Public</p>

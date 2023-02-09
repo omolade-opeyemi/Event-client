@@ -4,94 +4,108 @@
             <div class="banner">
                 <!-- <img src="bg.png" alt="" /> -->
                 <div class="title">
-                    <h2>Pricing to Match your event type</h2>
+                    <div class="images">
+                        <img src="/assets/images/Subscriber-pana 1.png" alt="">
+                    </div>
                     <div class="text">
+                        <h2>Pricing to Match your event type</h2>
                         <p>We are all about making your event seamless</p>
-                        <p>All plans come with online support and all prices exclude tax</p>
                     </div>
                 </div>
 
                 <div class="cta">
-                    <button class="btn btn-monthly">Monthly</button>
-                    <button class="btn btn-annually">&nbsp; &nbsp; Annually</button>
+                    <button class="btnn" [ngClass]="{'btn-monthly': durate == 'M'}" (click)="duration('M')">&nbsp; &nbsp; Monthly</button>
+                    <button class="btnn" [ngClass]="{ 'btn-annually': durate== 'Y'}" (click)="duration('Y')">&nbsp; &nbsp; Annually</button>
                 </div>
             </div>
         </section>
         <section class="pricing">
-            <div class="card" *ngFor="let data of pricingDetail">
+            <div class="card" [ngClass]="{selectedCard: plan == data.serviceName && planDuration == durate}" *ngFor="let data of pricingDetail">
                 <div class="card-title">
                     <h3>{{data.serviceName}}</h3>
-                    <p>{{data.fee}} <span>/month</span></p>
-
+                    <ng-template [ngIf]="durate == 'M'">
+                    <p>&#8358; {{data.monthlyFee | number}} <span>/month</span></p>
+                </ng-template>
+                <ng-template [ngIf]="durate == 'Y'">
+                    <p>&#8358; {{data.yearlyFee | number}} <span>/year</span></p>
+                </ng-template>
                     <h4>Upgrade your event experience</h4>
                 </div>
 
-                <div>
+                <div class="">
                     <ul class="list" *ngFor="let benefit of data.benefits ; index as i">
-                        <li> {{benefit.name}}</li>
 
+                        <li><p *ngIf="benefit.isAllowed==false"> ❌</p>
+                            <p *ngIf="benefit.isAllowed ==true">✔️</p>
+                             {{benefit.name}}</li>
                     </ul>
                 </div>
+                <ng-template [ngIf]="(plan != data.serviceName && planDuration == durate) || ((plan == data.serviceName || plan != data.serviceName ) && planDuration != durate)">
                 <button class="card-btn" (click)="choosePlan(data)">Choose Plan</button>
+            </ng-template>
+            <ng-template [ngIf]="plan == data.serviceName && planDuration == durate">
+                <button class="card-btn" >Current Plan</button>
+            </ng-template>
             </div>
-
-            <!-- <div class="card color-card">
-                    <div class="card-title">
-                        <h3>Standard</h3>
-                        <p>#15,000 <span>/month</span></p>
-
-                        <h4>Upgrade your event experience</h4>
-                    </div>
-                    <div>
-                        <ul class="list">
-                            <li>⚪ Event Creation</li>
-                            <li>⚪ Ticketing</li>
-                            <li>⚪ Access Control</li>
-                            <li>⚪ Reporting</li>
-                            <li>⚪ Monitoring</li>
-                            <li>⚪ Parking</li>
-                            <li>⚪ Collaborations</li>
-                        </ul>
-                    </div>
-                    <button class="card-btn">Choose Plan</button>
-                </div> -->
-
-            <!-- <div class="card">
-                    <div class="card-title">
-                        <h3>Premium</h3>
-                        <p>#15,000 <span>/month</span></p>
-
-                        <h4>Upgrade your event experience</h4>
-                    </div>
-
-                    <div>
-                        <ul class="list">
-                            <li>⚫ Event Creation</li>
-                            <li>⚫ Ticketing</li>
-                            <li>⚫ Access Control</li>
-                            <li>⚫ Reporting</li>
-                            <li>⚫ Monitoring</li>
-                            <li>⚫ Parking</li>
-                            <li>⚫ Collaborations</li>
-
-                        </ul>
-                    </div>
-                    <button class="card-btn">Choose Plan</button>
-                </div> -->
         </section>
     </ng-template>
 
     <ng-template [ngIf]="page == 'two'">
         <div class="detailclass">
+            
+           <div class="left">
+            <div (click)="back()" class="back">
+                <mat-icon>chevron_left</mat-icon> Back
+            </div>
+            <h2>Why you should upgrade to {{detail.serviceName}}</h2>
+            <small>With this upgrade, you get all the features from the standard plan, plus:</small>
+            <div class="itemise">
+                <div class="item" *ngFor="let item of detail.benefits">
+                    <div class="images">
+                        <p *ngIf="item.isAllowed==false"> ❌</p>
+                            <p *ngIf="item.isAllowed ==true">✔️</p>
+                    </div>
+                    <div class="detail">
+                        <h5>{{item.name}}</h5>
+                        <p>{{item.description}}</p>
+                    </div>
+                </div>
+                <!-- <div class="item">
+                    <div class="images">
+                        <img src="/assets/images/Group 39199.png" alt="">
+                    </div>
+                    <div class="detail">
+                        <h5>Event Creation</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicin</p>
+                    </div>
+                </div> -->
+            </div>
+           </div>
+           <div class="right">
             <div class="inner">
-            <h1>{{detail.serviceName}}</h1>
-
-            <ul *ngFor="let benefit of detail.benefits ; index as i">
-                <li>{{benefit.name}}</li>
-            </ul>
-            <h2>&#8358; {{detail.fee}} / Month</h2>
-            <button class="btn btn-primary" (click)="paymentPage(content)">Proceed to checkout</button>
-        </div>
+                <h2>Become a Pro now</h2>
+                <p>Choose your preferred PRO access plan</p>
+                <div class="price">
+                    <p>{{detail.serviceName}}</p>
+                    <!-- <h1>&#8358; {{detail.fee | number}}</h1> -->
+                    <ng-template [ngIf]="durate == 'M'">
+                        <h1>&#8358; {{detail.monthlyFee | number}} <span>/month</span></h1>
+                    </ng-template>
+                    <ng-template [ngIf]="durate == 'Y'">
+                        <h1>&#8358; {{detail.yearlyFee | number}} <span>/year</span></h1>
+                    </ng-template>
+                </div>
+                <br>
+                <hr>
+                <ng-template [ngIf]="detail.serviceName != 'Free'">
+                    <button class="btn" (click)="paymentPage(content)">Proceed</button>
+                </ng-template>
+                <ng-template [ngIf]="detail.serviceName == 'Free'">
+                    <button class="btn" (click)="processFreePlan()">Subscribe</button>
+                </ng-template>
+            </div>
+        
+           </div>
         </div>
 
     </ng-template>
@@ -111,7 +125,7 @@
                         <label for="flutter"><img src="/assets/images/Flutterwave-logo 2.png" alt="">Flutterwave</label>
                     </div>
                     <div class="paymentGateway">
-                        <input type="radio" id="paystack" ngModel name="payment" id="paystack" value= 1
+                        <input type="radio" id="paystack" ngModel name="payment" id="paystack" value=1
                             [(ngModel)]="servicePayment.paymentGateway">
                         <label for="flutter"><img src="/assets/images/Paystack-mark-white-twitter 2.png" alt="">
                             Paystack</label>
@@ -137,11 +151,10 @@
                     <span style="color: red;">{{paymentStatus}}</span>
                     <input type="text" placeholder="min 100" ngModel name="long" #long="ngModel"
                         [(ngModel)]="servicePayment.amount" disabled="true">
-                    <button
-                        [hidden]="(servicePayment.paymentGateway != 1 || servicePayment.paymentGateway == 0)"
-                        angular4-paystack [email]="email" [amount]="amount * 100" [ref]="reference"
-                        [key]="key" [class]="'btn btn-primary'" (paymentInit)="paymentInit()"
-                        (onClose)="paymentCancel()" (callback)="paymentDone($event)">Pay with
+                    <button [hidden]="(servicePayment.paymentGateway != 1 || servicePayment.paymentGateway == 0)"
+                        angular4-paystack [email]="email" [amount]="amount * 100" [ref]="reference" [key]="key"
+                        [class]="'btn btn-primary'" (paymentInit)="paymentInit()" (onClose)="paymentCancel()"
+                        (callback)="paymentDone($event)">Pay with
                         Paystack</button>
                     <button
                         [hidden]="(paymentDetails.paymentGateway == 'remita' || paymentDetails.paymentGateway == 'inter' || paymentDetails.paymentGateway == 'paystack' || paymentDetails.paymentGateway == '')">Pay

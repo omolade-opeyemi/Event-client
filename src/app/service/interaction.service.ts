@@ -22,4 +22,11 @@ export class InteractionService {
   getscreenSize(message: number){
     this.screenSize.next(message);
   }
+
+  private plan = new Subject<string>();
+  plan$ = this.plan.asObservable();
+
+  getPlan(message: string){
+    this.plan.next(message)
+  }
 }

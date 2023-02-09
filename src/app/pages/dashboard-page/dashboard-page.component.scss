@@ -29,16 +29,18 @@
       flex-direction: column;
       border-radius: 10px;
       flex-basis: 49%;
+      height: 300px;
+      overflow: hidden;
 
       h3 {
         margin: 0;
       }
 
       .image {
-        width: 400;
-        max-width: 100%;
-        height: 200px;
-        max-height: 100%;
+        width: 100%;
+        height: 90%;
+        padding: 10px;
+
         img {
           width: 100%;
           height: 100%;
@@ -47,37 +49,71 @@
     }
 
     .box2 {
-      p,h3{
+
+      p,
+      h3 {
         margin: 0;
       }
+
       padding: 20px;
       background: #fff;
-      padding: 10px;
+      // padding: 10px;
       border-radius: 10px;
       flex-basis: 49%;
+      height: 300px;
+
+      .box222 {
+        background: #EBEFFF;
+        border-radius: 5px;
+        padding: 0 20px;
+        margin: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 82%;
+        
+        .images {
+          width: 50%;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+      }
+
       .box22 {
         background: #EBEFFF;
         border-radius: 5px;
         padding: 30px;
-        .row1{
+        margin: 10px;
+        height: 82%;
+
+
+        .row1 {
           display: flex;
           justify-content: space-between;
-          small{
+
+          small {
             font-weight: 600;
           }
         }
-        
-        .row2{
+
+        .row2 {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          button{
+
+          button {
             background: #1C2B66;
           }
-          .stacked{
-            display: flex; 
+
+          .stacked {
+            display: flex;
             justify-content: flex-end;
-            img{
+
+            img {
               width: 50px;
               max-width: 50%;
               border-radius: 50%;
@@ -90,51 +126,103 @@
 
     }
   }
-  .row2{
+
+  .row2 {
     display: flex;
     justify-content: space-between;
-    select{
+
+    select {
       border: 0.5px solid rgba(28, 43, 102, 0.55);
-border-radius: 15px;
-// padding: 10px;
-width: 200px;
+      border-radius: 15px;
+      // padding: 10px;
+      width: 200px;
     }
   }
-  .buttom{
+
+  .buttom2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    // flex-direction: column;
+    .left {
+      padding: 10px;
+      flex-basis: 50%;
+      padding-left: 50px;
+      text-align: center;
+
+      h1 {
+        font-weight: 600;
+        // font-size: 35px;
+        line-height: 70px;
+        color: #1C2B66;
+      }
+
+      button {
+        margin-top: 10px;
+        background: #1C2B66;
+        border-radius: 10px;
+        color: #fff;
+        padding: 5px 50px;
+        font-size: 16px;
+      }
+    }
+
+    .right {
+      flex-basis: 50%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .buttom {
     display: grid;
     // grid-template-columns: repeat(3, 350px);
     grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
     grid-gap: 5px;
     justify-content: space-around;
-    .event{
+
+    .event {
       background: #fff;
       box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
+      border-radius: 10px;
       // max-width: 350px;
       padding: 10px;
       display: flex;
       flex-direction: column;
       gap: 5px;
-      .eventprofile{
+
+      .eventprofile {
         display: flex;
         justify-content: space-between;
-        .one{
+
+        .one {
           display: flex;
           gap: 10px;
-          .eventdet{
-            h4{
+
+          .eventdet {
+            h4 {
               margin: 0;
               // line-height: 15px;
             }
+
             max-width: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             // border: 2px solid;
           }
-          .image{
+
+          .image {
             width: 120px;
-            img{
+
+            img {
               width: 100%;
               border-radius: 5px;
               border: 2px solid rgb(216, 216, 216);
@@ -142,37 +230,46 @@ border-radius: 10px;
           }
         }
       }
-      .collab{
-        p{
+
+      .collab {
+        p {
           margin: 0;
           opacity: 0.5;
         }
       }
-      .low{
+
+      .low {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        .stacked{
-          display: flex; 
+
+        .stacked {
+          display: flex;
           justify-content: flex-start;
           align-items: baseline;
-          img{
+
+          img {
             width: 40px;
             max-width: 50%;
             border-radius: 50%;
             border: 2px solid;
           }
+
           font-size: 10px;
-          small{
+
+          small {
             display: flex;
-            mat-icon{
+
+            mat-icon {
               margin: 0;
               // font-size: 15px;
             }
+
             margin: 0;
           }
         }
-        p{
+
+        p {
           margin: 0;
           font-size: 14px;
         }
@@ -189,6 +286,7 @@ border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
   gap: 10px;
 
   .demo-inline-calendar-card {
@@ -199,6 +297,7 @@ border-radius: 10px;
   .activ {
     width: 100%;
   }
+
   .activity {
 
     p,
@@ -286,6 +385,47 @@ border-radius: 10px;
 
 
 }
+
+.modal-header {
+  border: none;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .image {
+    width: 50%;
+    height: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  h3 {
+    line-height: 140%;
+    letter-spacing: -0.02em;
+    color: #1C2B66;
+
+  }
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  .btn {
+    border: 2px solid #1C2B66;
+  }
+
+  .cancel {}
+}
+
 
 /* responsiveness */
 @media screen and (max-width: 1011px) {

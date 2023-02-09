@@ -9,22 +9,38 @@
       </div>
       <div class="box2">
         <h3>Upcoming Events</h3>
-        <div class="box22">
-          <div class="row1">
-            <h3>Vaux App Launch</h3>
-            <small>12:00PM</small>
-          </div>
-          <P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem blanditiis molestias quasi ipsam
-            itaque cumque officia laudantium voluptatum soluta consequuntur.</P>
-          <div class="row2">
-            <button class="btn btn-primary">Set Reminder</button>
-            <div class="stacked">
-              <img src="/assets/images/person.jpg" alt="">
-              <img src="/assets/images/person.jpg" alt="">
-              <img src="/assets/images/person.jpg" alt="">
-            </div>
+        <ng-template [ngIf]="isActive == false || creatorDashboard.upcomingEvents.length == 0">
+        <div class="box222">
+          <h2>No scheduled events</h2>
+          <div class="images">
+            <img src="/assets/images/Calendar-amico (1) 2.png" alt="">
           </div>
         </div>
+      </ng-template>
+      
+
+        <ng-template [ngIf]="isActive == true || creatorDashboard.upcomingEvents.length != 0">
+          <ngb-carousel >
+            <ng-template ngbSlide>
+              <div class="box22" *ngFor="let item of creatorDashboard.upcomingEvents">
+                <div class="row1">
+                  <h3>{{item.name}}</h3>
+                  <small>{{item.date|split: "T": 1}}</small>
+                </div>
+                <P>{{item.narration}}.</P>
+                <div class="row2">
+                  <button class="btn btn-primary">Set Reminder</button>
+                  <div class="stacked">
+                    <img src="/assets/images/person.jpg" alt="">
+                    <img src="/assets/images/person.jpg" alt="">
+                    <img src="/assets/images/person.jpg" alt="">
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-carousel>
+        
+      </ng-template>
       </div>
     </div>
     <div class="row2">
@@ -35,16 +51,17 @@
       </select>
     </div>
 
+    <ng-template [ngIf]="isActive && creatorDashboard.eventOverviews.length != 0">
     <div class="buttom">
-      <div class="event">
+      <div class="event" *ngFor="let item of creatorDashboard.eventOverviews">
         <div class="eventprofile">
           <div class="one">
             <div class="image">
-              <img src="/assets/images/Rectangle 669.png" alt="">
+              <img [src]="item.imageUrl ? item.imageUrl:'/assets/images/Rectangle 669.png'" alt="">
             </div>
             <div class="eventdet">
-              <h4>Burna live in concert</h4>
-              <small>Published</small>
+              <h4>{{item.name}}</h4>
+              <small>{{item.status}}</small>
             </div>
           </div>
           <mat-icon>more_horiz</mat-icon>
@@ -66,178 +83,26 @@
             </small>28
           </div>
           <p>
-            <span style="color:#58C971 ;">• Event Completed</span> Sept 26, 2022
+            <span style="color:#58C971 ;">• Event Completed</span> {{item.publishedDate|split: "T": 0}}
           </p>
         </div>
       </div>
-      <div class="event">
-        <div class="eventprofile">
-          <div class="one">
-            <div class="image">
-              <img src="/assets/images/Rectangle 669.png" alt="">
-            </div>
-            <div class="eventdet">
-              <h4>Burna live in concert</h4>
-              <small>Published</small>
-            </div>
-          </div>
-          <mat-icon>more_horiz</mat-icon>
-        </div>
 
-        <div class="collab">
-          <p>Collaborators</p>
-        </div>
+      
+    </div>
+  </ng-template>
 
-        <div class="low">
-          <div class="stacked">
-            <img src="/assets/images/person.jpg" alt="">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <small>
-              <mat-icon>chat</mat-icon>
-            </small>28
-          </div>
-          <p>
-            <span style="color:#58C971 ;">• Event Completed</span> Sept 26, 2022
-          </p>
-        </div>
+  <ng-template [ngIf]="response.responseCode != 00 || creatorDashboard.eventOverviews.length == 0">
+    <div class="buttom2">
+      <div class="left">
+        <h1>Let's Build your dream around you</h1>
+        <button class="btn" (click)="openLg(content)">Create Event</button>
       </div>
-      <div class="event">
-        <div class="eventprofile">
-          <div class="one">
-            <div class="image">
-              <img src="/assets/images/Rectangle 669.png" alt="">
-            </div>
-            <div class="eventdet">
-              <h4>Burna live in concert</h4>
-              <small>Published</small>
-            </div>
-          </div>
-          <mat-icon>more_horiz</mat-icon>
-        </div>
-
-        <div class="collab">
-          <p>Collaborators</p>
-        </div>
-
-        <div class="low">
-          <div class="stacked">
-            <img src="/assets/images/person.jpg" alt="">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <small>
-              <mat-icon>chat</mat-icon>
-            </small>28
-          </div>
-          <p>
-            <span style="color:#58C971 ;">• Event Completed</span> Sept 26, 2022
-          </p>
-        </div>
-      </div>
-      <div class="event">
-        <div class="eventprofile">
-          <div class="one">
-            <div class="image">
-              <img src="/assets/images/Rectangle 669.png" alt="">
-            </div>
-            <div class="eventdet">
-              <h4>Burna live in concert</h4>
-              <small>Published</small>
-            </div>
-          </div>
-          <mat-icon>more_horiz</mat-icon>
-        </div>
-
-        <div class="collab">
-          <p>Collaborators</p>
-        </div>
-        <div class="low">
-          <div class="stacked">
-            <img src="/assets/images/person.jpg" alt="">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <small>
-              <mat-icon>chat</mat-icon>
-            </small>28
-          </div>
-          <p>
-            <span style="color:#58C971 ;">• Event Completed</span> Sept 26, 2022
-          </p>
-        </div>
-      </div>
-      <div class="event">
-        <div class="eventprofile">
-          <div class="one">
-            <div class="image">
-              <img src="/assets/images/Rectangle 669.png" alt="">
-            </div>
-            <div class="eventdet">
-              <h4>Burna live in concert</h4>
-              <small>Published</small>
-            </div>
-          </div>
-          <mat-icon>more_horiz</mat-icon>
-        </div>
-
-        <div class="collab">
-          <p>Collaborators</p>
-        </div>
-        <div class="low">
-          <div class="stacked">
-            <img src="/assets/images/person.jpg" alt="">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <small>
-              <mat-icon>chat</mat-icon>
-            </small>28
-          </div>
-          <p>
-            <span style="color:#58C971 ;">• Event Completed</span> Sept 26, 2022
-          </p>
-        </div>
-      </div>
-      <div class="event">
-        <div class="eventprofile">
-          <div class="one">
-            <div class="image">
-              <img src="/assets/images/Rectangle 669.png" alt="">
-            </div>
-            <div class="eventdet">
-              <h4>Burna live in concert</h4>
-              <small>Published</small>
-            </div>
-          </div>
-          <mat-icon>more_horiz</mat-icon>
-        </div>
-
-        <div class="collab">
-          <p>Collaborators</p>
-        </div>
-        <div class="low">
-          <div class="stacked">
-            <img src="/assets/images/person.jpg" alt="">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <small>
-              <mat-icon>chat</mat-icon>
-            </small>28
-          </div>
-          <p>
-            <span style="color:#58C971 ;">• Event Completed</span> Sept 26, 2022
-          </p>
-        </div>
+      <div class="right">
+        <img src="/assets/images/Team-pana 2.png" alt="">
       </div>
     </div>
+  </ng-template>
   </div>
 
 
@@ -249,6 +114,10 @@
     <div class="activ">
       <h3>Activity</h3>
     </div>
+    <ng-template [ngIf]="isActive || creatorDashboard.activity.length == 0">
+    <p>No activity</p>
+  </ng-template>
+    <ng-template >
     <div class="activity">
       <div class="profile">
         <div class="image"><img src="/assets/images/person.jpg" alt=""></div>
@@ -291,9 +160,23 @@
           </div>
         </div>
       </div>
-
-      
-
     </div>
+  </ng-template>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="image">
+        <img src="/assets/images/Creative team-pana 1.png" alt="">
+      </div>
+      <h4>You need to subscribe to a plan before you can create an event</h4>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancel</button>
+      <button type="button" class="btn btn-light" (click)="subscribe()">Proceed</button>
+    </div>
+  </ng-template>
   </div>
 </div>

@@ -7,8 +7,14 @@ import { environment } from 'src/environments/environment';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { ServicePayment } from 'src/app/models/payments';
+import { InteractionService } from 'src/app/service/interaction.service';
 
 
+
+export interface Section {
+  name: string;
+  updated: Date;
+}
 
 
 @Component({
@@ -22,7 +28,8 @@ export class PricingPageComponent implements OnInit {
     private notifyService: NotificationService,
     private spinner: NgxSpinnerService,
     config: NgbModalConfig, private modalService: NgbModal,
-    private router: Router,
+    private route: Router,
+    private interact: InteractionService
 
 
   ) {
@@ -37,12 +44,20 @@ export class PricingPageComponent implements OnInit {
   key = environment['paystackKey'];
   page = ''
   servicePayment = new ServicePayment(0,'','','','','',0,0)
-  paymentDetails = new PaymentDetails('50000', '', '', '');
+  paymentDetails = new PaymentDetails('50000', '', '', '')
+  plan:any
+  planDuration:any
 
   ngOnInit(): void {
     this.email =String(localStorage.getItem('email')) 
     this.page = 'one'
-    this.getPricingDetails()
+    this.getPricingDetails();
+    this.plan = localStorage.getItem('plan')
+    this.planDuration = localStorage.getItem('duration')
+  }
+
+  back(){
+    this.page = 'one'
   }
 
   paymentPage(content: any) {
@@ -61,9 +76,16 @@ export class PricingPageComponent implements OnInit {
     this.servicePayment.paymentReference = ref.reference;
     this.servicePayment.paymentGatewayResponseMessage = ref.message;
     this.servicePayment.paymentGatewayResponseCode = ref.status;
+    this.servicePayment.email = this.email;
+    this.servicePayment.transactionSource = 'web'
     if (ref.status == 'success') {
-      this.paymentDetails.paymentStatus = ref.status;
-      this.router.navigate(['/dashboard']);
+      if(this.durate == 'M'){
+        this.monthlyPaidPlan()
+      }
+      else{
+        this.yearlyPaidPlan()
+      }
+      this.notifyService.showSuccess('payment sucessful')
       this.modalService.dismissAll(ref);
     }
     else {
@@ -106,18 +128,24 @@ export class PricingPageComponent implements OnInit {
     this.page = 'two'
     this.detail = data
     this.servicePayment.serviceId = data.serviceId;
-    this.servicePayment.amount = data.fee;
-    this.amount = data.fee
-    console.log(data);
+    if(this.durate == 'M'){
+      this.servicePayment.amount = data.monthlyFee;
+    this.amount = data.monthlyFee
+    }else{
+      this.servicePayment.amount = data.yearlyFee;
+    this.amount = data.yearlyFee;
+    }
+    
   }
   monthlyPaidPlan(){
     this.endpoint.processMonthlyPaidPlan(this.servicePayment).subscribe((data)=>{
       this.response = data
-      if(this.response.reaponseCode == '00'){
-        this.notifyService.showSuccess('Payment successful')
+      if(this.response.responseCode == '00'){
+        this.notifyService.showSuccess('Subscription successful');
+        this.route.navigate(['/dashboard']);
       }
       else{
-        this.notifyService.showError(this.response.responseMsg)
+        this.notifyService.showError('Error message')
       }
     }, (error) => {
       this.notifyService.showError(error.message);
@@ -126,8 +154,9 @@ export class PricingPageComponent implements OnInit {
   yearlyPaidPlan(){
     this.endpoint.processYearlyPaidPlan(this.servicePayment).subscribe((data)=>{
       this.response = data
-      if(this.response.reaponseCode == '00'){
-        this.notifyService.showSuccess('Payment successful')
+      if(this.response.responseCode == '00'){
+        this.notifyService.showSuccess('Subscription successful');
+        this.route.navigate(['/dashboard']);
       }
       else{
         this.notifyService.showError(this.response.responseMsg)
@@ -135,6 +164,24 @@ export class PricingPageComponent implements OnInit {
     }, (error) => {
       this.notifyService.showError(error.message);
       this.spinner.hide();})
+  }
+  processFreePlan(){
+    this.endpoint.processFreePlan(this.servicePayment).subscribe((data)=>{
+      this.response = data
+      if(this.response.responseCode == '00'){
+        this.notifyService.showSuccess('Subscription successful');
+        this.route.navigate(['/dashboard']);
+      }
+      else{
+        this.notifyService.showError(this.response.responseMsg)
+      }
+    },(error) => {
+      this.notifyService.showError(error.message);
+      this.spinner.hide();})
+  }
+  durate = 'M'
+  duration(data:any){
+    this.durate = data;    
   }
 }
 

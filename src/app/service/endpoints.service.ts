@@ -42,11 +42,20 @@ export class EndpointsService {
   processYearlyPaidPlan(data:any): Observable<any>{
     return this.http.post(this.baseUrl+ 'api/EventCreatorRegistration/ProcessYearlyPaidPlan',data)
   }
-  getVendorCategories(){
+  processFreePlan(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventCreatorRegistration/ProcessFreePlan', data)
+  }
+  getVendorCategories(): Observable<any>{
     return this.http.get(this.baseUrl+ 'api/EventCreation/GetVendorCategories')
   }
-  getServiceByCategory(data:any){
-    return this.http.get(this.baseUrl+ '/api/EventCreation/GetServicesByCategory?category='+data)
+  getVendorByCategory(data:any): Observable<any>{
+    return this.http.get(this.baseUrl+ '/api/EventCreation/GetVendorsByCategory?category='+data)
+  }
+  getVendorServiceDetail(data:number):Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventCreation/GetVendorServiceDetail?supplierId='+data)
+  }
+  getCreatorDashboard(data:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/Dashboard/GetCreatorDashboardDetails?profileId='+data)
   }
   publishNewEvent(data:any){
     return this.http.post(this.baseUrl+ 'api/EventCreation/PublishNewEvent',data)
@@ -59,6 +68,9 @@ export class EndpointsService {
   }
   getEventTypes(id:number){
     return this.http.get(this.baseUrl+ 'api/EventCommon/GetEventTypes?categoryId='+id)
+  }
+  getActivePlan(id:number){
+    return this.http.get(this.baseUrl+ 'api/EventCreatorRegistration/GetActivePlan?profileId='+id)
   }
 
 }

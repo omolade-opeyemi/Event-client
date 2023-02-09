@@ -15,26 +15,36 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class VendorComponent implements OnInit {
   // vendordata = vendorData;
-  vendordata:any;
 
   constructor(private vendorService:VendorService,
     private endpoint: EndpointsService,
-    private notify: NotificationService,) { }
+    private notify: NotificationService,
+    ) { }
 
   detail=''
+  category=''
+
   response:any
 
   ngOnInit(): void {
-    this.getServiceByCategory()
+    this.vendorService.category$.subscribe(message =>{this.category = message;
+    if(message){
+      this.getVendorByCategory(message)
+    }});
+    
   }
 
-  detailPage(){
+
+  detailPage(data:any){
+    console.log(data);
     this.detail = 'detail'
     this.vendorService.getrequestDetail(this.detail)
+    this.vendorService.getVendorDetail(data);
   }
   serviceCategories:any
-  getServiceByCategory(){    
-    this.endpoint.getServiceByCategory('food').subscribe((data)=>{
+  vendordata:any;
+  getVendorByCategory(data:any){    
+    this.endpoint.getVendorByCategory(data).subscribe((data)=>{
       this.response = data;
       this.vendordata = this.response.responseData
       console.log(data);
