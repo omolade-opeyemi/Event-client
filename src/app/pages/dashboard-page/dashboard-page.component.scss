@@ -186,7 +186,7 @@
     // grid-template-columns: repeat(3, 350px);
     grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
     grid-gap: 5px;
-    justify-content: space-around;
+    // justify-content: space-around;
 
     .event {
       background: #fff;
@@ -289,6 +289,14 @@
   height: 100%;
   gap: 10px;
 
+  .noActivity{
+    width: 100%;
+    height: 100%;
+    img{
+      width: 90%;
+      height: 90%;
+    }
+  }
   .demo-inline-calendar-card {
     width: 300px;
     box-shadow: none;

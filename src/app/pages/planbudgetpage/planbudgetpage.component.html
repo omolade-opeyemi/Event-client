@@ -1,9 +1,180 @@
 <div class="event">
+  <!-- -------------drawer ------------------ -->
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
+      <div class="analytics">
+        <div class="row1">
+          <h3>Analytics</h3>
+          <mat-icon>more_horiz</mat-icon>
+        </div>
+        <div class="row2">
+          <div class="chart">
+            <ngx-donut-chart [data]="donutChartData" [title]="'Session'" [radius]="88" [thickness]="50" [margin]="30">
+            </ngx-donut-chart>
+          </div>
+          <div class="details">
+            <div class="food">🟧 Food: &#8358;500,000</div>
+            <div class="music">🟩 Music: &#8358;500,000 </div>
+            <div class="print">🟨 Print: &#8358;500,000</div>
+          </div>
+        </div>
+        <hr>
+        <!-- <div class="chart-container">
+    
+            <canvas id="myChart" ></canvas>
+      <canvas  id="MyChart" width="500px" height="500px" [title]="'Session'">{{ chart }}</canvas>
+    
+      </div> -->
+
+
+        <div class="row1">
+          <h3>Budget Build</h3>
+          <mat-icon [matMenuTriggerFor]="menu">more_horiz</mat-icon>
+        </div>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <span>Download all</span>
+          </button>
+          <button mat-menu-item>
+            <span>Share all</span>
+          </button>
+          <button mat-menu-item>
+            <span>Clear</span>
+          </button>
+        </mat-menu>
+
+        <!-- <div class="accordion" *ngFor="let item of eventBudgetSummary; index as i">
+          <ngb-accordion #acc="ngbAccordion">
+            <ngb-panel id="toggle-1">
+              <ng-template ngbPanelHeader>
+                <button ngbPanelToggle class="accordion-button">
+                  <img [src]="item.categoryImage ? item.categoryImage: '/assets/images/Group 662.png'" alt="">
+                  
+                  <h5>{{item.category}} : <span>&#8358; {{item.amount}}</span></h5>
+                </button>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Vendor</th>
+                      <th scope="col">Service</th>
+                      <th scope="col">QTY</th>
+                      <th scope="col">Rate</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Status</th>
+                      <th scope="col"> <mat-icon>delete</mat-icon></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let country of item.eventBudgetCategoryDetails; index as i">
+                      <th><input type="checkbox" name=i id="" (change)="selectedServices($event,item)" ></th>
+                      <td>
+                        <img [src]="item.eventBudgetCategoryDetails.vendorImage ? item.eventBudgetCategoryDetails.vendorImage : '/assets/images/Group 662.png'
+    " class="me-2" style="width: 20px" />
+                        {{ country.vendorName }}
+                      </td>
+                      <td>{{country.serviceName}}</td>
+                      <td>{{ country.quantity | number }}</td>
+                      <td>&#8358;{{ country.rate }}</td>
+                      <td>&#8358;{{ country.amount| number }}</td>
+                      <td style="color:#F35E5A;">{{ country.status }}</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="buttons-bottom">
+                  <button class="btn btn-outline-primary share" (click)="saveCreateEventBudget()">Save</button>
+                  <button class="btn btn-outline-primary send" (click)="sendCreateEventBudget()">Send
+                    Request</button>
+
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </div> -->
+
+        <div class="accordion" *ngFor="let item of categorised; index as i">
+          <ngb-accordion #acc="ngbAccordion">
+            <ngb-panel id="toggle-1">
+              <ng-template ngbPanelHeader>
+                <button ngbPanelToggle class="accordion-button">
+                  <img src="/assets/images/Group 662.png" alt="">
+                  <!-- : <span>&#8358;5000</span> -->
+                  <h5>{{item.category}} : <span>&#8358; {{item.totalAmount}} </span></h5>
+                </button>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Vendor</th>
+                      <th scope="col">Service</th>
+                      <th scope="col">QTY</th>
+                      <th scope="col">Rate</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Status</th>
+                      <th scope="col"> <mat-icon>delete</mat-icon></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let country of item.services; index as i">
+                      <!-- <th scope="row">{{ i + 1 }}</th> -->
+                      <th><input type="checkbox" name=i id="" (change)="selectedServices($event,item)" [disabled]="country.status != 'Pending'"></th>
+                      <td>
+                        <img [src]="country.vendorImage ? country.vendorImage : '/assets/images/food.jpg'" class="me-2"
+                          style="width: 20px" />
+                        {{ country.serviceVendor }}
+                      </td>
+                      <td>{{country.serviceName}}</td>
+                      <td>{{ country.quantity | number }}</td>
+                      <td>&#8358;{{ country.rate }}</td>
+                      <td>&#8358;{{ country.quantity * country.rate| number }}</td>
+                      <td 
+                      [ngClass]="{'red':country.status == 'Request Declined',
+                    'green':country.status == 'Request Accepted',
+                  'yellow':country.status == 'Request Sent',
+                'blue':country.status == 'Pending'}"
+                      >{{ country.status }}
+                    </td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="buttons-bottom">
+                  <button class="btn btn-outline-primary share" (click)="saveCreateEventBudget()">Save</button>
+                  <button class="btn btn-outline-primary send" (click)="sendCreateEventBudget()">Send
+                    Request</button>
+
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
+
+        
+
+      </div>
+    </mat-drawer>
+
+    <div class="example-sidenav-content" (click)="drawer.toggle()">
+      <div class="icon">
+        <mat-icon>keyboard_double_arrow_left</mat-icon>
+      </div>
+      <div class="eventRod"></div>
+    </div>
+  </mat-drawer-container>
+  <!-- ------------------------- Drawer Ends --------------- -->
+
   <div class="event-page">
     <div class="event-banner">
       <div class="event-img">
         <img
-          src="https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414"
+        [src]="eventDetail.imageUrl ? eventDetail.imageUrl:'https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414'"
+          src=""
           alt="" />
       </div>
     </div>
@@ -11,7 +182,7 @@
     <div class="event-main">
       <div class="event-top">
         <div class="left">
-          <h1 class="event-title">Arcade Fire</h1>
+          <h1 class="event-title">{{eventDetail.name}}</h1>
           <div class="event-desc">
             <p>Created by <span>You</span></p>
           </div>
@@ -20,31 +191,49 @@
       <div class="event-location">
         <div class="location-items">
           <mat-icon>event</mat-icon>
-          <p>Tuesday, March 01</p>
+          <p>{{eventDetail.publishedDate | split: "T": 0}}</p>
         </div>
         <div class="location-items">
           <mat-icon>location_on</mat-icon>
-          <p>Descasio Lounge</p>
+          <p>{{eventDetail.eventLocations[0].localGovt}} {{eventDetail.eventLocations[0].state}}</p>
         </div>
         <div class="location-items">
           <mat-icon>schedule</mat-icon>
-          <p>4:00 PM WAT</p>
+          <p>{{eventDetail.publishedDate | split: "T": 1}}</p>
         </div>
       </div>
 
       <!-- CARDS -->
       <div class="cards">
+        <!-- <div class="card"> -->
         <div class="card-item estimate">
           <h3>Budget Estimate <mat-icon>more_horiz</mat-icon></h3>
-          <h2>$3,100 <mat-icon>edit</mat-icon></h2>
+          <h2>&#8358; {{budgetEstimate | number}} <mat-icon (click)="open(budget)">edit</mat-icon></h2>
         </div>
+
+        <ng-template #budget let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <h4 class="modal-title" id="modal-basic-title">How much would you like to budget for this event ?</h4>
+            <div class="mb-3">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="&#8358;" ngModel [(ngModel)]="budgetEstimate">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+            <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+          </div>
+        </ng-template>
+
         <div class="card-item build">
           <h3>Budget Build <mat-icon>more_horiz</mat-icon></h3>
-          <h2>$1,805 <button class="btn btn-primary">view</button></h2>
+          <h2>&#8358; {{budgetBuild | number}} <button class="btn btn-primary" (click)="drawer.toggle()">view</button></h2>
         </div>
         <div class="card-item act">
           <h3>Actualized <mat-icon>more_horiz</mat-icon></h3>
-          <h2>$1,805</h2>
+          <h2>&#8358; {{eventBudgetSummary[0].budgetActualized | number}}</h2>
         </div>
         <div class="card-item plan">
           <img class="card-img" src="/assets/images/Group 663.png" alt="" />
@@ -53,6 +242,7 @@
             <p>🟦 Actualized</p>
           </div>
         </div>
+        <!-- </div> -->
       </div>
       <!-- category -->
       <div class="category">
@@ -62,14 +252,16 @@
             <mat-icon>add</mat-icon>
           </div>
         </div>
-        <div class="cards">
-          <div class="cat-item cat" *ngFor="let item of selected" (click)="foodToggle(item.categoryName)">
-            <img class="cat-img" src="/assets/images/food.png" alt="" />
-            <div class="cat-text">
-              <h3>{{item.categoryName}}</h3>
-              <p>135 vendors registered under this category</p>
+        <div class="cardss">
+          <div class="cats-items">
+            <div class="cat-item cat" *ngFor="let item of selected" (click)="foodToggle(item.categoryName)">
+              <img class="cat-img" src="/assets/images/food.png" alt="" />
+              <div class="cat-text">
+                <h4>{{item.categoryName}}</h4>
+                <p>135 vendors registered under this category</p>
+              </div>
+              <p class="cancel" (click)="removeFood(item)">❌</p>
             </div>
-            <p class="cancel" (click)="removeFood(item)">❌</p>
           </div>
         </div>
       </div>
@@ -133,7 +325,7 @@
         <div class="foodVendor__right">
           <div class="foodVendor__right-header">
             <div class="foodVendor__right-headerTitle">
-              <h2>Looking for food vendors?</h2>
+              <h2>Looking for {{vendorCategory}} vendors?</h2>
               <div class="foodVendor__right-headerRight">
                 <p>Sort by:</p>
                 <select name="" id="">
@@ -142,7 +334,7 @@
               </div>
             </div>
             <p class="foodVendor__found">
-              Found 12 items on your search
+              Found {{vendordata.length}} items on your search
             </p>
           </div>
           <div class="foodVendor__bottom">
@@ -164,7 +356,7 @@
                     </p>
                   </div>
                   <div class="item-btn">
-                    <button type="button" (click)="detailPage(vendor.supplierId)">Select</button>
+                    <button type="button" (click)="detailPage(vendor)">Select</button>
                   </div>
                 </div>
               </div>
@@ -264,7 +456,7 @@
               </div>
               <div class="foodDetails__service-body">
                 <div class="foodDetails__service-items">
-                  <div class="foodDetails__service-item" *ngFor="let item of vendorServices">
+                  <div class="foodDetails__service-item" *ngFor="let item of vendorServices;let i = index">
                     <div class="foodDetails__service-left">
                       <div class="foodDetails__service-itemImg">
                         <img [src]="item.imageUrls[0] ? item.imageUrls[0] : '/assets/images/person.jpg'" alt="" />
@@ -276,10 +468,10 @@
                       </div>
                     </div>
                     <div class="foodDetails__service-right">
-                      <button class="foodDetails__btn">-</button>
-                      <span class="foodDetails__btnSpan">3</span>
-                      <button class="foodDetails__btn">+</button>
-                      <button class="foodDetails__btn-add">Add to Plan</button>
+                      <button class="foodDetails__btn" (click)="serviceQnty('-',i)">-</button>
+                        <span class="foodDetails__btnSpan"><input type="text" id="serviceQty" #serviceQty ngModel [(ngModel)]="qty[i]" placeholder="0"></span>
+                      <button class="foodDetails__btn" (click)="serviceQnty('+',i)">+</button>
+                      <button class="foodDetails__btn-add" (click)="addToPlan(serviceQty.value,item)">Add to Plan</button>
                     </div>
                   </div>
                 </div>
@@ -323,7 +515,7 @@
           </div>
           <div class="categories__modal-btn">
             <button class="categories__modal-btnCancel" (click)="modal.close('Close click')">Cancel</button>
-            <button class="categories__modal-btnContinue">Continue</button>
+            <button class="categories__modal-btnContinue" (click)="modal.close('Close click')">Continue</button>
           </div>
         </div>
       </div>
@@ -332,3 +524,6 @@
 
   </div>
 </div>
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

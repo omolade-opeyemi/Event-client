@@ -59,3 +59,38 @@ export class EventCreation {
       public eventEndTime : string
     ){}
   }
+  export class Budgeting{
+    constructor(
+      public eventId:number,
+      public sendRequest: boolean,
+      public budgetDetails: BudgetDetails[]
+    ){}
+  }
+
+  export class BudgetDetails{
+    constructor(
+      public eventSupplierId:number,
+      public serviceId:number,
+      public budget: number,
+      public totalActualRequested : number,
+      public unitPrice: number,
+      public totalPrice: number,
+      public quantityRequested: number
+    ){}
+  }
+
+  export class PlaceHolder{
+    constructor(
+      public serviceCategory:string,
+      public serviceVendor:string,
+      public serviceName: string,
+      public quantity : string,
+      public rate : string,
+      public amount : any,
+      public status: string,
+      public vendorImg:string,
+      public VendorId:string,
+      public serviceId:string
+    ){}
+  }
+

@@ -65,7 +65,7 @@ getStarted(){
         this.notifyService.showError(this.response.responseMsg)
       }
     },(error) => {
-      this.notifyService.showError(error.error.responseMsg);
+      this.notifyService.showError(error.message);
     })
   }
   getStates(){
@@ -78,7 +78,7 @@ getStarted(){
         this.notifyService.showError(this.response.responseMsg)
       }
     },(error) => {
-      this.notifyService.showError(error.error.responseMsg);
+      this.notifyService.showError(error.message);
     })
   }
 
@@ -100,7 +100,7 @@ getStarted(){
         this.notifyService.showError(this.response.responseMsg)
       }
     },(error) => {
-      this.notifyService.showError(error.error.responseMsg);
+      this.notifyService.showError(error.message);
       this.spinner.hide();
     })
   }
@@ -199,7 +199,7 @@ getStarted(){
         this.notifyService.showError(this.response.responseMsg)
       }
     },(error) => {
-      this.notifyService.showError(error.error.responseMsg);
+      this.notifyService.showError(error.message);
       this.spinner.hide()
     })
     
@@ -235,7 +235,7 @@ getStarted(){
           this.page = 'otp';
         };
       },(error) => {
-        this.notifyService.showError(error.error.responseMsg);
+        this.notifyService.showError(error.message);
       } );
   }
 resendOtp(){
@@ -248,7 +248,7 @@ resendOtp(){
       this.notifyService.showError(this.response.responseMsg)
     }
   },(error) => {
-    this.notifyService.showError(error.error.responseMsg);
+    this.notifyService.showError(error.message);
   } )
 }
  

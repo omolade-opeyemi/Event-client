@@ -31,6 +31,7 @@ export class DashboardPageComponent implements OnInit {
     this.getActivePlan()
     this.getCreatorDashboard()
   }
+
   getActivePlan(){
     this.spinner.show()
     this.endpoint.getActivePlan(Number(localStorage.getItem('profileId'))).subscribe((data)=>{
@@ -53,6 +54,13 @@ export class DashboardPageComponent implements OnInit {
     })
   }
 
+  getSingleEvent(data:any){
+    // var event = this.eventOverview.filter((item)=>item.eventId == data);
+    localStorage.setItem('eventId',data)
+    this.router.navigate(['/plan-budget'])
+  }
+
+  eventOverview:any[]=[]
   creatorDashboard:any;
   getCreatorDashboard(){
     this.spinner.show()
@@ -60,7 +68,8 @@ export class DashboardPageComponent implements OnInit {
       this.response=data;
       this.spinner.hide();
       if(this.response.responseCode == '00'){
-        this.creatorDashboard = this.response.responseData
+        this.creatorDashboard = this.response.responseData;
+        this.eventOverview = this.creatorDashboard.eventOverviews;
       }
       else{
         this.notify.showWarning(this.response.responseMsg)

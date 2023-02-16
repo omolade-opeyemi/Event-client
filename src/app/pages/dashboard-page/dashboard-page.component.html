@@ -4,23 +4,23 @@
       <div class="box1">
         <h3>Project Deliveries</h3>
         <div class="image">
-          <img src="/assets/images/Card.png" alt="">
+          <img src="/assets/images/chart.png" alt="">
         </div>
       </div>
       <div class="box2">
         <h3>Upcoming Events</h3>
         <ng-template [ngIf]="isActive == false || creatorDashboard.upcomingEvents.length == 0">
-        <div class="box222">
-          <h2>No scheduled events</h2>
-          <div class="images">
-            <img src="/assets/images/Calendar-amico (1) 2.png" alt="">
+          <div class="box222">
+            <h2>No scheduled events</h2>
+            <div class="images">
+              <img src="/assets/images/Calendar-amico (1) 2.png" alt="">
+            </div>
           </div>
-        </div>
-      </ng-template>
-      
+        </ng-template>
+
 
         <ng-template [ngIf]="isActive == true || creatorDashboard.upcomingEvents.length != 0">
-          <ngb-carousel >
+          <ngb-carousel>
             <ng-template ngbSlide>
               <div class="box22" *ngFor="let item of creatorDashboard.upcomingEvents">
                 <div class="row1">
@@ -39,8 +39,8 @@
               </div>
             </ng-template>
           </ngb-carousel>
-        
-      </ng-template>
+
+        </ng-template>
       </div>
     </div>
     <div class="row2">
@@ -52,57 +52,65 @@
     </div>
 
     <ng-template [ngIf]="isActive && creatorDashboard.eventOverviews.length != 0">
-    <div class="buttom">
-      <div class="event" *ngFor="let item of creatorDashboard.eventOverviews">
-        <div class="eventprofile">
-          <div class="one">
-            <div class="image">
-              <img [src]="item.imageUrl ? item.imageUrl:'/assets/images/Rectangle 669.png'" alt="">
+      <div class="buttom">
+        <div class="event" *ngFor="let item of creatorDashboard.eventOverviews">
+          <div class="eventprofile">
+            <div class="one">
+              <div class="image">
+                <img [src]="item.imageUrl ? item.imageUrl:'/assets/images/Rectangle 669.png'" alt="">
+              </div>
+              <div class="eventdet">
+                <h4>{{item.name}}</h4>
+                <small>{{item.status}}</small>
+              </div>
             </div>
-            <div class="eventdet">
-              <h4>{{item.name}}</h4>
-              <small>{{item.status}}</small>
+            <mat-icon mat-icon-button [matMenuTriggerFor]="menu">more_horiz</mat-icon>
+          </div>
+
+          <!-- --------- Menu Drop Down ------- -->
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span (click)="getSingleEvent(item.eventId)">Plan Budget</span>
+            </button>
+          </mat-menu>
+          <!-- ------------- Menu Drop Down Ends -------- -->
+
+          <div class="collab">
+            <p>Collaborators</p>
+          </div>
+
+          <div class="low">
+            <div class="stacked">
+              <img src="/assets/images/person.jpg" alt="">
+              <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
+            ">
+              <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
+            ">
+              <small>
+                <mat-icon>chat</mat-icon>
+              </small>28
             </div>
+            <p>
+              <span style="color:#58C971 ;">• Event Completed</span> {{item.publishedDate|split: "T": 0}}
+            </p>
           </div>
-          <mat-icon>more_horiz</mat-icon>
         </div>
 
-        <div class="collab">
-          <p>Collaborators</p>
-        </div>
 
-        <div class="low">
-          <div class="stacked">
-            <img src="/assets/images/person.jpg" alt="">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <img src="/assets/images/person.jpg" alt="" style="margin-left: -20px;
-            ">
-            <small>
-              <mat-icon>chat</mat-icon>
-            </small>28
-          </div>
-          <p>
-            <span style="color:#58C971 ;">• Event Completed</span> {{item.publishedDate|split: "T": 0}}
-          </p>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="response.responseCode != 00 || creatorDashboard.eventOverviews.length == 0">
+      <div class="buttom2">
+        <div class="left">
+          <h1>Let's Build your dream around you</h1>
+          <button class="btn" (click)="openLg(content)">Create Event</button>
+        </div>
+        <div class="right">
+          <img src="/assets/images/Team-pana 2.png" alt="">
         </div>
       </div>
-
-      
-    </div>
-  </ng-template>
-
-  <ng-template [ngIf]="response.responseCode != 00 || creatorDashboard.eventOverviews.length == 0">
-    <div class="buttom2">
-      <div class="left">
-        <h1>Let's Build your dream around you</h1>
-        <button class="btn" (click)="openLg(content)">Create Event</button>
-      </div>
-      <div class="right">
-        <img src="/assets/images/Team-pana 2.png" alt="">
-      </div>
-    </div>
-  </ng-template>
+    </ng-template>
   </div>
 
 
@@ -115,68 +123,71 @@
       <h3>Activity</h3>
     </div>
     <ng-template [ngIf]="isActive || creatorDashboard.activity.length == 0">
-    <p>No activity</p>
-  </ng-template>
-    <ng-template >
-    <div class="activity">
-      <div class="profile">
-        <div class="image"><img src="/assets/images/person.jpg" alt=""></div>
-        <div class="profileinfo">
-          <p>Samson Olalekan</p>
-          <small>Today, 12:25 Pm</small>
-          <p><b>Uploaded a new file to </b> <b class="color"> Burna live in concert </b></p>
-          <div class="docs">
-            <div class="part1">
-              <div class="image"><img src="/assets/images/Group 459 (1).png" alt=""></div>
-              <div class="profileinfo">
-                <b>Event Guideline</b>
-                <p>2.6 MB</p>
+      <p>No activity</p>
+      <div class="noActivity">
+        <img src="/assets/images/Work time-pana (1) 1.png" alt="">
+      </div>
+    </ng-template>
+    <ng-template>
+      <div class="activity">
+        <div class="profile">
+          <div class="image"><img src="/assets/images/person.jpg" alt=""></div>
+          <div class="profileinfo">
+            <p>Samson Olalekan</p>
+            <small>Today, 12:25 Pm</small>
+            <p><b>Uploaded a new file to </b> <b class="color"> Burna live in concert </b></p>
+            <div class="docs">
+              <div class="part1">
+                <div class="image"><img src="/assets/images/Group 459 (1).png" alt=""></div>
+                <div class="profileinfo">
+                  <b>Event Guideline</b>
+                  <p>2.6 MB</p>
+                </div>
+              </div>
+              <div class="side2">
+                <mat-icon>file_download</mat-icon>
               </div>
             </div>
-            <div class="side2">
-              <mat-icon>file_download</mat-icon>
+          </div>
+        </div>
+
+        <div class="profile">
+          <div class="image"><img src="/assets/images/person.jpg" alt=""></div>
+          <div class="profileinfo">
+            <p>Samson Olalekan</p>
+            <small>Today, 12:25 Pm</small>
+            <p><b>Uploaded a new file to </b> <b class="color"> Burna live in concert </b></p>
+            <div class="docs">
+              <div class="part1">
+                <div class="image"><img src="/assets/images/Group 459 (1).png" alt=""></div>
+                <div class="profileinfo">
+                  <b>Event Guideline</b>
+                  <p>2.6 MB</p>
+                </div>
+              </div>
+              <div class="side2">
+                <mat-icon>file_download</mat-icon>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </ng-template>
 
-      <div class="profile">
-        <div class="image"><img src="/assets/images/person.jpg" alt=""></div>
-        <div class="profileinfo">
-          <p>Samson Olalekan</p>
-          <small>Today, 12:25 Pm</small>
-          <p><b>Uploaded a new file to </b> <b class="color"> Burna live in concert </b></p>
-          <div class="docs">
-            <div class="part1">
-              <div class="image"><img src="/assets/images/Group 459 (1).png" alt=""></div>
-              <div class="profileinfo">
-                <b>Event Guideline</b>
-                <p>2.6 MB</p>
-              </div>
-            </div>
-            <div class="side2">
-              <mat-icon>file_download</mat-icon>
-            </div>
-          </div>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="image">
+          <img src="/assets/images/Creative team-pana 1.png" alt="">
         </div>
+        <h4>You need to subscribe to a plan before you can create an event</h4>
       </div>
-    </div>
-  </ng-template>
-
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-      <div class="image">
-        <img src="/assets/images/Creative team-pana 1.png" alt="">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancel</button>
+        <button type="button" class="btn btn-light" (click)="subscribe()">Proceed</button>
       </div>
-      <h4>You need to subscribe to a plan before you can create an event</h4>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancel</button>
-      <button type="button" class="btn btn-light" (click)="subscribe()">Proceed</button>
-    </div>
-  </ng-template>
+    </ng-template>
   </div>
 </div>

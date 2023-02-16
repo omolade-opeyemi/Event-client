@@ -3,11 +3,12 @@
     height: 100vh;
     margin-left: 5rem;
     z-index: 0;
-    position: relative;
-    top: 0;
+    position: fixed;
+    bottom: 0;
     transition: all .5s ease;
     background: #F5F5F5;
-    overflow: auto;
+    // overflow: auto;
+
 }
 
 .body-trimmed {
@@ -28,6 +29,7 @@
     border-bottom: 2px solid #1C2B66;
     padding: 1.0rem 0;
     background-color: #FFFFFF;
+    // height: 15vh;
     
     .welcome {
         margin-left: 1rem;
@@ -45,8 +47,7 @@
 }
 
 .main {
-    padding: 2rem;
-
+height: 79vh;
 }
 @media screen and (max-width: 1200px) {
     .requests {

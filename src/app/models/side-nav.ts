@@ -16,12 +16,13 @@ export const navbarData = [
         routerLink: '/schedule',
         icon:'calendar_today',
         label: 'Schedule'
-    },
-    {
-        routerLink: '/plan-budget',
-        icon:'shutter_speed',
-        label: 'Plan Budget'
-    },{
+    }
+    // {
+    //     routerLink: '/plan-budget',
+    //     icon:'shutter_speed',
+    //     label: 'Plan Budget'
+    // }
+    ,{
         routerLink: '/special-request',
         icon:'folder_special',
         label: 'Special Requests'

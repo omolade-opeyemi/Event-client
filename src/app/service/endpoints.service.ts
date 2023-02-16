@@ -72,5 +72,14 @@ export class EndpointsService {
   getActivePlan(id:number){
     return this.http.get(this.baseUrl+ 'api/EventCreatorRegistration/GetActivePlan?profileId='+id)
   }
+  CreateEventBudget(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ '/api/EventPlanning/CreateEventBudget',data)
+  }
+  getEventDetails(id:number): Observable<any>{
+    return this.http.get(this.baseUrl+ '/api/EventCreation/GetEventDetail?eventId='+id)
+  }
+  getEventBudgetSummary(profile:number,event:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventPlanning/GetEventBudgetSummary?profileId='+profile+'&eventId='+event)
+  }
 
 }

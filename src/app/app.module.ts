@@ -23,6 +23,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import { NgxDonutChartModule } from 'ngx-doughnut-chart';
+
+
+
 
 
 
@@ -145,7 +150,9 @@ import { SplitPipe } from './pipes/split.pipe';
     NgxSpinnerModule,
     NgxDropzoneModule,
     Angular4PaystackModule.forRoot('pk_test_xxxxxxxxxxxxxxxxxxxxxxxx'),
-    MatListModule
+    MatListModule,
+    MatMenuModule,
+    NgxDonutChartModule
 
 
   ],
