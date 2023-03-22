@@ -90,9 +90,17 @@
                     <!-- <h1>&#8358; {{detail.fee | number}}</h1> -->
                     <ng-template [ngIf]="durate == 'M'">
                         <h1>&#8358; {{detail.monthlyFee | number}} <span>/month</span></h1>
+                        <h5>VAT : &#8358; {{detail.monthlyFee * 0.075 | number}}</h5>
+                        <hr>
+                        <h1>Total: &#8358; {{(detail.monthlyFee * 0.075)+detail.monthlyFee | number}}</h1>
+                        
                     </ng-template>
                     <ng-template [ngIf]="durate == 'Y'">
-                        <h1>&#8358; {{detail.yearlyFee | number}} <span>/year</span></h1>
+                        <h1>&#8358; {{detail.yearlyFee  | number}} <span>/year</span></h1>
+                        <h5>VAT : &#8358; {{detail.yearlyFee * 0.075 | number}}</h5>
+                        <hr>
+                        <h1>Total: &#8358; {{(detail.yearlyFee * 0.075)+detail.yearlyFee | number}}</h1>
+                      
                     </ng-template>
                 </div>
                 <br>
@@ -152,7 +160,7 @@
                     <input type="text" placeholder="min 100" ngModel name="long" #long="ngModel"
                         [(ngModel)]="servicePayment.amount" disabled="true">
                     <button [hidden]="(servicePayment.paymentGateway != 1 || servicePayment.paymentGateway == 0)"
-                        angular4-paystack [email]="email" [amount]="amount * 100" [ref]="reference" [key]="key"
+                        angular4-paystack [email]="email" [amount]="servicePayment.amount * 100" [ref]="reference" [key]="key"
                         [class]="'btn btn-primary'" (paymentInit)="paymentInit()" (onClose)="paymentCancel()"
                         (callback)="paymentDone($event)">Pay with
                         Paystack</button>
@@ -185,3 +193,6 @@
         </div>
     </ng-template>
 </div>
+<ngx-spinner type="ball-scale-multiple">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>

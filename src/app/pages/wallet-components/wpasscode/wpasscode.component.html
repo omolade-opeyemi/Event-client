@@ -1,27 +1,28 @@
 <div class="wallet">
-    <div class="wallet__left">
-      <div class="wallet__text">
-        <h1>Welcome Back</h1>
-        <p>To access your wallet, please enter your PIN.</p>
-        <!-- <app-warning></app-warning> -->
-        <app-info></app-info>
-        <div class="new__pin">
-  
-          <div class="pin__inputs">
-            <input type="password">
-            <input type="password">
-            <input type="password">
-            <input type="password">
-            <input type="password">
-            <input type="password">
-          </div>
-          <button class="pin__btn">Continue</button>
-          <button class="pin__btn-forget" routerLink="/update">Forgot PIN? Reset </button>
+  <div class="wallet__left">
+    <div class="wallet__text">
+      <h1>Welcome Back</h1>
+      <p>To access your wallet, please enter your PIN.</p>
+      <!-- <app-warning></app-warning> -->
+      <app-info></app-info>
+      <div class="new__pin">
+        <form action="" #otpForm="ngForm">
+        <div class="pin__inputs">
+          <input #txt1 maxlength="1" (keyup)="move($event,'',txt1,txt2)" type="password" name="txt1" ngModel>
+          <input #txt2 maxlength="1" type="password" (keyup)="move($event,txt1,txt2,txt3)" name="txt2" ngModel>
+          <input #txt3 maxlength="1" type="password" (keyup)="move($event,txt2,txt3,txt4)" name="txt3" ngModel>
+          <input #txt4 maxlength="1" type="password" (keyup)="move($event,txt3,txt4,txt5)" name="txt4" ngModel>
+          <input #txt5 maxlength="1" type="password" (keyup)="move($event,txt4,txt5,txt6)" name="txt5" ngModel>
+          <input #txt6 maxlength="1" type="password" (keyup)="move($event,txt5,txt6,'')" name="txt6" ngModel>
         </div>
+      </form>
+        <button class="pin__btn" (click)="loginPin(otpForm.value)">Continue</button>
+        <button class="pin__btn-forget" (click)="forgetPin()">Forgot PIN? Reset </button>
       </div>
-      <!-- <img src="/assets/flower.png" class="wallet-flower" alt=""> -->
     </div>
-    <div class="wallet__right">
-      <img src="/assets/images/wallet.png" alt="">
-    </div>
+    <!-- <img src="/assets/flower.png" class="wallet-flower" alt=""> -->
   </div>
+  <div class="wallet__right">
+    <img src="/assets/images/wallet.png" alt="">
+  </div>
+</div>

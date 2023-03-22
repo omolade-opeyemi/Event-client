@@ -1,27 +1,544 @@
 <app-sidebar *ngIf="!isauthRouth()"></app-sidebar>
+<app-header></app-header>
+
 
 <div class="body" [ngClass]="getBodyClass()">
-    <app-header></app-header>
-    <div class="main-header">
-        <div class="welcome">
-            <ng-template [ngIf]="page != 'requests'">
-                <h5 class="colour">👋 Hi Lucy</h5>
-                <h3>Let's Get Productive Today !</h3>
-            </ng-template>
 
-            <ng-template [ngIf]="page == 'requests'">
-                <h2 class="colour">Dashboard</h2>
-                <h5  class="colour">
-                    <mat-icon>chevron_left</mat-icon> Back
-                </h5>
-            </ng-template>
+
+
+  <div class="main">
+
+    <!-- -------------drawer ------------------ -->
+    <mat-drawer-container class="example-container" autosize>
+      <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
+        <div class="analytics">
+          <div class="row1">
+            <h3>Analytics</h3>
+            <mat-icon>more_horiz</mat-icon>
+          </div>
+          <div class="row2">
+            <div class="chart">
+              <ngx-donut-chart [data]="donutChartData" [title]="'Budget Build'" [radius]="100" [thickness]="50" [margin]="30">
+              </ngx-donut-chart>
+            </div>
+            <!-- <div class="canva">
+              <canvas baseChart class="chart" [data]="doughnutChartData" [type]="doughnutChartType">
+              </canvas>
+
+            </div> -->
+            
+            <div class="details">
+              <div class="food" *ngFor="let item of donutChartData"><span [style.background-color]="item.color"></span> {{item.label}}: &#8358; {{item.value}}</div>
+              
+            </div>
+          </div>
+          <hr>
+          <!-- <div class="chart-container">
+        
+                <canvas id="myChart" ></canvas>
+          <canvas  id="MyChart" width="500px" height="500px" [title]="'Session'">{{ chart }}</canvas>
+        
+          </div> -->
+
+
+          <div class="row1">
+            <h3>Budget Build</h3>
+            <mat-icon [matMenuTriggerFor]="menu">more_horiz</mat-icon>
+          </div>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Download all</span>
+            </button>
+            <button mat-menu-item>
+              <span>Share all</span>
+            </button>
+            <button mat-menu-item>
+              <span>Clear</span>
+            </button>
+          </mat-menu>
+
+          <ng-template #delete let-c="close" let-d="dismiss">
+            
+            <div class="modal-body deletemodal">
+              <div class="delrow1">
+                <div><mat-icon>warning</mat-icon> <h4>Delete</h4></div>
+                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+              </div>
+              <h5>Are you sure you want to remove this item ?</h5>
+              <div class="buttons">
+                <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancel</button>                
+                <button type="button" class="btn btn-danger" (click)="deleteBudgetItems()">Danger</button>
+              </div>
+            </div>
+            
+          </ng-template>
+
+          <div class="accordion" *ngFor="let item of categorised; index as i">
+            <ngb-accordion #acc="ngbAccordion">
+              <ngb-panel id="toggle-1">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="accordion-button">
+                    <img src="/assets/images/Group 662.png" alt="">
+                    <!-- : <span>&#8358;5000</span> -->
+                    <h5>{{item.category}} : <span>&#8358; {{item.totalAmount}} </span></h5>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Vendor</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">QTY</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" (click)="deleteModal(delete)"> <mat-icon>delete</mat-icon></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let country of item.services; index as i">
+                        <!-- <th scope="row">{{ i + 1 }}</th> -->
+                        <th><input type="checkbox" name=i id="" (change)="selectedServices($event,country)"
+                            [disabled]="country.status != 'Not Sent'"></th>
+                        <td>
+                          <img [src]="country.vendorImage ? country.vendorImage : '/assets/images/food.jpg'"
+                            class="me-2" style="width: 20px" />
+                          {{ country.serviceVendor }}
+                        </td>
+                        <td>{{country.serviceName}}</td>
+                        <td>{{ country.quantity | number }}</td>
+                        <td>&#8358;{{ country.rate }}</td>
+                        <td>&#8358;{{ country.quantity * country.rate| number }}</td>
+                        <td [ngClass]="{'red':country.status == 'Request Declined',
+                        'green':country.status == 'Request Accepted',
+                      'yellow':country.status == 'Request Sent',
+                    'blue':country.status == 'Pending'}">{{ country.status }}
+                        </td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="buttons-bottom">
+                    <!-- <button class="btn btn-outline-primary share" (click)="saveCreateEventBudget()">Save</button> -->
+                    <button class="btn btn-outline-primary send" (click)="sendCreateEventBudget()">Send
+                      Request</button>
+
+                  </div>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
         </div>
-        <div>
-            <button class="btn btn-primary" >+ Add Service</button>
+      </mat-drawer>
+
+      <div class="example-sidenav-content" (click)="drawer.toggle()">
+        <div class="icon">
+          <mat-icon>keyboard_double_arrow_left</mat-icon>
         </div>
+        <div class="eventRod"></div>
+      </div>
+    </mat-drawer-container>
+    <!-- ------------------------- Drawer Ends --------------- -->
+    <ngx-spinner type="ball-scale-multiple">
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+
+
+    <div class="event-page">
+      <div class="main-header">
+        <div class="welcome">
+          <ng-template [ngIf]="pager != 'requests'">
+            <h1>Plan Budget</h1>
+            <h3>Let's Get Productive Today !</h3>
+          </ng-template>
+
+          <ng-template [ngIf]="pager == 'requests'">
+            <h2 class="colour">Dashboard</h2>
+            <h5 class="colour">
+              <mat-icon>chevron_left</mat-icon> Back
+            </h5>
+          </ng-template>
+        </div>
+        <!-- <div>
+                    <button class="btn btn-primary" >+ Add Service</button>
+                </div> -->
+      </div>
+
+      <div class="event-banner">
+        <div class="event-img">
+          <img
+            [src]="eventDetail.imageUrl ? eventDetail.imageUrl:'https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414'"
+            src="" alt="" />
+        </div>
+      </div>
+
+      <div class="event-main">
+        <div class="event-top">
+          <div class="left">
+            <h1 class="event-title">{{eventDetail.name}}</h1>
+            <div class="event-desc">
+              <p>Created by <span>You</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="event-location">
+          <div class="location-items">
+            <mat-icon>event</mat-icon>
+            <p>{{eventDetail.publishedDate | split: "T": 0}}</p>
+          </div>
+          <div class="location-items">
+            <mat-icon>location_on</mat-icon>
+            <p>{{eventDetail.eventLocations[0].localGovt}} {{eventDetail.eventLocations[0].state}}</p>
+          </div>
+          <div class="location-items">
+            <mat-icon>schedule</mat-icon>
+            <p>{{eventDetail.publishedDate | split: "T": 1}}</p>
+          </div>
+        </div>
+
+        <!-- CARDS -->
+        <div class="cards">
+          <div class="card-item estimate">
+            <h3>Budget Estimate <mat-icon>more_horiz</mat-icon></h3>
+            <h2>&#8358; {{budgetEstimate | number}} <mat-icon (click)="open(budget)">edit</mat-icon></h2>
+          </div>
+
+          <ng-template #budget let-c="close" let-d="dismiss">
+            <div class="budgetEstimateModal">
+              <div class="modal-header">
+                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+              </div>
+              <div class="modal-body">
+                <h4 class="modal-title" id="modal-basic-title">How much would you like to budget for this event ?</h4>
+                <div class="mb-3">
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="&#8358;" ngModel
+                    [(ngModel)]="budgetEstimate">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Ok</button>
+              </div>
+            </div>
+          </ng-template>
+
+          <div class="card-item build">
+            <h3>Budget Build <mat-icon>more_horiz</mat-icon></h3>
+            <h2>&#8358; {{budgetBuild | number}} <button class="btn btn-primary" (click)="drawer.toggle()">view</button>
+            </h2>
+          </div>
+          <div class="card-item act">
+            <h3>Actualized <mat-icon>more_horiz</mat-icon></h3>
+            <h2>&#8358; {{actualisedBudget}}</h2>
+          </div>
+          <div class="card-item plan">
+            <img class="card-img" src="/assets/images/Group 663.png" alt="" />
+            <div class="p">
+              <p>🟩 Budget Build</p>
+              <p>🟦 Actualized</p>
+            </div>
+          </div>
+        </div>
+        <!-- category -->
+
+
+        <div class="category">
+          <div class="categories" (click)="openCategoryModal(category)">
+            <h2>Request Categories</h2>
+            <div class="categories_add">
+              <mat-icon>add</mat-icon>
+            </div>
+          </div>
+
+
+
+          <div class="cardss">
+            <div class="cats-items">
+              <div class="cat-item cat" [ngClass]="{'selectedCat':selectedCat == i}"
+              *ngFor="let item of selected;let i = index" 
+              (click)="foodToggle(item.categoryName, i)">
+                <img class="cat-img" src="/assets/images/food.png" alt="" />
+                <div class="cat-text">
+                  <h4>{{item.categoryName}}</h4>
+                  <p>{{item.serviceCount}} vendors registered under this category</p>
+                </div>
+                <p class="cancel" (click)="removeFood(item)">❌</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <ng-template #category let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Vendor Category</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="categories__modal">
+            <div class="categories__modal-header">
+              <h3 class="categories__modal-headerTitle">
+                Select list of request categories you need for your event
+              </h3>
+              <p class="categories__modal-headerText">You can select multiple times</p>
+            </div>
+            <!-- (dblclick)="vendor.active = !vendor.active" -->
+
+            <!-- [className]="
+                      toggleFood
+                            ? 'categories__modal-bodyItems-active categories__modal-bodyItems'
+                            : 'categories__modal-bodyItems-notActive categories__modal-bodyItems'
+                        " -->
+
+            <div class="categories__modal-body">
+              <div *ngFor="let vendor of vendorCategories;let i = index" (click)="selectFood(i,vendor)"
+                class=" categories__modal-bodyItems" [ngClass]="{'categories__modal-bodyItems-active':selected.includes(vendor),
+                    'categories__modal-bodyItems-notActive':  !selected.includes(vendor)}">
+                <img class="categories__modal-bodyImg" src="/assets/images/food.png" alt="" />
+                <p class="categories__modal-bodyText " [style.color]="vendor.color">{{ vendor.categoryName }}</p>
+              </div>
+            </div>
+            <div class="categories__modal-btn">
+              <button class="categories__modal-btnCancel" (click)="modal.close('Close click')">Cancel</button>
+              <button class="categories__modal-btnContinue" (click)="modal.close('Close click')">Continue</button>
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+
+      <ng-container *ngIf="toggle">
+
+        <ng-template [ngIf]="page == 'list'">
+          <!-- <app-foodvendor> </app-foodvendor> -->
+          <div class="foodVendor">
+            <!-- left -->
+            <div class="foodVendor__left">
+              <div class="foodVendor__filter">
+                <div class="foodVendor__filter-header">
+                  <h2>Filter</h2>
+                  <button>Reset</button>
+                </div>
+                <div class="foodVendor__filter-search">
+                  <input type="text" #searchtext />
+                  <!-- {{ searchtext.value }} -->
+                  <div class="foodVendor__filter-btn">
+                    <img src="/assets/search.png" alt="" />
+                  </div>
+                </div>
+                <hr class="foodVendor__hr" />
+                <div class="foodVendor__filter-location">
+                  <h4>Location</h4>
+                  <select name="" id="">
+                    <option value="">Select Location</option>
+                  </select>
+                </div>
+                <hr class="foodVendor__hr" />
+                <div class="foodVendor__filter-budget">
+                  <h4>Budget Range</h4>
+                  <div class="foodVendor__filter-range">
+                    <div class="min">
+                      <p>3$</p>
+                      <P>Min.</P>
+                    </div>
+                    <div class="max">
+                      <p>500$</p>
+                      <P>Min.</P>
+                    </div>
+                  </div>
+                  <div class="foodVendor__filter-budgetProgress">
+                    <progress id="file" value="400" max="500">32%</progress>
+                    <div class="foodVendor__filter-progressBtn">
+                      <button>20</button>
+                      <p>-</p>
+                      <button>100</button>
+                    </div>
+                  </div>
+                  <hr class="foodVendor__hr" />
+                  <div class="foodVendor__filter-budgetSubmit">
+                    <button>Apply Filter</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- right -->
+            <div class="foodVendor__right">
+              <div class="foodVendor__right-header">
+                <div class="foodVendor__right-headerTitle">
+                  <h2>Looking for {{vendorCategory}} vendors?</h2>
+                  <div class="foodVendor__right-headerRight">
+                    <p>Sort by:</p>
+                    <select name="" id="">
+                      <option value="">Popularity</option>
+                    </select>
+                  </div>
+                </div>
+                <p class="foodVendor__found">
+                  Found {{vendordata.length}} items on your search
+                </p>
+              </div>
+              <div class="foodVendor__bottom">
+                <div class="foodVendor__vendors">
+                  <!-- <app-vendor ></app-vendor> -->
+                  <!-- ////////////////  Vendor ////////////// -->
+
+                  <div class="vendors">
+                    <div class="vendor-item" *ngFor="let vendor of vendordata">
+                      <img [src]="vendor.image ? vendor.image: '/assets/images/person.jpg'" alt="" />
+                      <div class="item-header">
+                        <h3>{{ vendor.vendorName}}</h3>
+                        <small>{{ vendor.location }}</small>
+                        <p class="item-body">
+                          {{ vendor.supplierDescription}}
+                        </p>
+                        <p class="item-rating">
+                          ⭐⭐⭐⭐⭐ <span>[{{ vendor.rating }} reviews]</span>
+                        </p>
+                      </div>
+                      <div class="item-btn">
+                        <button type="button" (click)="detailPage(vendor)">Select</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ///////////////////////// Vendor End   /////////////////////// -->
+
+                </div>
+                <div class="foodVendor__bottom-btn">
+                  <button>Load More</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+
+        <!-- ///////////////////////////  Vendor Detail Detail ///////////////// -->
+        <ng-template [ngIf]="page == 'detail'">
+          <!-- <app-food-detail></app-food-detail> -->
+          <div class="foodDetails">
+            <div class="foodDetails__header">
+              <div class="foodDetails__header-back">
+                <h2 class="foodDetails__header-backText" (click)="backToVendors()"><mat-icon>arrow_back_ios</mat-icon> Back</h2>
+              </div>
+              <div class="foodDetails__header-sort">
+                <h4 class="foodDetails__header-sortText">Sort By</h4>
+                <select name="" id="">
+                  <option value="">Popularity</option>
+                </select>
+              </div>
+            </div>
+            <p class="foodDetails__header-search">Found {{vendorServices.length}} items on your serach</p>
+            <div class="foodDetails__bottom">
+              <div class="foodDetails__left">
+                <div class="foodDetails__food-img">
+                  <!-- <img src="{{ vendor.image }}" />
+                        <div class="carousel">
+                          <img src="/assets/less.png" alt="" />
+                          <hr class="active" />
+                          <hr />
+                          <hr />
+                
+                          <img src="/assets/great.png" alt="" />
+                        </div> -->
+                  <!-- <app-carousel></app-carousel> -->
+                  <!-- //////////// Carousel ///////////// -->
+
+                  <ngb-carousel *ngIf="images">
+                    <ng-template ngbSlide *ngFor="let item of carousel; let i index">
+                      <div class="picsum-img-wrapper">
+                        <img [src]="item ? item : '/assets/images/person.jpg'" alt="Random first slide" />
+                      </div>
+                    </ng-template>
+
+                  </ngb-carousel>
+
+
+                  <!-- ////////////////// Carousel Ends ///////// -->
+                  <div class="foodDetails__food-title">
+                    <h2>{{vendorDetail.vendorName}}</h2>
+                    <p class="foodDetails__item-rating">
+                      ⭐⭐⭐⭐⭐
+                      <span class="foodDetails__review">[{{vendorDetail.reviews}} reviews]</span>
+                    </p>
+                    <p>
+                      <span
+                        class="foodDetails__location"><mat-icon>location_on</mat-icon>{{vendorDetail.location}}</span>
+                    </p>
+                  </div>
+                  <div class="foodDetails__food-description">
+                    <mat-tab-group mat-align-tabs="start">
+                      <mat-tab label="Description">
+                        <p>
+                          {{vendorDetail.serviceDescription}}
+                        </p>
+                      </mat-tab>
+                      <mat-tab label="Review">
+                        <p>{{vendorDetail.reviews}}</p>
+                      </mat-tab>
+                    </mat-tab-group>
+                  </div>
+                </div>
+              </div>
+              <div class="vl"></div>
+
+              <div class="foodDetails__right">
+                <div class="foodDetails__service">
+                  <div class="foodDetails__service-head">
+                    <div class="foodDetails__service-title">
+                      <h2>Services</h2>
+                      <p>Found {{vendorServices.length}} Items on your search</p>
+                    </div>
+                    <div class="foodDetails__service-search">
+                      <input type="text" placeholder="Search services" />
+                      <div class="foodDetails__service-btn">
+                        <img src="/assets/search.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="foodDetails__service-body">
+                    <div class="foodDetails__service-items">
+                      <div class="foodDetails__service-item" *ngFor="let item of vendorServices;let i = index">
+                        <div class="foodDetails__service-left">
+                          <div class="foodDetails__service-itemImg">
+                            <img [src]="item.imageUrls[0] ? item.imageUrls[0] : '/assets/images/person.jpg'" alt="" />
+                          </div>
+                          <div class="foodDetails__service-itemDesc">
+                            <h3>{{item.serviceName}}</h3>
+                            <p>{{item.serviceDescription}}</p>
+                            <h3>&#8358; {{item.price}}</h3>
+                          </div>
+                        </div>
+                        <div class="foodDetails__service-right">
+                          <button class="foodDetails__btn" (click)="serviceQnty('-',i)">-</button>
+                          <span class="foodDetails__btnSpan"><input type="text" id="serviceQty" #serviceQty ngModel
+                              [(ngModel)]="qty[i]" placeholder="0"></span>
+                          <button class="foodDetails__btn" (click)="serviceQnty('+',i)">+</button>
+                          <button class="foodDetails__btn-add" (click)="addToPlan(serviceQty.value,item)">Add to
+                            Plan</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <!-- /////////////////////////  Vendor Detail End ///////////////// -->
+      </ng-container>
+
+
+
     </div>
-    <div class="main">
-        <app-planbudgetpage></app-planbudgetpage>
-    </div>    
+    <!-- <app-planbudgetpage></app-planbudgetpage> -->
+  </div>
 </div>
 
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

@@ -82,8 +82,10 @@ export class CreateeventpageComponent implements OnInit {
   eventTickets = new EventTickets(true,'',0,0,'','','','','')
   eventTICKETS : EventTickets[] = []
   eventCreation = new EventCreation(this.events,
-    this.eventSupplierIds,this.eventURLS,
-    this.eventLocationDTOS,this.eventsDateDTOS,
+    this.eventSupplierIds
+    ,this.eventURLS,
+    this.eventLocationDTOS,
+    this.eventsDateDTOS,
     this.eventTICKETS)
 
     response:any
@@ -169,10 +171,22 @@ export class CreateeventpageComponent implements OnInit {
     })
   }
 
+paid(){
+this.eventTickets.isPaid = true
+}
+free(){
+  this.eventTickets.isPaid = false;
+}
+
   publishEvent(){
+    this.spinner.show();
     this.continue()
+    console.log(JSON.stringify(this.eventCreation));
+    
+  
     this.endpoint.publishNewEvent(this.eventCreation).subscribe((data)=>{
       this.response = data
+      this.spinner.hide();
       if(this.response.responseCode == '00'){
         this.notifyService.showSuccess('Event publish successful')
         this.route.navigate(["/dashboard"])
@@ -186,9 +200,11 @@ export class CreateeventpageComponent implements OnInit {
     })
   }
   draftEvent(){
+    this.spinner.show();
     this.continue()
     this.endpoint.draftNewEvent(this.eventCreation).subscribe((data)=>{
-      this.response = data
+      this.response = data;
+      this.spinner.hide();
       if(this.response.responseCode == '00'){
         this.notifyService.showSuccess('Event draft successful')
         this.route.navigate(["/dashboard"])
@@ -216,7 +232,7 @@ export class CreateeventpageComponent implements OnInit {
   }
   tickets(){
     this.page= 'two'
-    if( this.eventURLS.length != 0){
+    if(this.eventTICKETS.length != 0){
       this.page= 'twoo'
     }
     
@@ -227,7 +243,6 @@ export class CreateeventpageComponent implements OnInit {
   }
 
   continue(){
-    this.profileImageUpload()
     this.events.profileId=Number(Number(localStorage.getItem('profileId')))
     this.events.datePublished = this.eventsDateDtos.eventStartDate +'T00:00:00'
     this.eventsDateDTOS.push(this.eventsDateDtos);
@@ -235,6 +250,7 @@ export class CreateeventpageComponent implements OnInit {
     this.eventLocationDTOS.push(this.eventLocationDtos);
     // this.eventURLS.push(this.eventsUrls)
     console.log(this.eventCreation);
+    
     
   }
 
@@ -245,19 +261,22 @@ export class CreateeventpageComponent implements OnInit {
 
   onSelect(event: { addedFiles: any; }) {
     this.files.push(...event.addedFiles);  
+    this.profileImageUpload()
   }
   onRemove(event: File) {
+    const index  = this.files.indexOf(event)
     this.files.splice(this.files.indexOf(event), 1);
+    this.eventURLS.splice(index, 1)
   }
 
   profileImageUpload() {
     var profileImgeFile:any
-    for (let i = 0; i < this.files.length; i++) {
-      profileImgeFile = this.files[i];
+    // for (let i = 0; i < this.files.length; i++) {
+      profileImgeFile = this.files[this.files.length - 1];
       this.imageUpload(profileImgeFile);
-    }
-    var proof:EventUrls = new EventUrls(this.eventsUrls.mobileBannerUrl, this.eventsUrls.websiteBannerUrl)
-    this.eventURLS.push(proof);
+    // }
+   
+    
   }
   imageUpload(selectedfile: any) {
     this.spinner.show();
@@ -273,6 +292,10 @@ export class CreateeventpageComponent implements OnInit {
           this.fileUrl = resp.responseData;
           this.file.push(this.fileUrl);
           this.eventsUrls.websiteBannerUrl = this.fileUrl
+          var proof:EventUrls = new EventUrls(this.eventsUrls.websiteBannerUrl,this.eventsUrls.mobileBannerUrl,)
+          this.eventURLS.push(proof);
+          console.log(this.eventURLS);
+          
         }
       }, (error) => {
         this.spinner.hide();

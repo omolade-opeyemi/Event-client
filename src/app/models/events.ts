@@ -63,12 +63,14 @@ export class EventCreation {
     constructor(
       public eventId:number,
       public sendRequest: boolean,
+      public budget: number,
       public budgetDetails: BudgetDetails[]
     ){}
   }
 
   export class BudgetDetails{
     constructor(
+      public id:number,
       public eventSupplierId:number,
       public serviceId:number,
       public budget: number,
@@ -81,6 +83,7 @@ export class EventCreation {
 
   export class PlaceHolder{
     constructor(
+      public id: number,
       public serviceCategory:string,
       public serviceVendor:string,
       public serviceName: string,
@@ -91,6 +94,24 @@ export class EventCreation {
       public vendorImg:string,
       public VendorId:string,
       public serviceId:string
+    ){}
+  }
+
+  export class CreateNewTicket{
+    constructor(
+      public profileId: number,
+      public eventId: number,
+      public totalQtyToBeSold: number,
+      public revenueTarget: number,
+      public ticketType: string,
+      public ticketName : string,
+      public ticketPrice : string,
+      public ticketDescription: string,
+      public eventStartDate:string,
+      public eventEndDate:string,
+      public eventStartTime:string,
+      public eventEndTime:string
+
     ){}
   }
 

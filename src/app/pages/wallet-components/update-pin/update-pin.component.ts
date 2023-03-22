@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({
   selector: 'app-update-pin',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdatePinComponent implements OnInit {
 
-  constructor() { }
+  constructor(    private walletservice: WalletService,
+    ) { }
 
   ngOnInit(): void {
   }
-
+  backToLanding(){
+    this.walletservice.getMainPage('wpasscode');
+  }
 }

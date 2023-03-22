@@ -10,10 +10,11 @@ export class WalletpageComponent implements OnInit {
 
   constructor(private walletservice: WalletService) { }
 
-  page:string ='';
+  page=''
   ngOnInit(): void {
-    this.page = 'passcode'
-    this.walletservice.requestPage$.subscribe(message => {this.page = message});    
+    this.page = 'walletpageDash'
+    // this.walletservice.requestPage$.subscribe(message => {this.page = message});    
+    this.walletservice.subPage$.subscribe(message => {this.page = message})    
   }
 
 }

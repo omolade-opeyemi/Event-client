@@ -36,7 +36,7 @@ export class DashboardPageComponent implements OnInit {
     this.spinner.show()
     this.endpoint.getActivePlan(Number(localStorage.getItem('profileId'))).subscribe((data)=>{
       this.response = data;
-      this.spinner.hide()
+      this.spinner.hide();
       if(this.response.responseCode == '00'){
         this.isActive = true;
         this.getActive = this.response.responseData;
@@ -58,6 +58,11 @@ export class DashboardPageComponent implements OnInit {
     // var event = this.eventOverview.filter((item)=>item.eventId == data);
     localStorage.setItem('eventId',data)
     this.router.navigate(['/plan-budget'])
+  }
+
+  addTicket(data:any){
+    localStorage.setItem('eventId',data);
+    this.router.navigate(['/ticket'])
   }
 
   eventOverview:any[]=[]

@@ -16,6 +16,10 @@ export const navbarData = [
         routerLink: '/schedule',
         icon:'calendar_today',
         label: 'Schedule'
+    },{
+        routerLink: '/invoice',
+        icon:'receipt_long',
+        label: 'Invoice'
     }
     // {
     //     routerLink: '/plan-budget',
@@ -31,6 +35,11 @@ export const navbarData = [
         icon:'account_balance_wallet',
         label: 'Wallet'
     },
+    // {
+    //     routerLink: '/ticket',
+    //     icon:'confirmation_number',
+    //     label: 'Ticket'
+    // },
 
     
     

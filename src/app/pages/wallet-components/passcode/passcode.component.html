@@ -7,37 +7,48 @@
   <h2 class="passcode__header">
     Set Your Passcode To Protect Your E-Wallet
   </h2>
-  <div class="passcode__validation">
-    <app-warning></app-warning>
+  <div class="passcode__validation" *ngIf="pinError != ''">
+    <ngb-alert type="danger" [dismissible]="false">{{pinError}}</ngb-alert>
   </div>
 
   <div class="passcode__pin">
     <div class="new__pin">
       <p>New Pin</p>
-      <div class="pin__inputs">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-      </div>
+      <form action="" #otpForm="ngForm">
+        <div class="pin__inputs">
+          <input #txt1 maxlength="1" (keyup)="move($event,'',txt1,txt2); firstPin(otpForm.value)" type="password" name="txt1" ngModel>
+          <input #txt2 maxlength="1" type="password" (keyup)="move($event,txt1,txt2,txt3); firstPin(otpForm.value)" name="txt2" ngModel>
+          <input #txt3 maxlength="1" type="password" (keyup)="move($event,txt2,txt3,txt4); firstPin(otpForm.value)" name="txt3" ngModel>
+          <input #txt4 maxlength="1" type="password" (keyup)="move($event,txt3,txt4,txt5); firstPin(otpForm.value)" name="txt4" ngModel>
+          <input #txt5 maxlength="1" type="password" (keyup)="move($event,txt4,txt5,txt6); firstPin(otpForm.value)" name="txt5" ngModel>
+          <input #txt6 maxlength="1" type="password" (keyup)="move($event,txt5,txt6,''); firstPin(otpForm.value)" name="txt6" ngModel>
+        </div>
+      </form>
+
     </div>
     <div class="confirm__pin">
       <p>Confirm Pin</p>
-      <div class="pin__inputs">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-        <input type="password">
-      </div>
+      <form action="" #otpForm2="ngForm">
+        <div class="pin__inputs">
+          <input #txt11 maxlength="1" (keyup)="move($event,'',txt11,txt22)" type="password" name="txt11" ngModel>
+          <input #txt22 maxlength="1" type="password" (keyup)="move($event,txt11,txt22,txt33)" name="txt22" ngModel>
+          <input #txt33 maxlength="1" type="password" (keyup)="move($event,txt22,txt33,txt44)" name="txt33" ngModel>
+          <input #txt44 maxlength="1" type="password" (keyup)="move($event,txt33,txt44,txt55)" name="txt44" ngModel>
+          <input #txt55 maxlength="1" type="password" (keyup)="move($event,txt44,txt55,txt66)" name="txt55" ngModel>
+          <input #txt66 maxlength="1" type="password" (keyup)="move($event,txt55,txt66,'')" name="txt66" ngModel>
+        </div>
+      </form>
+
     </div>
   </div>
+  <!-- (click)="dashBoard()" -->
   <div class="passcode__btn">
-    <button class="" (click)="dashBoard()">
+    <button class="" (click)="activateWallet(otpForm2.value)">
       Proceed
     </button>
   </div>
 </div>
+
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

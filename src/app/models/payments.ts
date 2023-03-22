@@ -16,6 +16,24 @@ export class PaymentDetails {
         public transactionSource: string,
         public email: string,
         public serviceId: Number,
-        public amount: Number
+        public amount: any
     ){}
   }
+
+  export class Activatewallet{
+    constructor(
+      public profileId: number,
+      public securityQuestion: string,
+      public securityAnswer: string,
+      public walletPin: string,
+    ){}
+  }
+
+  
+  export class WalletLogin{
+    constructor(
+      public profileId: number,
+      public pin: string
+    ){}
+  }
+

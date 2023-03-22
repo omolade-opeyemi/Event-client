@@ -17,18 +17,21 @@
         </div>
     </ng-template>
 
+    <ng-template [ngIf]="page == 'walletlanding'">
+        <app-walletlanding></app-walletlanding>
+    </ng-template>
 
     <ng-template [ngIf]="page == 'wpasscode'">
         <app-wpasscode></app-wpasscode>
     </ng-template>
 
-    <ng-template [ngIf]="page == 'walletlanding'">
-        <app-walletlanding></app-walletlanding>
-    </ng-template>
 
-    <ng-template [ngIf]="page !== ('walletlanding' || 'wpasscode')">
+    <ng-template [ngIf]="page == 'walletpage'">
         <div class="main">
             <app-walletpage></app-walletpage>
         </div>
     </ng-template>
 </div>
+<ngx-spinner type="ball-scale-multiple">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>

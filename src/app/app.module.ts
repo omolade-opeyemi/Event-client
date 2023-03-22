@@ -25,6 +25,9 @@ import { Angular4PaystackModule } from 'angular4-paystack';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { NgxDonutChartModule } from 'ngx-doughnut-chart';
+import { NgChartsModule } from 'ng2-charts';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -79,6 +82,11 @@ import { PricingPageComponent } from './pages/pricing-page/pricing-page.componen
 import { InterceptorService } from './service/interceptor.service';
 import { InteractionService } from './service/interaction.service';
 import { SplitPipe } from './pipes/split.pipe';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { InvoicePageComponent } from './pages/invoice-page/invoice-page.component';
+import { TicketPageComponent } from './pages/ticket-page/ticket-page.component';
+import { TicketComponent } from './components/ticket/ticket.component';
+import { TestpageComponent } from './pages/testpage/testpage.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +130,11 @@ import { SplitPipe } from './pipes/split.pipe';
     PricingComponent,
     PricingPageComponent,
     SplitPipe,
+    InvoiceComponent,
+    InvoicePageComponent,
+    TicketPageComponent,
+    TicketComponent,
+    TestpageComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,6 +152,7 @@ import { SplitPipe } from './pipes/split.pipe';
     MatBadgeModule,
     MatSidenavModule,
     MatTableModule,
+    NgChartsModule,
     ToastrModule.forRoot(), // ToastrModule \
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -152,7 +166,8 @@ import { SplitPipe } from './pipes/split.pipe';
     Angular4PaystackModule.forRoot('pk_test_xxxxxxxxxxxxxxxxxxxxxxxx'),
     MatListModule,
     MatMenuModule,
-    NgxDonutChartModule
+    NgxDonutChartModule,
+    NgbPaginationModule
 
 
   ],

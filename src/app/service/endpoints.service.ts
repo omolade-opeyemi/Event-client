@@ -51,8 +51,8 @@ export class EndpointsService {
   getVendorByCategory(data:any): Observable<any>{
     return this.http.get(this.baseUrl+ '/api/EventCreation/GetVendorsByCategory?category='+data)
   }
-  getVendorServiceDetail(data:number):Observable<any>{
-    return this.http.get(this.baseUrl+ 'api/EventCreation/GetVendorServiceDetail?supplierId='+data)
+  getVendorServiceDetail(data:number, category:any):Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventCreation/GetVendorServiceDetail?supplierId='+data +'&category='+category)
   }
   getCreatorDashboard(data:number): Observable<any>{
     return this.http.get(this.baseUrl+ 'api/Dashboard/GetCreatorDashboardDetails?profileId='+data)
@@ -81,5 +81,39 @@ export class EndpointsService {
   getEventBudgetSummary(profile:number,event:number): Observable<any>{
     return this.http.get(this.baseUrl+ 'api/EventPlanning/GetEventBudgetSummary?profileId='+profile+'&eventId='+event)
   }
+  getCreatorInvoices(profileId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventPlanning/GetCreatorInvoices?profileId='+profileId)
+  }
+  getCreatorInvoiceDetails(profileId:number, invoiceId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventPlanning/GetCreatorInvoiceDetails?profileId='+profileId+'&invoiceId='+invoiceId)
+  }
+  getSpecialRequestServices(profileId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventSpecialRequest/GetSpecialRequestServices?profileId='+profileId)
+  }
+  getCreatorEventsForRequest(profileId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventSpecialRequest/GetCreatorEventsForRequest?profileId='+profileId)
+  }
+  createEventSpecialRequest(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventSpecialRequest/CreateEventsSpecialRequest', data)
+  }
+  getEventDetail(eventId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventCreation/GetEventDetail?eventId='+eventId)
+  }
+  createNewTicket(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventTicketing/CreateNewTickets', data)
+  }
+  deleteBudgetItems(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventPlanning/DeleteBudgetItems', data)
+  }
+  activateWallet(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/SMSWallet/ActivateWallet', data)
+  }
+  getWalletActivationStatus(profileId: number) {
+    return this.http.get(this.baseUrl + 'api/SMSWallet/GetWalletActivationStatus?profileId=' + profileId)
+  }
+  WalletLogin(data: any) {
+    return this.http.post(this.baseUrl + 'api/SMSWallet/WalletLogin', data, )
+  }
+  
 
 }

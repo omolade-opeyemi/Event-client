@@ -1,0 +1,449 @@
+.add {
+    width: 90%;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .add-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-bottom: 2rem;
+    // background: #fff;
+    width: 90%;
+    margin: 2rem auto;
+  }
+  
+  .add-title h1 {
+    margin-left: 2rem;
+  }
+  
+  .add-title button {
+    padding: 1rem 2rem;
+    background: #1c2b66;
+    color: #fff;
+    cursor: pointer;
+    font-size: clamp(0.9375rem, 0.8259rem + 0.3571vw, 1.25rem);
+  }
+  
+  // table {
+  //   width: 100%;
+  //   border: 1px solid #1c2b66;
+  //   margin-left: 4rem;
+  //   border-radius: 10px;
+  //   border: 2px solid;
+  // }
+  
+  ///////// Add Ticket Table //////
+.event__table {
+  width: 90%;
+  // padding: 1rem;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    // background: #f9fafd;
+
+    .event__table-table {
+      border: 0.5px solid rgba(28, 43, 102, 0.65);        padding: 0.5rem;
+        border-radius: 13px;
+        font-size: clamp(0.7rem, 0.2813rem + 1.5vw, 1.125rem);
+      }
+
+}
+// .event__table-title,
+// .event__table-save {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 100%;
+// }
+
+// .event__table-title h2 {
+//   font-size: clamp(1.5rem, 0.25rem + 4vw, 2.5rem);
+//   font-weight: 500;
+//   color: #1c2b66;
+// }
+// .event__table-title button,
+// .event__table-save button {
+//   padding: 0.5em 2em;
+//   background: #1c2b66;
+//   color: #fff;
+//   cursor: pointer;
+//   font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
+// }
+// .event__table-table {
+//   border: 1px solid #1c2b66;
+//   padding: 0.5rem;
+//   border-radius: 13px;
+//   font-size: clamp(0.7rem, 0.2813rem + 1.5vw, 1.125rem);
+// }
+// .event__table-head {
+//   height: 3rem;
+//   background: #f9fafd;
+// }
+// .event__table-row {
+//   height: 4rem;
+// }
+
+  
+  /////////////////////////////////
+  .btn-save {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: #1c2b66;
+    color: #fff;
+    cursor: pointer;
+    font-size: clamp(0.9375rem, 0.8259rem + 0.3571vw, 1.25rem);
+    border: none;
+  }
+  
+  .save {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+  
+  
+  .review {
+    /* padding: 1rem; */
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .review-main {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    justify-content: space-between;
+    width: 90%;
+  }
+  
+  .review-text {
+    // width: 49%;
+    flex-basis: 49%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  
+  }
+  
+  .review-img {
+    flex-basis: 49%;
+  }
+  
+  .review-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    // object-fit: cover;
+    // min-height: 400px;
+  }
+  
+  .review-textHeader h1 {
+    font-size: clamp(1.5rem, 0.9643rem + 1.7143vw, 3rem);
+    margin-bottom: 10px;
+  }
+  
+  .reviewTextHeaderIcons {
+    display: flex;
+    flex-direction: column;
+    // gap: 1rem;
+    // margin-top: 0.7rem;
+  
+  }
+  
+  .reviewTextHeaderIcons p {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  
+  .review-textMid {
+    // margin-top: 1.5rem;
+    width: 70%;
+    // min-width: 350px;
+  }
+  
+  .review-textMid h3 {
+    color: #1c2b66;
+    // margin-bottom: 0.7rem;
+    font-weight: 600;
+    font-size: clamp(1.125rem, 0.9554rem + 0.5429vw, 1.6rem);
+  }
+  
+  .review-textMid p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 140%;
+    /* or 17px */
+  
+    text-align: justify;
+    letter-spacing: -0.02em;
+  
+    color: #2D3748;
+    // margin-bottom: 0.5rem;
+  
+  }
+  
+  .end {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* responsivenes */
+  
+  @media screen and (max-width:850px) {
+    .review-main {
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+    }
+  
+    .review-text,
+    .review-img {
+      width: 100%;
+    }
+  
+    .review-textMid {
+      width: 100%;
+    }
+  }
+
+
+
+  /////////////////////////////////////
+  
+  //////// Modal /////
+
+  h5 {
+    font-weight: 700;
+  }
+  .modal-form {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    gap: 2.5rem;
+  }
+  .modal__event-form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 0rem;
+  }
+  .modal__event-form input {
+    /* width: 42rem; */
+    height: 3rem;
+  }
+  
+  .modal__event-form textarea {
+    height: 6rem;
+    padding-top: 15px;
+  }
+  .input,
+  .modal__tag,
+  .textarea {
+    position: absolute;
+  
+    left: 3%;
+    background: #fff;
+    padding: 0.3rem 0.8rem;
+    letter-spacing: 1px;
+  }
+  .input {
+    top: -35%;
+  }
+  .textarea {
+    top: -14%;
+    left: 3%;
+  }
+  .modal__tag {
+    top: -29%;
+  }
+  .modal__selects {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0rem;
+    position: relative;
+  }
+  .modal-date__ {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+  }
+  .modal__start-dt,
+  .modal__start-time {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .modal__start-dt input,
+  .modal__start-time input {
+    width: 100%;
+    height: 3rem;
+    font-size: 1em;
+    padding: 0 0.5rem;
+  }
+  
+  .modal__selects select {
+    position: relative;
+  }
+  .modal__selects label {
+    position: absolute;
+    top: -12%;
+  }
+  .modal__selects select {
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    font-size: 1em;
+  }
+  .selects-long select {
+    width: 100%;
+    height: 3rem;
+    font-size: 1em;
+  }
+  .subtext {
+    margin-bottom: 2rem;
+  }
+  
+  .modal__bttn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .modal__btn-active {
+    padding: 1rem 3rem;
+    font-size: 0.9rem;
+    color: #1c2b66;
+    background: #dde1ef;
+    border: 1px solid #1c2b66;
+    cursor: pointer;
+  }
+  .modal__submit {
+    margin-top: 0rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .modal__btn-normal {
+    padding: 1rem 3rem;
+    font-size: 0.9rem;
+    color: #1c2b66;
+    background: #fff;
+    border: 1px solid #1c2b66;
+    cursor: pointer;
+  }
+  .modal__btn-cancel {
+    padding: 1rem 4rem;
+    font-size: 1.1rem;
+    color: #1c2b66;
+    background: #fff;
+    border: 1px solid #1c2b66;
+  }
+  .modal__btn-continue {
+    padding: 1rem 4rem;
+    font-size: 1.1rem;
+    color: #fff;
+    background: #1c2b66;
+    border: 1px solid #1c2b66;
+    cursor: pointer;
+  }
+  .modal__btn-continue:hover {
+    color: #fff;
+    background: #0b153a;
+    transition: all ease-in-out 0.5s;
+  }
+  .btn-cancel:hover {
+    color: #fff;
+    background: #1c2b66;
+    cursor: pointer;
+    transition: all ease-in-out 0.5s;
+  }
+  
+
+  //////////////////////////////////
+  .create-ticket {
+    /* max-width: 1600px; */
+    margin: 3rem auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .create-ticket__banner {
+    min-height: fit-content;
+    height: 500px;
+    width: 100%;
+    background: #55608d;
+    border-radius: 25px;
+  }
+  
+  .create-ticket__img {
+    width: 195px;
+    height: 195px;
+  }
+  
+  .create-ticket__banner button {
+    padding: 0.8rem 5rem;
+    border: 1px solid #1c2b66;
+    background: #1c2b66;
+    font-size: clamp(0.75rem, 0.4375rem + 1vw, 1rem);
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .create-banner__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    margin: auto 0;
+    color: #fff;
+  }
+  
+  .create-banner__text h2 {
+    font-size: clamp(1.5rem, 0.25rem + 4vw, 2.5rem);
+    font-weight: 600;
+  }
+  
+  .create-banner__text p {
+    font-size: clamp(0.75rem, 0.4375rem + 1vw, 1rem);
+  }
+  
+  .create-banner__btn button:hover {
+    background: #0b153a;
+    transition: all ease-in-out 0.5s;
+  }
+  
+  .create-banner__btn button {
+    padding: 0.8em 2em;
+    border: 1px solid #1c2b66;
+    background: #fff;
+    font-size: clamp(0.75rem, 0.4375rem + 1vw, 1rem);
+    cursor: pointer;
+  }
+  
+  .create-banner__btn button:hover {
+    background: #1c2b66;
+    transition: all ease-in-out 0.5s;
+    color: #fff;
+  }

@@ -67,19 +67,21 @@
                   <p class="image-name">Image.png</p>
                   <p class="image-size">36.87kb</p>
                 </div>
+
               </div> -->
+              <!-- [maxFileSize]="2000000" -->
               <div class="mb-3">
-                <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" [maxFileSize]="2000000"  (change)="onSelect($event)">
+                <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'"   (change)="onSelect($event)">
                   <ngx-dropzone-label>
                     <div>
                       <mat-icon>cloud_upload</mat-icon>
                       <h3>Drop images here or click to select</h3>
                     </div>
                   </ngx-dropzone-label>
-                  <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
                     [removable]="true" (removed)="onRemove(f)">
-                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                  </ngx-dropzone-preview>
+                    <ngx-dropzone-label>{{ f.name | slice:0:6 }} ({{ f.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-image-preview>
                   
                 </div>
               </div>
@@ -207,7 +209,6 @@
               <td>
                 {{ country.ticketName }}
               </td>
-      
               <td>{{ country.availableQuantity }}</td>
               <td>&#8358; {{ country.price }}</td>
               <td>🟢 on sale</td>
@@ -240,14 +241,14 @@
         <div class="modal-form">
           <h5>Type of Tickets</h5>
           <div class="modal__bttn">
-            <button class="modal__btn-active">Paid</button>
-            <button class="modal__btn-normal">Free</button>
+            <button [ngClass]="{'modal__btn-active':this.eventTickets.isPaid == true, 'modal__btn-normal':this.eventTickets.isPaid == false}" (click)="paid()">Paid</button>
+            <button [ngClass]="{'modal__btn-active':this.eventTickets.isPaid == false, 'modal__btn-normal':this.eventTickets.isPaid == true}" (click)="free()">Free</button>
           </div>
           <div class="modal__event-form">
             <label for="title" class="input">Name of Tickets</label>
             <input type="text" name="title" ngModel [(ngModel)]="eventTickets.ticketName"/>
           </div>
-          <div class="modal__event-form">
+          <div class="modal__event-form" *ngIf="this.eventTickets.isPaid">
             <label for="title" class="input">Price</label>
             <input type="number" name="title" ngModel [(ngModel)]="eventTickets.price"/>
           </div>
@@ -255,12 +256,6 @@
             <label for="title" class="input">Available Quantity</label>
             <input type="number" name="title" ngModel [(ngModel)]="eventTickets.availableQuantity"/>
           </div>
-          <!-- <div class="modal__selects">
-            <select name="type" id="" ngModel [(ngModel)]="eventTickets.availableQuantity">
-              <option value=1></option>
-            </select>
-            <span class="modal__tag"> Available Quantity </span>
-          </div> -->
           <div class="modal__event-form">
             <label for="eventDetails" class="textarea">Ticket Description</label>
             <textarea name="eventDetails" ngModel [(ngModel)]="eventTickets.ticketDescription"> </textarea>
@@ -270,7 +265,7 @@
             <div class="modal__selects">
               <div class="modal-date__">
                 <div class="modal__start-dt">
-                  <span>Start Date</span>
+                  <span>Sales Start</span>
                   <input type="date" name="start-date" ngModel [(ngModel)]="eventTickets.eventStartDate"/>
                 </div>
                 <div class="modal__start-time">
@@ -282,7 +277,7 @@
             <div class="modal__selects" style="margin-top: 2.5rem">
               <div class="modal-date__">
                 <div class="modal__start-dt">
-                  <span>End Date</span>
+                  <span>Sales End</span>
                   <input type="date" name="end-time" ngModel [(ngModel)]="eventTickets.eventEndDate"/>
                 </div>
                 <div class="modal__start-time">
@@ -301,15 +296,14 @@
       </div>
 
     </ng-template>
-
+    
     <ng-template [ngIf]="page == 'three'">
-
       <!-- <app-header></app-header> -->
       <div class="review">
         <div class="review-main">
           <div class="review-img">
             <img
-              src="/assets/images/Rectangle 877.png"
+              [src]="this.eventURLS[0].websiteBannerUrl ? this.eventURLS[0].websiteBannerUrl: '/assets/images/Rectangle 877.png'"
               alt="" />
           </div>
 
@@ -366,3 +360,6 @@
   </div>
 
 </div>
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

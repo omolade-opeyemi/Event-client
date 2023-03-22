@@ -21,8 +21,8 @@
 
         <ng-template [ngIf]="isActive == true || creatorDashboard.upcomingEvents.length != 0">
           <ngb-carousel>
-            <ng-template ngbSlide>
-              <div class="box22" *ngFor="let item of creatorDashboard.upcomingEvents">
+            <ng-template ngbSlide *ngFor="let item of creatorDashboard.upcomingEvents">
+              <div class="box22" >
                 <div class="row1">
                   <h3>{{item.name}}</h3>
                   <small>{{item.date|split: "T": 1}}</small>
@@ -72,6 +72,9 @@
             <button mat-menu-item>
               <span (click)="getSingleEvent(item.eventId)">Plan Budget</span>
             </button>
+            <button mat-menu-item>
+              <span (click)="addTicket(item.eventId)">Add Ticket</span>
+            </button>
           </mat-menu>
           <!-- ------------- Menu Drop Down Ends -------- -->
 
@@ -96,10 +99,8 @@
           </div>
         </div>
 
-
       </div>
     </ng-template>
-
     <ng-template [ngIf]="response.responseCode != 00 || creatorDashboard.eventOverviews.length == 0">
       <div class="buttom2">
         <div class="left">
@@ -113,8 +114,9 @@
     </ng-template>
   </div>
 
-
   <div class="side2">
+    <p *ngIf="isActive" id="plan">{{getActive.plan}}</p>
+
     <mat-card class="demo-inline-calendar-card">
       <mat-calendar [(selected)]="selected"></mat-calendar>
     </mat-card>
@@ -122,12 +124,14 @@
     <div class="activ">
       <h3>Activity</h3>
     </div>
-    <ng-template [ngIf]="isActive || creatorDashboard.activity.length == 0">
+
+    <ng-template [ngIf]="isActive  || creatorDashboard.upcomingEvents.length == 0">
       <p>No activity</p>
       <div class="noActivity">
         <img src="/assets/images/Work time-pana (1) 1.png" alt="">
       </div>
     </ng-template>
+    
     <ng-template>
       <div class="activity">
         <div class="profile">

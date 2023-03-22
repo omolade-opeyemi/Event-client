@@ -1,10 +1,9 @@
+
 .event {
   padding: 2rem;
-
   max-height: 100%;
   width: 100%;
-  // border: 2px solid red;
-  overflow: auto;
+  overflow: scroll;
 
 }
 
@@ -25,7 +24,7 @@
 // }
 .example-container {
   cursor: pointer;
-  height: 75vh;
+  height: 50vh;
   min-width: 50px;
   position: absolute;
   // position:fixed;
@@ -193,7 +192,7 @@
   max-height: 300px;
   min-height: 250px;
   width: 100%;
-  object-fit: cover;
+  object-fit:fill;
 }
 
 .event-main {

@@ -18,24 +18,24 @@ export class FoodDetailComponent implements OnInit {
   supplierId:any
    ngOnInit(): void {
     this.vendorService.vendorDetail$.subscribe(message => {this.supplierId = message;
-        this.getVendorServiceDetail(message)
+        // this.getVendorServiceDetail(message)
     })
   }
   vendorDetail:any
   vendorServices:any[] = []
-  getVendorServiceDetail(data:any){
-    this.endpoint.getVendorServiceDetail(data).subscribe((result)=>{
-      this.response = result;
-      console.warn(this.response);
-      if(this.response.responseCode == '00'){
-        this.vendorDetail = this.response.responseData;
-        this.vendorServices = this.vendorDetail.vendorServices
-      }
-      else{
-        this.notify.showError(this.response.responseMsg)
-      }
-    })
-  }
+  // getVendorServiceDetail(data:any){
+  //   this.endpoint.getVendorServiceDetail(data).subscribe((result)=>{
+  //     this.response = result;
+  //     console.warn(this.response);
+  //     if(this.response.responseCode == '00'){
+  //       this.vendorDetail = this.response.responseData;
+  //       this.vendorServices = this.vendorDetail.vendorServices
+  //     }
+  //     else{
+  //       this.notify.showError(this.response.responseMsg)
+  //     }
+  //   })
+  // }
   backToDetail(){
     this.detail = 'list'
     this.vendorService.getrequestDetail(this.detail)

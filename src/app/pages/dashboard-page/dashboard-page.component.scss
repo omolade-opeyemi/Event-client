@@ -289,17 +289,31 @@
   height: 100%;
   gap: 10px;
 
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  #plan{
+    background: #1C2B66;
+    color: #fff;
+    padding: 2px 20px;
+    border-radius: 10px;
+  }
   .noActivity{
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 100%;
     img{
-      width: 90%;
-      height: 90%;
+      width: 80%;
+      height: 70%;
     }
   }
   .demo-inline-calendar-card {
     width: 300px;
     box-shadow: none;
+    margin: 0;
+    padding: 0;
   }
 
   .activ {

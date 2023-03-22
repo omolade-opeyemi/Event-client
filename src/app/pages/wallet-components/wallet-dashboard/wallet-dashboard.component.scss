@@ -195,7 +195,12 @@ b{
 .topUp,.payment{
     font-weight: 600;
     font-size: 12px;
-    /* display: flex; */
+    display: flex;
+
+     span{
+        display: flex;
+
+     }
     /* flex-direction: column; */
     /* justify-content: space-between;
     flex-wrap: nowrap; */

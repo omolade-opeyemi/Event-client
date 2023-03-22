@@ -6,14 +6,14 @@
           <img src="/assets/images/Group 459 (2).png" alt="" />
           <div class="request-text">
             <p>Requests awaiting responses</p>
-            <h2>165</h2>
+            <h2>0</h2>
           </div>
         </div>
         <div class="request-cards card-right" (click)="ipr()">
           <img src="/assets/images/Group 459 (3).png" alt="" />
           <div class="request-text">
             <p>Invoice Per Request</p>
-            <h2>75</h2>
+            <h2>0</h2>
           </div>
         </div>
       </div>
@@ -24,21 +24,21 @@
           nostrum
         </p>
       </div>
+
+
       <div class="bottom">
-        <div class="solution-cards" (click)="psecurity()">
+        <div class="solution-cards" *ngFor="let item of specialRequest | paginate: { itemsPerPage: 8, currentPage: pg, totalItems:totalLength }" (click)="selectService(item.serviceId)">
           <div class="card-text">
-            <h4>Physical Security</h4>
+            <h4>{{item.serviceName}}</h4>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quasi
-              vero vitae ut voluptatum quidem.
+              {{item.serviceDescription}}
             </p>
           </div>
           <div class="card-img">
-            <img src="/assets/images\Security Guard Illustration (3).png" alt="" />
+            <img src="{{item.image}}" alt="" />
           </div>
         </div>
-  
-        <div class="solution-cards">
+        <!-- <div class="solution-cards">
           <div class="card-text">
             <h4>Surveilance</h4>
             <p>
@@ -122,8 +122,11 @@
           <div class="card-img">
             <img src="/assets/images/freepik--Drone--inject-80.png" alt="" />
           </div>
-        </div>
+        </div> -->
+
       </div>
+      <pagination-controls class="d-flex justify-content-center" (pageChange)="pg = $event"></pagination-controls>
+      <!-- <ngb-pagination class="d-flex justify-content-center" [collectionSize]="specialRequest.length" [maxSize]="5" [(page)]="pagination"></ngb-pagination> -->
     </div>
   </div>
 </ng-template>
@@ -266,9 +269,12 @@
             </div>
             <div class="req-select">
               <p class="req-header-text">Estimated number of guards required</p>
-              <select name="" id="">
-                <option value="">1</option>
-              </select>
+              <input type="number" placeholder="0" ngModel [(ngModel)]="specialRequestDetail.quantity"/>
+            </div>
+            <div *ngIf="specialRequestDetail.quantity > 0"
+            style="display: flex; justify-content: space-between; padding: 0 10px;margin: 0;">
+              <h5><b>Total</b> :</h5> 
+              <h6><b>&#8358; {{specialRequestDetail.quantity * 5000 | number}}</b></h6>
             </div>
           </div>
           <div class="divider"></div>
@@ -277,28 +283,29 @@
       
             <div class="event-select">
               <p class="event-header-text">Event Type</p>
-              <select name="" id="">
-                <option value="">1</option>
+              <select name="" id="" (change)="selectEvents(event.value)" ngModel #event="ngModel">
+                <option value=""></option>
+                <option *ngFor="let event of creatorEvent" value="{{event.eventId}}" >{{event.eventName}}</option>
               </select>
             </div>
             <div class="event-select-date">
               <div class="start-date">
                 <p class="event-header-text">Start Date</p>
-                <input type="date" name="" id="" />
+                <input type="date" name="" id="" ngModel [(ngModel)]="eventInfo.startDate" disabled/>
               </div>
               <div class="end-date">
                 <p class="event-header-text">End Date</p>
-                <input type="date" name="" id="" />
+                <input type="date" name="" id="" ngModel [(ngModel)]="eventInfo.endDate" disabled/>
               </div>
             </div>
             <div class="event-select-time">
               <div class="start-time">
                 <p class="event-header-text">Start Time</p>
-                <input type="time" name="" id="" />
+                <input type="time" name="" id="" ngModel [(ngModel)]="eventInfo.startTime" disabled/>
               </div>
               <div class="end-time">
                 <p class="event-header-text">End Time</p>
-                <input type="time" name="" id="" />
+                <input type="time" name="" id="" ngModel [(ngModel)]="eventInfo.endTime" disabled/>
               </div>
             </div>
           </div>
@@ -307,21 +314,18 @@
             <h2 class="req-header-title">Event Location</h2>
             <div class="req-select">
               <p class="req-header-text">State</p>
-              <select name="" id="">
-                <option value="">1</option>
-              </select>
+              <input type="text" ngModel [(ngModel)]="eventInfo.state" disabled/>
             </div>
             <div class="req-select">
               <p class="req-header-text">LGA</p>
-              <select name="" id="">
-                <option value="">1</option>
-              </select>
+              <input type="text" ngModel [(ngModel)]="eventInfo.lga" disabled/>
             </div>
+            
             <div class="req-select">
-              <p class="req-header-text">Address</p>
-              <input type="text" />
+              <p class="req-header-text">Street</p>
+              <input type="text" ngModel [(ngModel)]="eventInfo.street" disabled/>
             </div>
-            <div class="req-btn">
+            <div class="req-btn" (click)="createEventSpecialRequest()">
               <button>Get in touch</button>
             </div>
           </div>
@@ -342,3 +346,7 @@
 <ng-template [ngIf]="page == 'rar'">
   <app-rar></app-rar>
 </ng-template>
+
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

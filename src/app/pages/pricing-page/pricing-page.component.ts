@@ -78,6 +78,7 @@ export class PricingPageComponent implements OnInit {
     this.servicePayment.paymentGatewayResponseCode = ref.status;
     this.servicePayment.email = this.email;
     this.servicePayment.transactionSource = 'web'
+    
     if (ref.status == 'success') {
       if(this.durate == 'M'){
         this.monthlyPaidPlan()
@@ -129,17 +130,19 @@ export class PricingPageComponent implements OnInit {
     this.detail = data
     this.servicePayment.serviceId = data.serviceId;
     if(this.durate == 'M'){
-      this.servicePayment.amount = data.monthlyFee;
+      this.servicePayment.amount = data.monthlyFee + (data.monthlyFee * 0.075);
     this.amount = data.monthlyFee
     }else{
-      this.servicePayment.amount = data.yearlyFee;
+      this.servicePayment.amount = data.yearlyFee + (data.yearlyFee * 0.075);
     this.amount = data.yearlyFee;
     }
     
   }
   monthlyPaidPlan(){
+    this.spinner.show();
     this.endpoint.processMonthlyPaidPlan(this.servicePayment).subscribe((data)=>{
-      this.response = data
+      this.response = data;
+      this.spinner.hide();
       if(this.response.responseCode == '00'){
         this.notifyService.showSuccess('Subscription successful');
         this.route.navigate(['/dashboard']);
@@ -152,8 +155,10 @@ export class PricingPageComponent implements OnInit {
       this.spinner.hide();})
   }
   yearlyPaidPlan(){
+    this.spinner.show();
     this.endpoint.processYearlyPaidPlan(this.servicePayment).subscribe((data)=>{
-      this.response = data
+      this.response = data;
+      this.spinner.hide();
       if(this.response.responseCode == '00'){
         this.notifyService.showSuccess('Subscription successful');
         this.route.navigate(['/dashboard']);
@@ -166,7 +171,10 @@ export class PricingPageComponent implements OnInit {
       this.spinner.hide();})
   }
   processFreePlan(){
-    this.endpoint.processFreePlan(this.servicePayment).subscribe((data)=>{
+    this.servicePayment.email = this.email;
+
+    this.endpoint.processFreePlan({email:this.servicePayment.email,
+    serviceId: this.servicePayment.serviceId}).subscribe((data)=>{
       this.response = data
       if(this.response.responseCode == '00'){
         this.notifyService.showSuccess('Subscription successful');

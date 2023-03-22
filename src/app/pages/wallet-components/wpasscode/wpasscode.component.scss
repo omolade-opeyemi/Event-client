@@ -50,6 +50,11 @@
     font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
     color: #1C2B66;
   }
+
+  input::-ms-reveal,
+      input::-ms-clear {
+        display: none;
+      }
   
   .pin__btn {
     padding: 0.7rem 2rem;
@@ -91,7 +96,7 @@
   .pin__inputs input {
     max-width: 15%;
     max-height: 80px;
-  
+    text-align: center;
     border: none;
     padding: 2.5rem 1rem;
   

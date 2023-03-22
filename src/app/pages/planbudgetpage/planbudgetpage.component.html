@@ -1,4 +1,7 @@
+
+
 <div class="event">
+  
   <!-- -------------drawer ------------------ -->
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
@@ -123,7 +126,7 @@
                   <tbody>
                     <tr *ngFor="let country of item.services; index as i">
                       <!-- <th scope="row">{{ i + 1 }}</th> -->
-                      <th><input type="checkbox" name=i id="" (change)="selectedServices($event,item)" [disabled]="country.status != 'Pending'"></th>
+                      <th><input type="checkbox" name=i id="" (change)="selectedServices($event,item)" [disabled]="country.status != 'pending'"></th>
                       <td>
                         <img [src]="country.vendorImage ? country.vendorImage : '/assets/images/food.jpg'" class="me-2"
                           style="width: 20px" />
@@ -169,6 +172,7 @@
   </mat-drawer-container>
   <!-- ------------------------- Drawer Ends --------------- -->
 
+ 
   <div class="event-page">
     <div class="event-banner">
       <div class="event-img">
@@ -233,7 +237,7 @@
         </div>
         <div class="card-item act">
           <h3>Actualized <mat-icon>more_horiz</mat-icon></h3>
-          <h2>&#8358; {{eventBudgetSummary[0].budgetActualized | number}}</h2>
+          <h2>&#8358; {{actualisedBudget}}</h2>
         </div>
         <div class="card-item plan">
           <img class="card-img" src="/assets/images/Group 663.png" alt="" />
@@ -524,6 +528,7 @@
 
   </div>
 </div>
+
 <ngx-spinner type="ball-scale-multiple">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>

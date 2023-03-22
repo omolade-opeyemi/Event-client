@@ -1,0 +1,246 @@
+<div class="add">
+  <ngx-spinner type="ball-scale-multiple">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+
+
+  <!-- <div class="review"> -->
+  <div class="review-main">
+    <div class="review-img">
+      <img src="{{eventDetail.imageUrl}}" alt="" />
+    </div>
+    <div class="review-text">
+      <div class="review-textHeader">
+        <h1>{{eventDetail.name}}</h1>
+        <div class="reviewTextHeaderIcons">
+          <p><mat-icon>event_note</mat-icon>{{eventDetail.startDate}} - {{eventDetail.endDate}}</p>
+          <p><mat-icon>schedule</mat-icon>{{eventDetail.startTime}} - {{eventDetail.endTime}}</p>
+          <p><mat-icon>location_on</mat-icon>{{eventDetail.eventLocations[0].street}}</p>
+          <p><mat-icon>cottage</mat-icon>{{eventDetail.eventLocations[0].localGovt}},
+            {{eventDetail.eventLocations[0].state}}</p>
+        </div>
+      </div>
+
+      <div class="review-textMid">
+        <h3>Event Details</h3>
+        <p>
+          {{eventDetail.desription}}
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- </div> -->
+  <div class="add-title" *ngIf="eventDetail.eventTickets.length != 0">
+    <h1>Tickets</h1>
+    <button (click)="openLg(content)">Add Tickets</button>
+  </div>
+
+  <!-- <table *ngIf="eventDetail.eventTickets.length != 0"
+   mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+   
+    <ng-container matColumnDef="serial">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">{{ element.serial }}</td>
+    </ng-container>
+    <ng-container matColumnDef="ticketName">
+      <th mat-header-cell *matHeaderCellDef>Ticket Name.</th>
+      <td mat-cell *matCellDef="let element">{{ element.ticketName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Tickets Quantity</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef>Tickets Price</th>
+      <td mat-cell *matCellDef="let element">#{{ element.weight }}</td>
+    </ng-container>
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    </ng-container>
+    <ng-container matColumnDef="end">
+      <th mat-header-cell *matHeaderCellDef>Sales End</th>
+      <td mat-cell *matCellDef="let element">{{ element.end }}</td>
+    </ng-container>
+    <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <img src="/assets/more.png" alt="" />
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table> -->
+
+  <div class="event__table " *ngIf="eventDetail.eventTickets.length != 0">
+    <table class="table event__table-table">
+      <thead class="event__table-head">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Ticket Name</th>
+          <th scope="col">Ticket Quantity</th>
+          <th scope="col">Ticket Price</th>
+          <th scope="col">Status</th>
+          <th scope="col">Sales End</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="event__table-row"
+          *ngFor="let country of eventDetail.eventTickets; index as i"
+        >
+          <td>{{i+1}}</td>
+          <td>
+            {{ country.ticketName }}
+          </td>
+          <td>{{ country.quantity }}</td>
+          <td>&#8358; {{country.price | number}}</td>
+          <td *ngIf="country.status == 'Expired'">🔴 {{country.status}}</td>
+          <td *ngIf="country.status == 'On Sale'">🟢 {{country.status}}</td>
+          <td *ngIf="country.status == 'Not Started'">🟠 {{country.status}}</td>
+
+          <td>{{ country.salesEnd| split: "T": 0  }}</td>
+          <td>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="more_vert"
+            ></mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<!-- /////////////////////////// -->
+
+<div class="review">
+  <!-- <div class="review-main">
+    <div class="review-img">
+      <img
+        src="https://www.livenationentertainment.com/wp-content/uploads/2022/10/Static_Social-FacebookPR_1200x630_RockChappelle_2023_NationalAsset-1.jpg"
+        alt="" />
+    </div>
+    <div class="review-text">
+      <div class="review-textHeader">
+        <h1>Arcade Fire</h1>
+        <div class="reviewTextHeaderIcons">
+          <p><mat-icon>event_note</mat-icon>Thursday, September 8</p>
+          <p><mat-icon>schedule</mat-icon>7:00 PM - 10:00 PM WAT</p>
+          <p><mat-icon>location_on</mat-icon>Civic Center</p>
+        </div>
+      </div>
+      <div class="review-textMid">
+        <h3>Event Details</h3>
+        <p>
+          Lörem ipsum egogåde gyssa. Fare egoligen. Lakask velädera tuktiga, monoseras. Prenade. Monopyv rukäsm rirade.
+          monoseras. Prenade. Monopyv monoseras. Prenade. Monopyv
+        </p>
+        <p>
+          Lörem ipsum egogåde gyssa. Fare egoligen. Lakask velädera tuktiga, monoseras. Prenade. Monopyv rukäsm rirade.
+          monoseras.
+
+          Lörem ipsum egogåde gyssa. Fare egoligen. Lakask velädera tuktiga, monoseras. Prenade. Monopyv rukäsm rirade.
+          monoseras.
+        </p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <app-header></app-header> -->
+  <div class="create-ticket" *ngIf="eventDetail.eventTickets.length == 0">
+    <div class="create-ticket__banner">
+      <div class="create-banner__text">
+        <img class="create-ticket__img" src="/assets/images/tickets.png" alt="" />
+        <h2>Let's Create Tickets</h2>
+        <p>You don't have any tickets created yet, create your ticket</p>
+        <button (click)="openLg(content)">Add Tickets</button>
+      </div>
+    </div>
+    <!-- <div class="create-banner__btn">
+    <button>Skip and do this Later</button>
+  </div> -->
+  </div>
+
+  <!-- <app-create-tickets></app-create-tickets> -->
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add A Ticket</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-form">
+      <h5>Type of Tickets</h5>
+      <div class="modal__bttn">
+        <button
+          [ngClass]="{'modal__btn-active':newTicket.ticketPrice != 'free', 'modal__btn-normal':newTicket.ticketPrice == 'free'}"
+          (click)="paid()">Paid</button>
+        <button
+          [ngClass]="{'modal__btn-active':newTicket.ticketPrice == 'free', 'modal__btn-normal':newTicket.ticketPrice != 'free'}"
+          (click)="free()">Free</button>
+      </div>
+      <div class="modal__event-form">
+        <label for="title" class="input">Name of Tickets</label>
+        <input type="text" name="title" ngModel [(ngModel)]="newTicket.ticketName" />
+      </div>
+      <div class="modal__event-form" *ngIf="newTicket.ticketType == 'paid'">
+        <label for="title" class="input">Price</label>
+        <input type="text" name="title" ngModel [(ngModel)]="newTicket.ticketPrice" />
+      </div>
+      <div class="modal__event-form">
+        <label for="title" class="input">Available Quantity</label>
+        <input type="number" name="title" ngModel [(ngModel)]="newTicket.totalQtyToBeSold" />
+      </div>
+      <div class="modal__event-form">
+        <label for="eventDetails" class="textarea">Ticket Description</label>
+        <textarea name="eventDetails" ngModel [(ngModel)]="newTicket.ticketDescription"> </textarea>
+      </div>
+
+      <div class="modal__dt">
+        <div class="modal__selects">
+          <div class="modal-date__">
+            <div class="modal__start-dt">
+              <span>Sales Start</span>
+              <input type="date" name="start-date" ngModel [(ngModel)]="newTicket.eventStartDate" />
+            </div>
+            <div class="modal__start-time">
+              <span>Start Time</span>
+              <input type="time" name="start-time" ngModel [(ngModel)]="newTicket.eventStartTime" />
+            </div>
+          </div>
+        </div>
+        <div class="modal__selects" style="margin-top: 2.5rem">
+          <div class="modal-date__">
+            <div class="modal__start-dt">
+              <span>Sales End</span>
+              <input type="date" name="end-time" ngModel [(ngModel)]="newTicket.eventEndDate" />
+            </div>
+            <div class="modal__start-time">
+              <span>End Time</span>
+              <input type="time" name="end-time" ngModel [(ngModel)]="newTicket.eventEndTime" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal__submit">
+        <button class="modal__btn-cancel">Cancel</button>
+        <button class="modal__btn-continue" (click)="createTicket()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+

@@ -31,16 +31,14 @@ export class PlanbudgetpageComponent implements OnInit {
   response: any;
   showFiller = false;
 
-  placeHolder = new PlaceHolder('', '', '', '', '', '', '', '', '', '');
-  budgetDetail = new BudgetDetails(0, 0, 0, 0, 0, 0, 0);
+  placeHolder = new PlaceHolder(0,'', '', '', '', '', '', '', '', '', '');
+  budgetDetail = new BudgetDetails(0, 0, 0, 0, 0, 0, 0, 0);
   budgetDetails: BudgetDetails[] = []
-  budgeting = new Budgeting(217, true, this.budgetDetails);
+  budgeting = new Budgeting(217, true,0, this.budgetDetails);
   budgetPlaceHolders: any[] = []
   budgetBuild = 0;
   budgetEstimate = 0;
-
-
-
+  
 
   COUNTRIES: Country[] = [
     {
@@ -83,17 +81,17 @@ export class PlanbudgetpageComponent implements OnInit {
   ];
   donutChartData = [
     {
-      label: 'Liverpool FC',
+      label: 'Food',
       value: 5,
       color: "#3b8061",
     },
     {
-      label: 'Real Madrid	',
+      label: 'Music',
       value: 13,
       color: 'blue',
     },
     {
-      label: 'FC Bayern München',
+      label: 'Print',
       value: 5,
       color: 'red',
     },
@@ -350,6 +348,7 @@ export class PlanbudgetpageComponent implements OnInit {
 
 
   eventBudgetSummary:any
+  actualisedBudget:any;
   getEventBudgetSummary(){
     this.spinner.show();  
     this.endpoint.getEventBudgetSummary(Number(localStorage.getItem('profileId')),
@@ -358,6 +357,12 @@ export class PlanbudgetpageComponent implements OnInit {
       this.spinner.hide();
       if(this.response.responseCode == '00'){
         this.eventBudgetSummary = this.response.responseData;
+        if(this.eventBudgetSummary.length == 0){
+          this.actualisedBudget = 0
+        }
+        else{
+          this.actualisedBudget = this.eventBudgetSummary[0].budgetActualized
+        }
         this.budgetBuild = this.eventBudgetSummary[0].budgetBuild;
         for(let i = 0; i < this.eventBudgetSummary.length; i++){
           var eventBudgetCategoryDetails = this.eventBudgetSummary[i].eventBudgetCategoryDetails;
@@ -403,6 +408,7 @@ export class PlanbudgetpageComponent implements OnInit {
 
 
   addToPlanBudgetSummary(data:any){
+    this.placeHolder.id = data.id
     this.placeHolder.rate = data.rate;
     this.placeHolder.quantity = data.quantity
     this.placeHolder.serviceName = data.serviceName;
@@ -412,7 +418,7 @@ export class PlanbudgetpageComponent implements OnInit {
     this.placeHolder.vendorImg = data.vendorImage;
     this.placeHolder.serviceCategory = data.category;
     this.placeHolder.serviceVendor = data.vendorName;
-    var values: PlaceHolder = new PlaceHolder(this.placeHolder.serviceCategory, this.placeHolder.serviceVendor,
+    var values: PlaceHolder = new PlaceHolder(this.placeHolder.id,this.placeHolder.serviceCategory, this.placeHolder.serviceVendor,
       this.placeHolder.serviceName, this.placeHolder.quantity,
       this.placeHolder.rate, this.placeHolder.amount,
       this.placeHolder.status, this.placeHolder.vendorImg,
@@ -429,15 +435,19 @@ export class PlanbudgetpageComponent implements OnInit {
     var rString;
     for (let g = 0; g < this.category.length; g++) {
       var item = this.budgetPlaceHolders.filter((item) => item.serviceCategory == this.category[g]);
+
       for (let h=0; h < item.length; h++){
         amount += item[h].rate * item[h].quantity;
         rString = this.randomString(6, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
       }
+
       var doughnut = {label: this.category[g], value:amount, color: '#'+ rString}
       var single = { category: this.category[g], services: item ,totalAmount:amount }
       // this.donutChartData.push(doughnut)
       this.categorised.push(single)
     }
+    console.log(this.categorised);
+    
   }
 
 
@@ -455,12 +465,13 @@ export class PlanbudgetpageComponent implements OnInit {
     this.budgetBuild += this.placeHolder.amount;
     this.placeHolder.serviceId = data.serviceId;
     this.placeHolder.status = 'pending'
-    var values: PlaceHolder = new PlaceHolder(this.placeHolder.serviceCategory, this.placeHolder.serviceVendor,
-      this.placeHolder.serviceName, this.placeHolder.quantity,
-      this.placeHolder.rate, this.placeHolder.amount,
-      this.placeHolder.status, this.placeHolder.vendorImg,
-      this.placeHolder.VendorId, this.placeHolder.serviceId)
-    this.budgetPlaceHolders.push(values);
+    // var values: PlaceHolder = new PlaceHolder(this.placeHolder.serviceCategory, 
+    //   this.placeHolder.serviceVendor,
+    //   this.placeHolder.serviceName, this.placeHolder.quantity,
+    //   this.placeHolder.rate, this.placeHolder.amount,
+    //   this.placeHolder.status, this.placeHolder.vendorImg,
+    //   this.placeHolder.VendorId, this.placeHolder.serviceId)
+    // this.budgetPlaceHolders.push(values);
     this.categories = [];
     for (let a = 0; a < this.budgetPlaceHolders.length; a++) {
       this.categories.push(this.budgetPlaceHolders[a].serviceCategory)
@@ -495,11 +506,11 @@ export class PlanbudgetpageComponent implements OnInit {
       this.budgetDetail.totalPrice = item.services[0].amount;
       this.budgetDetail.totalActualRequested = item.services[0].quantity;
       this.budgetDetail.quantityRequested = item.services[0].quantity;
-      var serviceAdded: BudgetDetails = new BudgetDetails(this.budgetDetail.eventSupplierId,
-        this.budgetDetail.serviceId, this.budgetDetail.budget,
-        this.budgetDetail.totalActualRequested, this.budgetDetail.unitPrice,
-        this.budgetDetail.totalPrice, this.budgetDetail.quantityRequested)
-      this.servicesSelected.push(serviceAdded);
+      // var serviceAdded: BudgetDetails = new BudgetDetails(this.budgetDetail.eventSupplierId,
+      //   this.budgetDetail.serviceId, this.budgetDetail.budget,
+      //   this.budgetDetail.totalActualRequested, this.budgetDetail.unitPrice,
+      //   this.budgetDetail.totalPrice, this.budgetDetail.quantityRequested)
+      // this.servicesSelected.push(serviceAdded);
     }
     else{
       this.servicesSelected.splice(this.servicesSelected.indexOf(item), 1);
@@ -621,7 +632,7 @@ export class PlanbudgetpageComponent implements OnInit {
     this.placeHolder.serviceVendor = data.vendorName;
     this.placeHolder.vendorImg = data.image[0]
     this.page = 'detail'
-    this.getVendorServiceDetail(data.supplierId)
+    // this.getVendorServiceDetail(data.supplierId)
   }
 
   ///////// Vendor Detail ////////////////
@@ -629,22 +640,22 @@ export class PlanbudgetpageComponent implements OnInit {
   vendorServices: any[] = []
   images: any[] = [];
   carousel: any[] = [];
-  getVendorServiceDetail(data: any) {
-    this.spinner.show();
-    this.endpoint.getVendorServiceDetail(data).subscribe((result) => {
-      this.response = result;
-      this.spinner.hide()
-      if (this.response.responseCode == '00') {
-        this.vendorDetail = this.response.responseData;
-        this.vendorServices = this.vendorDetail.vendorServices;
-        this.carousel = this.vendorDetail.images
-      }
-      else {
-        this.notify.showError(this.response.responseMsg)
-      }
-    },(error) => {
-      this.notify.showError(error.message);
-      this.spinner.hide()
-    })
-  }
+  // getVendorServiceDetail(data: any) {
+  //   this.spinner.show();
+  //   this.endpoint.getVendorServiceDetail(data,this.placeHolder.serviceCategory).subscribe((result) => {
+  //     this.response = result;
+  //     this.spinner.hide()
+  //     if (this.response.responseCode == '00') {
+  //       this.vendorDetail = this.response.responseData;
+  //       this.vendorServices = this.vendorDetail.vendorServices;
+  //       this.carousel = this.vendorDetail.images
+  //     }
+  //     else {
+  //       this.notify.showError(this.response.responseMsg)
+  //     }
+  //   },(error) => {
+  //     this.notify.showError(error.message);
+  //     this.spinner.hide()
+  //   })
+  // }
 }

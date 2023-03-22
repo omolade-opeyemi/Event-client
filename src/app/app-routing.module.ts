@@ -12,6 +12,8 @@ import { SpecialRequestComponent } from './components/special-request/special-re
 import { WalletComponent } from './components/wallet/wallet.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { PricingComponent } from './components/pricing/pricing.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 const routes: Routes = [
   {path: 'header',component:HeaderComponent},
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path: 'special-request', component:SpecialRequestComponent},
   {path: 'wallet', component:WalletComponent},
   {path: '', component:AuthenticationComponent},
-  {path: 'pricing', component:PricingComponent}
+  {path: 'pricing', component:PricingComponent},
+  {path: 'invoice', component:InvoiceComponent},
+  {path: 'ticket', component:TicketComponent}
   
 ];
 

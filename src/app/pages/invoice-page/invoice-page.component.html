@@ -1,0 +1,240 @@
+<ng-template [ngIf]="page == 'invoice'">
+
+    <div class="rar">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">INVOICE ID</th>
+                        <th scope="col">Vendor</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">PHONE NUMBER</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col">AMOUNT</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invoice of creatorInvoice">
+                        <td>
+                            {{ invoice.invoiceId}}
+                        </td>
+                        <td>
+                            <img [src]="invoice.eventSupplierImage ? invoice.eventSupplierImage :'/assets/images/Group 661.png'"
+                                style="width: 20px">
+                            {{invoice.eventSupplier}}
+                        </td>
+                        <td>{{ invoice.eventSupplierEmail}}</td>
+                        <td>{{ invoice.eventSupplierPhoneNumber}}</td>
+                        <td>
+                            <div [ngClass]="{'done': invoice.status =='Done','pending': invoice.status =='Pending'}">{{
+                                invoice.status }}</div>
+                        </td>
+                        <td>{{ invoice.date|split: "T": 0}}</td>
+                        <td (click)="viewInvoice(review, invoice.id)" style="cursor:pointer;color: #1C2B66;">view
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #review let-modal>
+    <div class="modal-body">
+        <div class="event-invoice">
+            <div class="event-invoiceTop">
+                <h2 class="invoiceTopHeader">
+                    Preview
+                </h2>
+                <div class="invoiceTopIcons">
+                    <mat-icon>download</mat-icon>
+                    <mat-icon>print</mat-icon>
+                </div>
+            </div>
+            <div class="event-invoiceBanner">
+                <div class="invoiceBannerTop">
+                    <div class="invoiceBannerLogo">
+                        <img src="https://images.squarespace-cdn.com/content/v1/56201b5ce4b0c05fdc35713a/1526420864826-N38FTFOAVE50YOYYME85/j-logo-black-new.pnglogo"
+                            alt="">
+                    </div>
+                    <div class="invoiceBannerContact">
+                        <p><mat-icon>mail</mat-icon>{{invoiceDetail.supplierEmail}}</p>
+                        <p><mat-icon>call</mat-icon>{{invoiceDetail.supplierPhoneNumber}}</p>
+                    </div>
+                </div>
+                <div class="invoiceBannerBottom">
+                    <div class="invoiceBannerRecepient">
+                        <h5>Recipient</h5>
+                        <p>{{invoiceDetail.recepientName}} <br>
+                            {{invoiceDetail.recepientAddress}}</p>
+                        <div class="invoiceBannerRecContact">
+                            <p><mat-icon>mail</mat-icon>{{invoiceDetail.recepientEmail}}</p>
+                            <p><mat-icon>call</mat-icon>{{invoiceDetail.recepientPhoneNumber}}</p>
+                        </div>
+                    </div>
+                    <div class="invoiceBannerInvoice">
+                        <h3>Invoice</h3>
+                        <div class="invoiceNo">
+                            <p class="invoiceNoTitle">Invoice no.</p>
+                            <p class="invoiceNoText">{{invoiceDetail.invoiceNumber}}</p>
+                        </div>
+                        <div class="invoiceDate">
+                            <p class="invoiceNoTitle">Invoice Date</p>
+                            <p class="invoiceNoText">{{invoiceDetail.invoiceDate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-InvoiceTable">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col">#</th> -->
+                                <th scope="col">SERVICE TYPE</th>
+                                <th scope="col">SERVICE CAPTION</th>
+                                <th scope="col">RATE</th>
+                                <th scope="col">TOTAL AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invoiceDetail.serviceDetails ">
+                                <!-- <th scope="row">1</th> -->
+                                <td>{{item.serviceType}}</td>
+                                <td>{{item.serviceCaption}}</td>
+                                <td>&#8358;{{item.rate}}</td>
+                                <td>&#8358;{{item.totalAmount}}</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="subtotal" colspan="2">SUBTOTAL</td>
+                                <td>&#8358;{{invoiceDetail.subTotal}}</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="discount" colspan="2">DISCOUNT invoiceDetail.discount %</td>
+                                <td>&#8358;{{invoiceDetail.discount * invoiceDetail.subTotal}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td colspan="2">TOTAL</td>
+                                <td class="total">&#8358; {{invoiceDetail.total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="event-InvoiceNotes">
+                <h4>NOTES</h4>
+                <p>Lörem ipsum egogåde gyssa. Fare egoligen. Lakask velädera tuktiga, monoseras. Prenade. Monopyv rukäsm
+                    rirade.
+                    Krisväska presamma. </p>
+            </div>
+            <div class="eventInvoiceBtn">
+                <button (click)="modal.dismiss('Cross click')">Close</button>
+                <button (click)="modal.dismiss('Cross click');checkOut()">Checkout</button>
+
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+<ng-template [ngIf]="page == 'preview'">
+    <div class="checkout">
+        <div class="image">
+            <img src="/assets/images/auth.jpg" alt="">
+        </div>
+        <div class="services">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">#</th> -->
+                            <th scope="col">SERVICE TYPE</th>
+                            <th scope="col">SERVICE CAPTION</th>
+                            <th scope="col">RATE</th>
+                            <th scope="col">TOTAL AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of invoiceDetail.serviceDetails ">
+                            <!-- <th scope="row">1</th> -->
+                            <td>{{item.serviceType}}</td>
+                            <td>{{item.serviceCaption}}</td>
+                            <td>&#8358;{{item.rate}}</td>
+                            <td>&#8358;{{item.totalAmount}}</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td class="subtotal" colspan="2">SUBTOTAL</td>
+                            <td>&#8358;{{invoiceDetail.subTotal}}</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td class="discount" colspan="2">DISCOUNT invoiceDetail.discount %</td>
+                            <td>&#8358;{{invoiceDetail.discount * invoiceDetail.subTotal}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td colspan="2">TOTAL</td>
+                            <td class="total">&#8358; {{invoiceDetail.total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn check" (click)="paymentOption(options)">Pay &#8358; {{invoiceDetail.total}}</button>
+
+            </div>
+
+        </div>
+    </div>
+
+</ng-template>
+
+<ng-template #options let-c="close" let-d="dismiss">
+    <div class="modal-header modal-head">
+        <h4 class="modal-title" id="modal-basic-title">&nbsp;</h4>
+        <img src="/assets/images/Logo.png" alt="">
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row1">
+            <h6># {{invoiceDetail.invoiceNumber}}</h6>
+            <h4><b> &#8358; {{invoiceDetail.total | number}}</b></h4>
+        </div>
+        <hr>
+        <h5>Select payment method</h5>
+        <hr>
+        <div class="options">
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1">
+                    <label class="form-check-label" for="gridCheck">
+                        Cards 
+                    </label>
+                    <mat-icon>credit_card</mat-icon>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2">
+                    <label class="form-check-label" for="gridCheck">
+                        Wallet
+                    </label>
+                    <mat-icon>account_balance_wallet</mat-icon>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="width: 100%;" (click)="c('Save click')">Proceed</button>
+    </div>
+</ng-template>
+
+
+<ngx-spinner type="ball-scale-multiple">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>

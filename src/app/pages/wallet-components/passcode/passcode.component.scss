@@ -31,6 +31,9 @@
     font-weight: 600;
   }
   
+  ngb-alert{
+    text-align: center;
+  }
   .passcode__pin {
     text-align: center;
     display: flex;
@@ -58,6 +61,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+
     gap: 5px;
   
   }
@@ -72,7 +76,13 @@
     border-radius: 10px;
     font-size: clamp(0.75rem, 0.125rem + 2vw, 1.25rem);
     /* outline: 1px solid #1C2B66; */
+    
   }
+  input::-ms-reveal,
+      input::-ms-clear {
+        display: none;
+      }
+  
   
   .passcode__btn {
     text-align: center;

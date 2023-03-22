@@ -1,0 +1,217 @@
+.planbudget {
+    background: #F5F5F5;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .plan-budget {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    width: 90%;
+  
+    justify-content: space-between;
+    background: #F5F5F5;
+    margin: 0 auto;
+    /* padding: 4rem 0; */
+  }
+  
+  .plan-budgetHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .plan-budgetText {
+    /* padding: 2rem 4rem; */
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .plan-budgetText h1 {
+    font-size: clamp(1.5rem, 0.0682rem + 4.7273vw, 5.5rem);
+    font-weight: 600;
+    color: #1c2b66
+  }
+  
+  
+  
+  .plan-budgetImg {
+    width: 40%;
+    min-width: 350px;
+  
+  }
+  
+  .budgetOverviewTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .budgetOverviewTop h4 {
+    color: #1c2b66;
+    font-weight: 600;
+    font-size: clamp(0.9375rem, 0.733rem + 0.8182vw, 1.5rem);
+  }
+  
+  .budgetOverviewSelect {
+    width: fit-content;
+    padding: 0.7rem 1.5rem;
+    height: fit-content;
+    border: 1px solid #1c2b66;
+    border-radius: 12px;
+    min-width: 180px;
+  }
+  
+  .budgetOverviewTop select {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #1c2b66;
+    background: #F5F5F5;
+    font-weight: 600;
+  }
+  
+  .budgetOverviewContent {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+  
+    justify-content: space-between;
+    margin: 2rem auto;
+    background: #F5F5F5;
+  }
+  
+  .content-item {
+    height: 280px;
+    /* width: 530px; */
+    width: 32%;
+    min-width: 350px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: #fff;
+    padding: 1rem;
+    /* margin-right: 4rem; */
+  }
+  
+  .content-item-body {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .content-item-body h2 {
+    font-size: clamp(1.375rem, 1.0568rem + 1.2727vw, 2.25rem);
+  }
+  
+  .content-item-body p {
+    font-size: clamp(0.8125rem, 0.767rem + 0.1818vw, 0.9375rem);
+    color: rgba(28, 43, 102, 0.65);
+  }
+  
+  .content-item-body img {
+    height: 150px;
+    width: 190px;
+    border-radius: 7px;
+    object-fit: cover;
+  }
+  
+  .collaborators {
+    margin-top: 1rem;
+  }
+  
+  .collaborators h4 {
+    color: rgba(28, 43, 102, 0.65);
+    font-size: clamp(0.9375rem, 0.8239rem + 0.4545vw, 1.25rem);
+  }
+  
+  .collab-img {
+    display: flex;
+    align-items: center;
+  }
+  
+  .collab-img div {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -20px;
+    margin-top: 0.5rem;
+  }
+  
+  .collab-img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 0.5rem;
+  }
+  
+  .collab-body {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  
+  .completed {
+    font-size: clamp(0.8125rem, 0.767rem + 0.1818vw, 0.9375rem);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  @media screen and (max-width:750px) {
+    .plan-budget {
+      padding-top: 2rem;
+    }
+  
+    .plan-budgetHeader {
+      flex-direction: column;
+      gap: 2rem;
+  
+    }
+  
+    .plan-budgetText {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .plan-budgetImg {
+      width: 100%;
+    }
+  
+    .budgetOverviewContent {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+  
+    .content-item {
+      width: 100%;
+    }
+  
+  }
+  
+  @media screen and (max-width:500px) {
+  
+    .budgetOverviewContent {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+  
+    .content-item {
+  
+      width: 100%;
+    }
+  }

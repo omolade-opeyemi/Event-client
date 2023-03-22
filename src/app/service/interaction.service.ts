@@ -29,4 +29,11 @@ export class InteractionService {
   getPlan(message: string){
     this.plan.next(message)
   }
+
+  private invoice =  new Subject<string>();
+  invoice$ = this.invoice.asObservable();
+
+  getInvoice(message: string){
+    this.invoice.next(message)
+  }
 }
