@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EndpointsService } from 'src/app/service/endpoints.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 interface data {
   platform: string;
@@ -72,16 +74,34 @@ const DATA: data[] = [
 export class WalletDashboardComponent implements OnInit {
 
   constructor(config: NgbModalConfig,
-     private modalService: NgbModal){ config.backdrop = 'static';
+     private modalService: NgbModal,
+     private endpoint:EndpointsService,
+     private notify:NotificationService){ config.backdrop = 'static';
      config.keyboard = false;}
     
   pg: number = 1;
   paginate = 4;
   totalLength: any;
+  response:any;
   
 
   ngOnInit(): void {
   }
+
+  walletBallance:any
+  getWalletBallance(){
+    this.endpoint.getWalletBallance(Number(localStorage.getItem('profileId'))).subscribe((data)=>{
+      this.response = data;
+      if(this.response.responseCode == '00'){
+        this.walletBallance=this.response.responseData
+      }else{
+        this.notify.showError(this.response.responseMsg)
+      }
+  },(error) => {
+    this.notify.showError(error.message);
+  });
+  }
+
   getWalletResponseTransactionHistory = DATA ;
   openVerticallyCentered(){
     console.warn('modal');

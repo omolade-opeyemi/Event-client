@@ -114,6 +114,12 @@ export class EndpointsService {
   WalletLogin(data: any) {
     return this.http.post(this.baseUrl + 'api/SMSWallet/WalletLogin', data, )
   }
+  getWalletBallance(profileId: number) {
+    return this.http.get(this.baseUrl + 'api/SMSWallet/GetWalletBalance?profileId=' + profileId)
+  }
+  getWalletHistory(profileId: number) {
+    return this.http.get(this.baseUrl + 'api/SMSWallet/GetWalletTransactionHistory?profileId=' + profileId)
+  }
   
 
 }
