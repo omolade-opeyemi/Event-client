@@ -38,10 +38,10 @@ export class AuthService {
   refreshToken: any;
 
 
-  logOut() {
-    alert('your session expired')
-    this.token = '';
-    localStorage.removeItem('a-token')
-    this.router.navigateByUrl('/')
-  }
+  // logOut() {
+  //   alert('your session expired')
+  //   this.token = '';
+  //   localStorage.removeItem('a-token')
+  //   this.router.navigateByUrl('/')
+  // }
 }

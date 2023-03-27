@@ -120,6 +120,23 @@ export class EndpointsService {
   getWalletHistory(profileId: number) {
     return this.http.get(this.baseUrl + 'api/SMSWallet/GetWalletTransactionHistory?profileId=' + profileId)
   }
-  
+  loadWallet(data: any) {
+    return this.http.post(this.baseUrl + 'api/SMSWallet/LoadWallet', data, )
+  }
+  postTransactions(data: any) {
+    return this.http.post(this.baseUrl + 'api/SMSContract/PostTransactions', data )
+  }
+  getSpecialRequests(profileId: number){
+    return this.http.get(this.baseUrl+ 'api/EventSpecialRequest/GetSpecialRequests?profileId='+ profileId)
+  }
+  getInvoicesForSpecialRequests(profileId: number){
+    return this.http.get(this.baseUrl+ 'api/EventSpecialRequest/GetInvoicesForSpecialRequests?profileId='+ profileId)
+  }
+  getAllEvents():Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventClient/GetAllEvents')
+  }
+  getClientEventDetails(eventId:number):Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventClient/GetEventDetails?eventId=' +eventId)
+  }
 
 }

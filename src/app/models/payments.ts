@@ -37,3 +37,12 @@ export class PaymentDetails {
     ){}
   }
 
+  export class LoadWallet{
+    constructor(
+      public profileId: number,
+      public amount: number,
+      public platform: string,
+      public transactionSource: string
+    ){}
+  }
+

@@ -27,82 +27,27 @@
                 </p>
             </div>
             <div class="events">
-                <div class="event" (click)="eventDetail()">
-                    <div class="image"><img src="/assets/images/Rectangle 56.png" alt="">
+                <div class="event" *ngFor="let event of allEvents" (click)="eventDetail(event.eventId)">
+                    <div class="image"><img [src]="event.eventImageUrl ? event.eventImageUrl : '/assets/images/Rectangle 56.png'" alt="">
                         <div class="bookmark">
                             <mat-icon>bookmark</mat-icon>
                         </div>
                     </div>
                     <div class="bottom">
-                        <h5>Dave We're All Alone in This Together</h5>
+                        <h5>{{event.eventName}}</h5>
                         <div>
-                            <p>Tuesday, March 01</p>
+                            <p>{{event.eventStartDate}}</p>
                             <p>Indigo at the 02</p>
                         </div>
                         <footer>
-                            <h4 class="color">Free</h4>
+                            <h4 class="color">{{event.isPaid}}</h4>
                             <p class="info">More info <mat-icon>chevron_right</mat-icon>
                             </p>
                         </footer>
                     </div>
                 </div>
-                <div class="event">
-                    <div class="image"><img src="/assets/images/Rectangle 56.png" alt="">
-                        <div class="bookmark">
-                            <mat-icon>bookmark</mat-icon>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <h5>Dave We're All Alone in This Together</h5>
-                        <div>
-                            <p>Tuesday, March 01</p>
-                            <p>Indigo at the 02</p>
-                        </div>
-                        <footer>
-                            <h4 class="color">Free</h4>
-                            <p class="info">More info <mat-icon>chevron_right</mat-icon>
-                            </p>
-                        </footer>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="image"><img src="/assets/images/Rectangle 56.png" alt="">
-                        <div class="bookmark">
-                            <mat-icon>bookmark</mat-icon>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <h5>Dave We're All Alone in This Together</h5>
-                        <div>
-                            <p>Tuesday, March 01</p>
-                            <p>Indigo at the 02</p>
-                        </div>
-                        <footer>
-                            <h4 class="color">Free</h4>
-                            <p class="info">More info <mat-icon>chevron_right</mat-icon>
-                            </p>
-                        </footer>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="image"><img src="/assets/images/Rectangle 56.png" alt="">
-                        <div class="bookmark">
-                            <mat-icon>bookmark</mat-icon>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <h5>Dave We're All Alone in This Together</h5>
-                        <div>
-                            <p>Tuesday, March 01</p>
-                            <p>Indigo at the 02</p>
-                        </div>
-                        <footer>
-                            <h4 class="color">Free</h4>
-                            <p class="info">More info <mat-icon>chevron_right</mat-icon>
-                            </p>
-                        </footer>
-                    </div>
-                </div>
+
+                
 
             </div>
         </div>
@@ -194,3 +139,7 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner type="ball-scale-multiple">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>

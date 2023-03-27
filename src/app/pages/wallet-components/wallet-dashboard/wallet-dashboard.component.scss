@@ -147,7 +147,6 @@ border-radius: 10px;
 }
 
 .part2{
-    
     background-color: #fff;
     border-radius: 10px;
     padding: 10px;
@@ -158,6 +157,7 @@ border-radius: 10px;
     align-items: center;
     justify-content: space-evenly;
     margin: 10px 0;
+    gap: 5px;
 }
 b{
     font-weight: 600;
@@ -166,24 +166,21 @@ b{
 
 .circular-progress{
 	position: relative;
-	height: 120px;
-	width: 120px;
-	border-radius: 50%;
-	display: grid;
-	place-items:center;
-    color:#78C000;
-    color:#C7E596;
-    color: #53a9ff;
-
+	// height: 120px;
+	// width: 120px;
+	// border-radius: 50%;
+    // border: 2px solid;
+    // circle-progress{
+    //     width: 100%;
+    // }
 }
-.circular-progress:before{
-	content: "";
-	position: absolute;
-	height: 80%;
-	width: 80%;
-	background-color: red;
-	border-radius: 50%
-}
+// .circular-progress:before{
+// 	content: "";
+// 	position: absolute;
+// 	height: 80%;
+// 	width: 80%;
+// 	border-radius: 50%
+// }
 .value-container{
 	position: relative;
 	font-size: 20px;

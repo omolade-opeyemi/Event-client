@@ -36,7 +36,6 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -167,7 +166,26 @@ import { TestpageComponent } from './pages/testpage/testpage.component';
     MatListModule,
     MatMenuModule,
     NgxDonutChartModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgCircleProgressModule.forRoot({
+      "radius": 5,
+      "space": -15,
+      "outerStrokeGradient": true,
+      "outerStrokeWidth": 10,
+      "outerStrokeColor": "#52CEB8",
+      "outerStrokeGradientStopColor": "#52CEB8",
+      "innerStrokeColor": "#e7e8ea",
+      "innerStrokeWidth": 10,
+      "title": "UI",
+      "animateTitle": false,
+      "animationDuration": 1000,
+      "showUnits": false,
+      "showBackground": false,
+      "clockwise": false,
+      "startFromZero": false,
+      "showSubtitle": false,
+      "lazy": true})
+
 
 
   ],

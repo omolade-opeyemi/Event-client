@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EndpointsService } from 'src/app/service/endpoints.service';
+import { NotificationService } from 'src/app/service/notification.service';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+
 
 interface Invoice {
   solution: string;
@@ -43,9 +47,29 @@ const INVOICES: Invoice[] = [
 })
 export class RarComponent implements OnInit {
   invoices = INVOICES;
-  constructor() { }
+  response:any;
+  constructor(private endpoint:EndpointsService,
+    private notify:NotificationService,
+    private spinner: NgxSpinnerService,
+    ) { }
 
   ngOnInit(): void {
+    this.getSpecialRequests();
   }
-
+  specialRequests:any
+getSpecialRequests(){
+  this.spinner.show();
+  this.endpoint.getSpecialRequests(Number(localStorage.getItem('profileId'))).subscribe((data)=>{
+    this.response = data;
+    this.spinner.hide();
+    if(this.response.responseCode == '00'){
+      this.specialRequests = this.response.responseData;
+    }else{
+      this.notify.showError(this.response.responseMsg)
+    }
+  },(error) => {
+    this.notify.showError(error.message);
+    this.spinner.hide();
+  })
+}
 }

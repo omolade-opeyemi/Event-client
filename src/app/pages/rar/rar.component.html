@@ -5,30 +5,29 @@
         <thead class="rar__table-head">
           <tr>
             <th scope="col"></th>
+            <th scope="col">EVENT</th>
             <th scope="col">SOLUTION</th>
             <th scope="col">DESCRIPTION</th>
             <th scope="col">REQUEST DATE</th>
-            <th scope="col">DUE DATE</th>
+            <th scope="col">STATUS</th>
   
-            <th scope="col">
+            <!-- <th scope="col">
               <mat-icon>delete</mat-icon>
-            </th>
+            </th> -->
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let invoice of invoices" class="rar__row">
-            <th scope="row"><input type="checkbox" name="" id=""></th>
-            <td class="rar__column">
+          <tr *ngFor="let invoice of specialRequests; index as i" class="rar__row">
+            <th scope="row">{{i + 1}}</th>
+            <td class="rar__column">{{invoice.eventName}}</td>
+            <td class="rar__column">{{ invoice.solutionName }}</td>
+            <td class="rar__column">{{ invoice.description | slice:0:30 }}...</td>
+            <td class="rar__column">{{ invoice.requestDate |split: "T": 0}}</td>
+            <td class="rar__column">{{ invoice.status }}</td>
   
-              #{{ invoice.solution }}
-            </td>
-            <td class="rar__column">{{ invoice.description}}</td>
-            <td class="rar__column">{{ invoice.reqDate}}</td>
-            <td class="rar__column"><span class="ipr__status">Cancel</span></td>
-  
-            <td class="rar__column">
+            <!-- <td class="rar__column">
               <mat-icon>more_horiz</mat-icon>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>

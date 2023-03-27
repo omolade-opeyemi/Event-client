@@ -1,193 +1,286 @@
-    <div class="WalletBoard">
-       
-        <div class="bodyPart">
-            <div class="section1">
-                <div class="part1">
-                    <b>My card</b>
-                    <div class="cardbody">
-                        <div class="ballance">
-                            <p>Current balance</p>
-                            <h1>&#8358; 40000</h1>
-                        </div>
-                    </div>
-                    <div class="options">
-                        <div class="option1">
-                            <div class="icon1" (click)="openVerticallyCentered()">
-                                <mat-icon>add_card</mat-icon>
-                            </div>Top-up
-                        </div>
-                        <div class="option1">
-                            <div class="icon1" (click)="openVerticallyCentered()">
-                                <mat-icon>send</mat-icon>
-                            </div>Send
-                        </div>
-                        <div class="option2" (click)="openMore(more)"> 
-                            <div class="icon2">
-                                <mat-icon>more_horiz</mat-icon>
-                            </div>More
-                        </div>
+<div class="WalletBoard">
+
+    <div class="bodyPart">
+        <div class="section1">
+            <div class="part1">
+                <b>My card</b>
+                <div class="cardbody">
+                    <div class="ballance">
+                        <p>Current balance</p>
+                        <h1 *ngIf="walletHistory == null">&#8358; 0</h1>
+                        <h1 *ngIf="walletHistory != null">&#8358; {{walletHistory.totalTopup | number}}</h1>
                     </div>
                 </div>
-
-                <!-- //////////// More Modal ////// -->
-                <ng-template #more let-c="close" let-d="dismiss">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">More</h4>
-                        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+                <div class="options">
+                    <div class="option1" (click)="paymentPage(content)">
+                        <div class="icon1">
+                            <mat-icon>add_card</mat-icon>
+                        </div>Top-up
                     </div>
-                    <div class="modal-body">
-                        <div class="moree">
-                            <div class="icon">
-                                <mat-icon>description</mat-icon>
-                            </div>
-                            <div class="optionss">
-                                <div class="details">
-                                    <p><b>Statement & Reports</b></p>
-                                    <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
-                                </div>
-                                <div class="next"><mat-icon>navigate_next</mat-icon></div>
-                            </div>
-                        </div>
-                        <div class="moree">
-                            <div class="icon">
-                                <mat-icon>lock</mat-icon>
-                            </div>
-                            <div class="optionss">
-                                <div class="details">
-                                    <p><b>Security</b></p>
-                                    <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
-                                </div>
-                                <div class="next"><mat-icon>navigate_next</mat-icon></div>
-                            </div>
-                        </div>
-                        <div class="moree">
-                            <div class="icon">
-                                <mat-icon>policy</mat-icon>
-                            </div>
-                            <div class="optionss">
-                                <div class="details">
-                                    <p><b>Legal</b></p>
-                                    <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
-                                </div>
-                                <div class="next"><mat-icon>navigate_next</mat-icon></div>
-                            </div>
-                        </div>
-                        <div class="moree">
-                            <div class="icon">
-                                <mat-icon>help_center</mat-icon>
-                            </div>
-                            <div class="optionss">
-                                <div class="details">
-                                    <p><b>FAQs</b></p>
-                                    <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
-                                </div>
-                                <div class="next"><mat-icon>navigate_next</mat-icon></div>
-                            </div>
-                        </div>
-                        <div class="moree">
-                            <div class="icon">
-                                <mat-icon>contact_support</mat-icon>
-                            </div>
-                            <div class="optionss">
-                                <div class="details">
-                                    <p><b>Get Help</b></p>
-                                    <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
-                                </div>
-                                <div class="next"><mat-icon>navigate_next</mat-icon></div>
-                            </div>
-                        </div>
+                    <div class="option1">
+                        <div class="icon1" (click)="openVerticallyCentered()">
+                            <mat-icon>send</mat-icon>
+                        </div>Send
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+                    <div class="option2" (click)="openMore(more)">
+                        <div class="icon2">
+                            <mat-icon>more_horiz</mat-icon>
+                        </div>More
                     </div>
-                </ng-template>
-                
-
-                <!-- //////////////// More modal Ends /////// -->
-                <div class="part2">
-                    <b>Summary</b>
-                    <div class="progres">
-                        
-                        <div class="circular-progress">
-                        <div class="value-container">
-                            &#8358;267,679
-                        </div>
-                    </div>
-                        <div class="labels">
-                            <div class="topUp">
-                                <span>
-                                    <mat-icon>fiber_manual_record</mat-icon>Total credit
-                                </span>
-                                &#8358; 20000
-                            </div>
-                            <div class="payment">
-                                <span>
-                                    <mat-icon>fiber_manual_record</mat-icon>Total debit
-                                </span>
-                                &#8358; 10000
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
 
-            <div class="section2">
-                <b>Recent activity</b>
-                <div class="recentActivity">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-borderless ">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Platform</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Date/Time</th>
-                                    <th scope="col">Amount</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of getWalletResponseTransactionHistory | paginate: { itemsPerPage: 8, currentPage: pg, totalItems:totalLength}; index as i">
-                                    <td>
-                                        <img src="/assets/images/EM 0.png" class="me-2">
-                                        {{ item.platform }}
-                                    </td>
-                                    <td>
-                                        <!-- <img [src]="'/assets/' + country.descriptionImg" class="me-2" > -->
-                                        {{ item.description }}
-                                    </td>
-
-                                    <td>
-                                        <p
-                                            [ngClass]="{'success':item.status=='Success','fail':item.status!='Success'}">
-                                            {{ item.status }}</p>
-                                    </td>
-                                    <td>
-                                        <p
-                                            [ngClass]="{'credit':item.transactionType=='Credit','debit':item.transactionType =='Debit'}">
-                                            {{ item.transactionType }}</p>
-
-                                    </td>
-                                    <td>{{ item.date }}</td>
-                                    <td
-                                        [ngClass]="{'success':item.status=='Success','fail':item.status!='Success'}">
-                                        &#8358; {{ item.amount | number }} </td>
-                                    <!-- <td style="cursor:pointer ;"><mat-icon>more_vert</mat-icon></td> -->
-
-                                </tr>
-                            </tbody>
-                        </table>
-
+            <!-- //////////// More Modal ////// -->
+            <ng-template #more let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">More</h4>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="moree">
+                        <div class="icon">
+                            <mat-icon>description</mat-icon>
+                        </div>
+                        <div class="optionss">
+                            <div class="details">
+                                <p><b>Statement & Reports</b></p>
+                                <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
+                            </div>
+                            <div class="next"><mat-icon>navigate_next</mat-icon></div>
+                        </div>
+                    </div>
+                    <div class="moree">
+                        <div class="icon">
+                            <mat-icon>lock</mat-icon>
+                        </div>
+                        <div class="optionss">
+                            <div class="details">
+                                <p><b>Security</b></p>
+                                <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
+                            </div>
+                            <div class="next"><mat-icon>navigate_next</mat-icon></div>
+                        </div>
+                    </div>
+                    <div class="moree">
+                        <div class="icon">
+                            <mat-icon>policy</mat-icon>
+                        </div>
+                        <div class="optionss">
+                            <div class="details">
+                                <p><b>Legal</b></p>
+                                <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
+                            </div>
+                            <div class="next"><mat-icon>navigate_next</mat-icon></div>
+                        </div>
+                    </div>
+                    <div class="moree">
+                        <div class="icon">
+                            <mat-icon>help_center</mat-icon>
+                        </div>
+                        <div class="optionss">
+                            <div class="details">
+                                <p><b>FAQs</b></p>
+                                <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
+                            </div>
+                            <div class="next"><mat-icon>navigate_next</mat-icon></div>
+                        </div>
+                    </div>
+                    <div class="moree">
+                        <div class="icon">
+                            <mat-icon>contact_support</mat-icon>
+                        </div>
+                        <div class="optionss">
+                            <div class="details">
+                                <p><b>Get Help</b></p>
+                                <small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.</small>
+                            </div>
+                            <div class="next"><mat-icon>navigate_next</mat-icon></div>
+                        </div>
                     </div>
                 </div>
-                <div class="pagination">
-                    <pagination-controls (pageChange)="pg = $event"></pagination-controls>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
                 </div>
+            </ng-template>
+
+
+            <!-- //////////////// More modal Ends /////// -->
+            <div class="part2">
+                <b>Summary</b>
+                <div class="progres">
+
+                    <div class="circular-progress">
+                        <!-- <div class="value-container">
+                            &#8358; {{walletHistory.balance}}
+                        </div> -->
+                        <circle-progress [percent]=percent [radius]="50" [outerStrokeWidth]="16" [innerStrokeWidth]="15"
+                            [outerStrokeColor]="'#F9A826'" [innerStrokeColor]="'#1C2B66'" [animation]="true"
+                            [animationDuration]="500" [title]=balance></circle-progress>
+                    </div>
+                    
+                    <div class="labels">
+                        <div class="topUp" *ngIf="walletHistory != null">
+                            <span>
+                                <mat-icon>fiber_manual_record</mat-icon>Total credit
+                            </span>
+                            &#8358; {{walletHistory.totalTopup | number}}
+                        </div>
+                        <div class="topUp" *ngIf="walletHistory == null">
+                            <span>
+                                <mat-icon>fiber_manual_record</mat-icon>Total credit
+                            </span>
+                            &#8358; 0
+                        </div>
+
+                        <div class="payment" *ngIf="walletHistory != null">
+                            <span>
+                                <mat-icon>fiber_manual_record</mat-icon>Total debit
+                            </span>
+                            &#8358; {{walletHistory.totalSpend | number}}
+                        </div>
+                        <div class="payment" *ngIf="walletHistory == null">
+                            <span>
+                                <mat-icon>fiber_manual_record</mat-icon>Total debit
+                            </span>
+                            &#8358; 0
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
+        <div class="section2">
+            <b>Recent activity</b>
+            <div class="recentActivity">
+                <div class="table-responsive">
+                    <table class="table table-hover table-borderless ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Platform</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Date/Time</th>
+                                <th scope="col">Amount</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="walletHistory != null">
+
+                            <tr 
+                                *ngFor="let item of walletHistory.transactionHistory | paginate: { itemsPerPage: 8, currentPage: pg, totalItems:totalLength}; index as i">
+                                <td>
+                                    <img src="/assets/images/EM 0.png" class="me-2">
+                                    {{ item.platform }}
+                                </td>
+                                <td>
+                                    <!-- <img [src]="'/assets/' + country.descriptionImg" class="me-2" > -->
+                                    {{ item.description }}
+                                </td>
+
+                                <td>
+                                    <p [ngClass]="{'success':item.status=='Success','fail':item.status!='Success'}">
+                                        {{ item.status }}</p>
+                                </td>
+                                <td>
+                                    <p
+                                        [ngClass]="{'credit':item.transactionType=='Credit','debit':item.transactionType =='Debit'}">
+                                        {{ item.transactionType }}</p>
+
+                                </td>
+                                <td>{{ item.transactionDate | split: "T": 0 }} / {{ item.transactionDate | split: "T": 1
+                                    | split: ".": 0 }}</td>
+                                <td [ngClass]="{'success':item.status=='Success','fail':item.status!='Success'}">
+                                    &#8358; {{ item.amount | number }} </td>
+                                <!-- <td style="cursor:pointer ;"><mat-icon>more_vert</mat-icon></td> -->
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="pagination">
+                <pagination-controls (pageChange)="pg = $event"></pagination-controls>
+            </div>
+        </div>
+
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="closebtn">
+                <button (click)="d('Cross click')">&#x2715;</button>
+            </div>
+            <div class="modal-body">
+                <h1>How would you like to top-up</h1>
+                <div class="paymentOptionGroup">
+                    <div class="paymentOption">
+                        <div class="paymentGateway">
+                            <input type="radio" id="flutterwave" ngModel name="payment" id="flutterwave" disabled="true"
+                                value="flutterwave" ngModel [(ngModel)]="paymentDetails.paymentGateway">
+                            <label for="flutter"><img src="/assets/images/Flutterwave-logo 2.png"
+                                    alt="">Flutterwave</label>
+                        </div>
+                        <div class="paymentGateway">
+                            <input type="radio" id="paystack" ngModel name="payment" id="paystack" value=1
+                                [(ngModel)]="servicePayment.paymentGateway">
+                            <label for="flutter"><img src="/assets/images/Paystack-mark-white-twitter 2.png" alt="">
+                                Paystack</label>
+                        </div>
+                        <div class="paymentGateway">
+                            <input type="radio" ngModel name="payment" id="remita" value="remita" disabled="true"
+                                [(ngModel)]="paymentDetails.paymentGateway">
+                            <label for="flutter"><img src="/assets/images/unnamed 2.png" alt="">Remita</label>
+                        </div>
+                        <div class="paymentGateway">
+                            <input type="radio" ngModel name="payment" id="inter" value="inter" disabled="true"
+                                [(ngModel)]="paymentDetails.paymentGateway">
+                            <label for="flutter"><img src="/assets/images/cropped-favicon 2.png" alt="">Interswitch
+                                webpay</label>
+                        </div>
+                    </div>
+                    <img src="/assets/images/Wallet-rafiki 2 (1).png" alt="" width="100%">
+                </div>
+
+                <div class="amount">
+                    <p>Amount(&#8358;)</p>
+                    <div class="enterAmount">
+                        <span style="color: red;">{{paymentStatus}}</span>
+                        <input type="text" placeholder="min 100" ngModel name="long" #long="ngModel"
+                            [(ngModel)]="loadWallet.amount">
+                        <button [hidden]="(servicePayment.paymentGateway != 1 || servicePayment.paymentGateway == 0)"
+                            angular4-paystack [email]="email" [amount]="loadWallet.amount * 100" [ref]="reference"
+                            [key]="key" [class]="'btn btn-primary'" (paymentInit)="paymentInit()"
+                            (onClose)="paymentCancel()" (callback)="paymentDone($event,content)">Pay with
+                            Paystack</button>
+                        <button
+                            [hidden]="(paymentDetails.paymentGateway == 'remita' || paymentDetails.paymentGateway == 'inter' || paymentDetails.paymentGateway == 'paystack' || paymentDetails.paymentGateway == '')">Pay
+                            with Flutter</button>
+                        <button (click)="paymentInit()" disabled
+                            [hidden]="(paymentDetails.paymentGateway == 'flutterwave' || paymentDetails.paymentGateway == 'inter' || paymentDetails.paymentGateway == 'paystack' || paymentDetails.paymentGateway == '')">Pay
+                            with Remita</button>
+                        <button (click)="paymentInit()" disabled
+                            [hidden]="(paymentDetails.paymentGateway == 'remita' || paymentDetails.paymentGateway == 'flutterwave' || paymentDetails.paymentGateway == 'paystack' || paymentDetails.paymentGateway == '')">Pay
+                            with Interswitch</button>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="notes">
+                    <b>Please note</b>
+                    <ol>
+                        <li>Minimum top-up amount is NGN 100.00 - you can top-up at least NGN 100.00 in one
+                            transaction.
+                        </li>
+                        <li>Maximum per transaction is NGN 9,999,999.00 - you can deposit up to NGN 9,999,999.00
+                            in
+                            one
+                            transaction.</li>
+                        <li>Top-up is free, there are no transaction fees.</li>
+                    </ol>
+                </div>
+            </div>
+        </ng-template>
     </div>
 
+</div>

@@ -14,7 +14,10 @@ export class WalletlandingComponent implements OnInit {
   }
 
   activateWallet(){
-    this.walletservice.getrequestPage('passcode')  
+    // this.walletservice.getrequestPage('passcode')  ;
+    this.walletservice.getMainPage('walletpage');
+    this.walletservice.getSubPage('passcode')
+
   }
 
 }

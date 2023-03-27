@@ -53,7 +53,9 @@ export class PasscodeComponent implements OnInit {
         this.response = data;
         this.spinner.hide();
         if(this.response.responseCode == '00'){
-          this.walletservice.getrequestPage('dashboard')
+          // this.walletservice.getrequestPage('dashboard');
+          this.walletservice.getMainPage('walletpage');
+    this.walletservice.getSubPage('dashboard')
         }else{
           this.pinError = this.response.responseMsg;
         }

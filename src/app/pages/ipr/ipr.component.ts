@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EndpointsService } from 'src/app/service/endpoints.service';
+import { NotificationService } from 'src/app/service/notification.service';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+
 
 interface Invoice {
   invoiceId: string;
@@ -54,9 +58,33 @@ const INVOICES: Invoice[] = [
 })
 export class IprComponent implements OnInit {
   invoices = INVOICES;
-  constructor() { }
+  response:any;
+  constructor(
+    private endpoint:EndpointsService,
+    private notify:NotificationService,
+    private spinner: NgxSpinnerService,
 
+  ) { }
+
+  
   ngOnInit(): void {
+    this.getInvoiceForSpecialRequst();
   }
 
+  invoicesSpecial:any
+  getInvoiceForSpecialRequst(){
+    this.spinner.show();
+    this.endpoint.getInvoicesForSpecialRequests(Number(localStorage.getItem('profileId'))).subscribe((data)=>{
+      this.response = data;
+      this.spinner.hide();
+      if(this.response.responseCode == '00'){
+        this.invoicesSpecial = this.response.responseData;
+      }else{
+        this.notify.showError(this.response.responseMsg)
+      }
+    },(error) => {
+      this.notify.showError(error.error.responseMsg);
+      this.spinner.hide()
+    })
+  }
 }

@@ -177,7 +177,9 @@
 .event-banner {
   position: relative;
   background: #1c2b66;
-  height: 270px;
+  height: 200px;
+  width: 100%;
+  border: 2px solid;
 }
 
 .event-img {
@@ -190,7 +192,7 @@
 
 .event-img img {
   max-height: 300px;
-  min-height: 250px;
+  // min-height: 250px;
   width: 100%;
   object-fit:fill;
 }

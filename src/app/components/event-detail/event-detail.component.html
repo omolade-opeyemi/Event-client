@@ -4,16 +4,16 @@
       <div class="event-banner">blue banner</div>
       <div class="event-img">
         <img
-          src="/assets/images/Rectangle 877.png"
+          [src]="eventDetails.eventImageUrls[0] ? eventDetails.eventImageUrls[0] :'/assets/images/Rectangle 877.png'"
           alt="" />
       </div>
 
       <div class="event-main">
         <div class="event-top">
           <div class="left">
-            <h1 class="event-title">Chris Rock & Dave Chapelle</h1>
+            <h1 class="event-title">{{eventDetails.eventName}}</h1>
             <div class="event-desc">
-              <p>By <span>Abelsworth</span></p>
+              <p>By <span>{{eventDetails.eventCreator}}</span></p>
               <button>Follow</button>
             </div>
           </div>
@@ -25,51 +25,22 @@
         <div class="event-location">
           <div class="location-items">
             <span>📆</span>
-            <p>Tuesday, March 01</p>
+            <p>{{eventDetails.eventStartDate}} - {{eventDetails.eventEndDate}}</p>
           </div>
           <div class="location-items">
             <span>⚓</span>
-            <p>Descasio Lounge</p>
+            <p>{{eventDetails.eventLocation}}</p>
           </div>
           <div class="location-items">
             <span>🕒</span>
-            <p>4:00 PM WAT</p>
+            <p>{{eventDetails.eventStartTime}} - {{eventDetails.eventEndTime}}</p>
           </div>
         </div>
         <div class="event-details">
+          
+          
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Fermentum odio eu feugiat pretium. Iaculis nunc sed augue lacus
-            viverra vitae congue eu consequat. Placerat duis ultricies lacus sed
-            turpis tincidunt id aliquet. In est ante in nibh mauris cursus. Sit
-            amet est placerat in egestas erat imperdiet sed euismod. Ultricies
-            lacus sed turpis tincidunt id aliquet risus feugiat. A condimentum
-            vitae sapien
-          </p>
-          <p>
-            pellentesque habitant morbi. Pellentesque adipiscing commodo elit at
-            imperdiet dui accumsan. Non diam phasellus vestibulum lorem sed
-            risus. Ac feugiat sed lectus vestibulum mattis ullamcorper velit
-            sed. Odio pellentesque diam volutpat commodo sed egestas. Vitae
-            justo eget magna fermentum iaculis eu non diam. Vulputate eu
-            scelerisque felis imperdiet proin fermentum leo vel. Sed vulputate
-            odio ut enim blandit volutpat maecenas. Enim ut tellus elementum
-            sagittis vitae et leo duis ut. Eleifend mi in nulla posuere. Egestas
-            quis ipsum suspendisse ultrices gravida dictum fusce ut placerat.
-            Pretium nibh ipsum consequat nisl vel pretium lectus.
-          </p>
-          <p>
-            pellentesque habitant morbi. Pellentesque adipiscing commodo elit at
-            imperdiet dui accumsan. Non diam phasellus vestibulum lorem sed
-            risus. Ac feugiat sed lectus vestibulum mattis ullamcorper velit
-            sed. Odio pellentesque diam volutpat commodo sed egestas. Vitae
-            justo eget magna fermentum iaculis eu non diam. Vulputate eu
-            scelerisque felis imperdiet proin fermentum leo vel. Sed vulputate
-            odio ut enim blandit volutpat maecenas. Enim ut tellus elementum
-            sagittis vitae et leo duis ut. Eleifend mi in nulla posuere. Egestas
-            quis ipsum suspendisse ultrices gravida dictum fusce ut placerat.
-            Pretium nibh ipsum consequat nisl vel pretium lectus.
+            {{eventDetails.eventDescription}}
           </p>
         </div>
       </div>

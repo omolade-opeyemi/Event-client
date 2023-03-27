@@ -26,32 +26,29 @@
         <thead class="ipr__table-head">
           <tr>
             <th scope="col"></th>
+            <th scope="col">EVENT</th>
             <th scope="col">INVOICE ID</th>
             <th scope="col">DESCRIPTION</th>
             <th scope="col">INVOICE DATE</th>
             <th scope="col">DUE DATE</th>
             <th scope="col">STATUS</th>
-            <th scope="col">AMOUNT</th>
-            <th scope="col">
+            <!-- <th scope="col">
               <mat-icon>delete</mat-icon>
-            </th>
+            </th> -->
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let invoice of invoices" class="ipr__row">
+          <tr *ngFor="let invoice of invoicesSpecial" class="ipr__row">
             <th scope="row"><input type="checkbox" name="" id=""></th>
-            <td class="ipr__column">
-  
-              #{{ invoice.invoiceId }}
-            </td>
+            <td class="ipr__column">{{ invoice.eventName}}</td>
+            <td class="ipr__column">{{ invoice.invoiceNumber }}</td>
             <td class="ipr__column">{{ invoice.description}}</td>
-            <td class="ipr__column">{{ invoice.invoiceDate}}</td>
-            <td class="ipr__column">{{ invoice.dueDate}}</td>
+            <td class="ipr__column">{{ invoice.invoiceDate |split: "T": 0}}</td>
+            <td class="ipr__column">{{ invoice.dueDate|split: "T": 0}}</td>
             <td class="ipr__column"><span class="ipr__status">{{ invoice.status}}</span></td>
-            <td class="ipr__column">{{ invoice.amount| currency}}</td>
-            <td class="ipr__column">
+            <!-- <td class="ipr__column">
               <mat-icon>more_horiz</mat-icon>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
