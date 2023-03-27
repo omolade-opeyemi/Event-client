@@ -100,3 +100,4 @@ export class DashboardPageComponent implements OnInit {
 
   }
 }
+// filterObj = this.supplerData.filter((item) => item.serviceCategory.includes(data) || item.serviceType.includes(data));
