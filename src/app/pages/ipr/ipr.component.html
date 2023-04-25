@@ -32,6 +32,7 @@
             <th scope="col">INVOICE DATE</th>
             <th scope="col">DUE DATE</th>
             <th scope="col">STATUS</th>
+            <th scope="col"></th>
             <!-- <th scope="col">
               <mat-icon>delete</mat-icon>
             </th> -->
@@ -46,11 +47,159 @@
             <td class="ipr__column">{{ invoice.invoiceDate |split: "T": 0}}</td>
             <td class="ipr__column">{{ invoice.dueDate|split: "T": 0}}</td>
             <td class="ipr__column"><span class="ipr__status">{{ invoice.status}}</span></td>
-            <!-- <td class="ipr__column">
-              <mat-icon>more_horiz</mat-icon>
-            </td> -->
+            <td class="ipr__column" style="cursor: pointer;"
+            (click)="getInvoiceDetailForSpecialRequest(review, invoice)">View</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+
+  <ng-template #review let-modal>
+    <div class="modal-body">
+        <div class="event-invoice">
+            <div class="event-invoiceTop">
+                <h2 class="invoiceTopHeader">
+                    Preview
+                </h2>
+                <div class="invoiceTopIcons">
+                    <mat-icon>download</mat-icon>
+                    <mat-icon>print</mat-icon>
+                </div>
+            </div>
+            <div class="event-invoiceBanner">
+                <div class="invoiceBannerTop">
+                    <div class="invoiceBannerLogo">
+                        <img [src]="invoiceDetail.imageUrl ? invoiceDetail.imageUrl : '/assets/images/01 2.png'"
+                            alt="">
+                    </div>
+                    <div class="invoiceBannerContact">
+                        <p><mat-icon>mail</mat-icon>{{invoiceDetail.supplierEmail}}</p>
+                        <p><mat-icon>call</mat-icon>{{invoiceDetail.supplierPhoneNumber}}</p>
+                    </div>
+                </div>
+                <div class="invoiceBannerBottom">
+                    <div class="invoiceBannerRecepient">
+                        <h5>Recipient</h5>
+                        <p>{{invoiceDetail.recepientName}} <br>
+                            {{invoiceDetail.recepientAddress}}</p>
+                        <div class="invoiceBannerRecContact">
+                            <p><mat-icon>mail</mat-icon>{{invoiceDetail.recepientEmail}}</p>
+                            <p><mat-icon>call</mat-icon>{{invoiceDetail.recepientPhoneNumber}}</p>
+                        </div>
+                    </div>
+                    <div class="invoiceBannerInvoice">
+                        <h3>Invoice</h3>
+                        <div class="invoiceNo">
+                            <p class="invoiceNoTitle">Invoice no.</p>
+                            <p class="invoiceNoText">{{invoiceDetail.invoiceNumber}}</p>
+                        </div>
+                        <div class="invoiceDate">
+                            <p class="invoiceNoTitle">Invoice Date</p>
+                            <p class="invoiceNoText">{{invoiceDetail.invoiceDate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-InvoiceTable">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col">#</th> -->
+                                <th scope="col">SERVICE TYPE</th>
+                                <th scope="col">SERVICE CAPTION</th>
+                                <th scope="col">RATE</th>
+                                <th scope="col">TOTAL AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invoiceDetail.serviceDetails ">
+                                <!-- <th scope="row">1</th> -->
+                                <td>{{item.serviceType}}</td>
+                                <td>{{item.serviceCaption}}</td>
+                                <td>&#8358;{{item.rate}}</td>
+                                <td>&#8358;{{item.totalAmount}}</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="subtotal" colspan="2">SUBTOTAL</td>
+                                <td>&#8358;{{invoiceDetail.subTotal}}</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="discount" colspan="2">DISCOUNT invoiceDetail.discount %</td>
+                                <td>&#8358;{{invoiceDetail.discount * invoiceDetail.subTotal}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td colspan="2">TOTAL</td>
+                                <td class="total">&#8358; {{invoiceDetail.total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="event-InvoiceNotes">
+                <h4>NOTES</h4>
+                <p>Lörem ipsum egogåde gyssa. Fare egoligen. Lakask velädera tuktiga, monoseras. Prenade. Monopyv rukäsm
+                    rirade.
+                    Krisväska presamma. </p>
+            </div>
+            <div class="eventInvoiceBtn">
+                <button (click)="modal.dismiss('Cross click')">Close</button>
+                <button (click)="modal.dismiss('Cross click');paymentOptions(options)">Checkout</button>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #options let-c="close" let-d="dismiss">
+  <div class="modal-header modal-head">
+      <h4 class="modal-title" id="modal-basic-title">&nbsp;</h4>
+      <img src="/assets/images/Logo.png" alt="">
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body modal-bodybody">
+      <div class="row1">
+          <h6># {{invoiceDetail.invoiceNumber}}</h6>
+          <h4><b> &#8358; {{invoiceDetail.total | number}}</b></h4>
+      </div>
+      <hr>
+      <h5>Select payment method</h5>
+      <hr>
+      <div class="options">
+          <div class="col-12">
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" [(ngModel)]="paymentOption" value="C">
+                  <label class="form-check-label" for="gridCheck">
+                      Cards
+                  </label>
+                  <mat-icon>credit_card</mat-icon>
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" [(ngModel)]="paymentOption" value="W">
+                  <label class="form-check-label" for="gridCheck">
+                      Wallet
+                  </label>
+                  <mat-icon>account_balance_wallet</mat-icon>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+  <div class="modal-footer modal-foot" >
+      <button [hidden]="(paymentOption ==  'C' || paymentOption ==  '')"
+       type="button" class="btn btn-secondary" 
+          (click)="specialRequestWalletPayment()">Pay from Wallet</button>
+
+          <button type="button"  [hidden]="(paymentOption ==  'W' || paymentOption ==  '')"
+          angular4-paystack [email]="eml" [amount]="amt * 100" [ref]="reference"
+          [key]="key"  class="btn btn-secondary"  (paymentInit)="paymentInit()"
+          (onClose)="paymentCancel()" (callback)="paymentDone($event,review)">Pay With Card</button>
+  </div>
+</ng-template>

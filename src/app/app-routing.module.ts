@@ -14,6 +14,8 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { PricingComponent } from './components/pricing/pricing.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { TicketComponent } from './components/ticket/ticket.component';
+import { AccountComponent } from './components/account/account.component';
+import { InvitationComponent } from './components/invitation/invitation.component';
 
 const routes: Routes = [
   {path: 'header',component:HeaderComponent},
@@ -29,7 +31,9 @@ const routes: Routes = [
   {path: '', component:AuthenticationComponent},
   {path: 'pricing', component:PricingComponent},
   {path: 'invoice', component:InvoiceComponent},
-  {path: 'ticket', component:TicketComponent}
+  {path: 'ticket', component:TicketComponent},
+  {path: 'account', component:AccountComponent},
+  {path: 'invitation', component:InvitationComponent}
   
 ];
 

@@ -29,7 +29,10 @@ export class EventsComponent implements OnInit {
     localStorage.setItem('eventId',eventId)
     this.route.navigate(['/event-detail'])
   }
-  allEvents:any
+
+  paidEvent:any[]=[]
+  freeEvent:any[]=[]
+  allEvents:any[]=[]
   getAllEvents(){
     this.spinner.show();
     this.endpoint.getAllEvents().subscribe((data)=>{
@@ -37,6 +40,8 @@ export class EventsComponent implements OnInit {
       this.spinner.hide();
       if(this.response.responseCode == '00'){
         this.allEvents = this.response.responseData;
+        this.paidEvent = this.allEvents.filter((item)=> item.isPaid == true)
+        this.freeEvent = this.allEvents.filter((item)=> item.isPaid == false)
       }
       else{
         this.notify.showError(this.response.responseMsg)

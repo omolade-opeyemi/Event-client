@@ -1,0 +1,252 @@
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="invitee-page">
+
+  <!-- <div class="invitee-header">
+      <div class="invitee-headerText">
+        <h2 class="invitee-headerTitle"> Invitee/RSVP</h2>
+        <p><mat-icon>chevron_left</mat-icon> Back</p>
+      </div>
+    </div> -->
+  <div class="invitee-container">
+    
+
+      <ng-container *ngIf="drawer">
+        <div class="invite-drawer">
+          <app-sidnav></app-sidnav>
+          <button (click)="onDrawerClick()" class="drawer-btn"><mat-icon>chevron_left</mat-icon></button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="drawer_min">
+        <div class="invite-drawer-mini">
+          <button (click)="onDrawerClick()" class="drawer-btn-mini"><mat-icon>chevron_right</mat-icon></button>
+        </div>
+      </ng-container>
+      <ng-template [ngIf]="allInviteeGroup.length != 0 ">
+      <div class="invitee-content">
+        <!-- <div class="invitee-cards">
+          <div class="invitee-card att">
+            <h2 class="inv-cardTitle">1</h2>
+            <p class="inv-cardSubtitle">Attending</p>
+          </div>
+          <div class="invitee-card not-att">
+            <h2 class="inv-cardTitle">1</h2>
+            <p class="inv-cardSubtitle">Not Attending</p>
+          </div>
+          <div class="invitee-card pend">
+            <h2 class="inv-cardTitle">1</h2>
+            <p class="inv-cardSubtitle">Pending</p>
+          </div>
+        </div> -->
+
+        <div class="invitee-containerTop">
+          <div class="invitee-left">
+            <div class="invitee-search">
+              <input type="text" placeholder="Search name or email">
+              <button><mat-icon>search</mat-icon></button>
+            </div>
+            <div class="invitee-leftUtils">
+              <button class="util-btn" (click)="open(invite)"><mat-icon>person_add</mat-icon></button>
+              <button class="util-btn" (click)="open(csv)"><mat-icon>fact_check</mat-icon></button>
+            </div>
+          </div>
+
+          <div class="invitee-utils">
+            <button class="util-btns delete"><mat-icon>delete</mat-icon></button>
+            <button class="util-btns delete"><mat-icon>outgoing_mail</mat-icon></button>
+            <div class="util-filter">
+              <select name="" id="">
+                <option value="">Filter</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="invitee-table">
+          <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" *ngFor="let item of allInviteeGroup">
+            <ngb-panel title="{{item.caption}}" id="config-panel-one">
+              <ng-template ngbPanelContent>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="invitee-tableHead">
+                      <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">EMAIL</th>
+                        <!-- <th scope="col">GUESTS</th> -->
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">DATE ADDED</th>
+                        <!-- <th scope="col">STATUS</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let invite of getAllInvitess" class="invitee-row">
+                        <td class="invitee-column">
+      
+                          <div class="invitee-info">
+                            {{ invite.firstName }} {{invite.lastName}}
+                          </div>
+                        </td>
+                        <td class="invitee-column">{{ invite.email}}</td>
+                        <!-- <td class="invitee-column">{{ invite.guests}}</td> -->
+                        <td class="invitee-column">{{ invite.phoneNumber}}</td>
+                        <td class="invitee-column">{{ invite.dateAdded | split: "T": 0}}</td>
+      
+                        <!-- <td class="invitee-column">
+                          <p [className]=" invite.acceptedInvite === 'Pending' ? 'pill pending-pill'
+                      : invite.acceptedInvite === 'Attending'? 'pill att-pill' :'pill not-pill' "> {{ invite.acceptedInvite}}</p>
+                        </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button (click)="openInviteeList(item,inviteeList)">Add Invitee ot Group</button>
+
+                </div>
+              </ng-template>
+
+            </ngb-panel>
+          </ngb-accordion>
+
+
+          
+
+
+          <!-- <ng-template #invite let-modal class="moddd">
+            <div class="invitee-popup">
+              <div class="popup-header">
+                <h4>Add Invitee</h4>
+                <p class="popup-subtitle">
+                  Quickly add an Invitee to your Invite list
+                </p>
+              </div>
+              <form class="popup-form">
+                <div class="form_input">
+                  <label for="firstname">First Name</label>
+                  <input type="text" name="firstname">
+                </div>
+                <div class="form_input">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" name="lastname">
+                </div>
+                <div class="form_input">
+                  <label for="email">Email</label>
+                  <input type="email" name="email">
+                </div>
+                <div class="form_select">
+                  <label for="guest">Guest Allowed</label>
+                  <div class="selectDiv">
+                    <select name="guest" id="">
+                      <option value="">&nbsp;</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="pop-up-btns">
+                  <button class="pop-up-btn cancel-btn " (click)="modal.dismiss()">Cancel</button>
+                  <button class="pop-up-btn save-btn" (click)="modal.dismiss()">Save & Cancel</button>
+                </div>
+              </form>
+            </div>
+          </ng-template> -->
+
+          <ng-template #csv let-modal class="moddd">
+            <div class="csv-popup">
+              <h4>Import a list of Invitees</h4>
+              <h6>Import a .csv file. </h6>
+              <img src="/assets/import.png" alt="">
+
+              <div class="csv-btns">
+                <button class="download-btn" (click)="modal.dismiss()"><mat-icon>download</mat-icon> Download
+                  Template</button>
+                <button class="import-btn" (click)="modal.dismiss()">Import CSV</button>
+              </div>
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
+    </ng-template>
+
+
+    <ng-template [ngIf]="allInviteeGroup.length == 0 ">
+      <div class="invitee-content">
+        <div class="invitee-containerHeader">
+          <h2 class="invitee-title">No Invitees, just yet</h2>
+          <p class="invitee-subtitle">Let us create your invite list so you can send your invitation to your exclusive guest list</p>
+        </div>
+        <div class="invitee-containerContent">
+          <img class="invitee-img" src="/assets/images/add-tasks.png" alt="import-list">
+          <div class="container-btns">
+            <button class="container-btn btn-invitee" (click)="open(invite)"><mat-icon>add</mat-icon>Add Group</button>
+            <button class="container-btn btn-import" routerLink="/import-invitee">Import List</button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #invite let-modal class="moddd">
+  <div class="invitee-popup">
+    <div class="popup-header">
+      <h4>Create New Invite Group</h4>
+      <p class="popup-subtitle">
+        Create an invite group to add your invitees
+      </p>
+    </div>
+    <form class="popup-form">
+      <div class="form_input">
+        <label for="firstname">Caption</label>
+        <input type="text" name="firstname" ngModel [(ngModel)]="createInviteGroup.caption">
+      </div>
+      <div class="form_input">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="5" ngModel [(ngModel)]="createInviteGroup.description"></textarea>
+      </div>
+      
+      <div class="pop-up-btns">
+        <button class="pop-up-btn cancel-btn " (click)="modal.dismiss()">Cancel</button>
+        <button class="pop-up-btn save-btn" (click)="modal.dismiss();createInviteeGroup()">Create Group</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #inviteeList let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Invitee List</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="table-responsive">
+      <table class="table">
+        <thead class="invitee-tableHead">
+          <tr>
+            <th scope="col">NAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">DATE ADDED</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let invite of getAllInvitess" class="invitee-row">
+            <td class="invitee-column">
+              <div class="invitee-info">
+                {{ invite.firstName }} {{invite.lastName}}
+              </div>
+            </td>
+            <td class="invitee-column">{{ invite.email}}</td>
+            <td class="invitee-column">{{ invite.phoneNumber}}</td>
+            <td class="invitee-column">{{ invite.dateAdded | split: "T": 0}}</td>
+            <td class="invitee-checkBox"> <input type="checkbox" name="check" (change)="selectedServices($event,invite)"> </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click');inviteesToGroup()">Add</button>
+	</div>
+</ng-template>

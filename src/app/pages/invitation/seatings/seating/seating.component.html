@@ -1,0 +1,360 @@
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="seating-page">
+    <div class="seating-pageContainer">
+      <div class="seating-container">
+        <ng-container *ngIf="drawer">
+          <div class="invite-drawer">
+            <app-sidnav></app-sidnav>
+            <button (click)="onDrawerClick()" class="drawer-btn">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="drawer_min">
+          <div class="invite-drawer-mini">
+            <button (click)="onDrawerClick()" class="drawer-btn-mini">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+        <div class="seating-main">
+          <ng-template [ngIf]="page == 'tables'">
+          <div class="seating-mainHeader">
+            <div class="mainHeader-left">
+              <mat-tab-group
+                (selectedTabChange)="onEditClick($event)"
+                mat-align-tabs="start"
+              >
+                <mat-tab label="Table Template"></mat-tab>
+                <mat-tab label="Assign Invitees"></mat-tab>
+              </mat-tab-group>
+              <div class="seating-template">
+                <ng-container *ngIf="seatingTemplate">
+                  <div class="seating-grid">
+                    <img
+                      (click)="selectTableTemplate(tables, 'circ001')"
+                      src="/assets/images/circ.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img
+                      (click)="selectTableTemplate(tables, 'rect001')"
+                      src="/assets/images/rec.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img
+                      (click)="selectTableTemplate(tables,'rect001')"
+                      src="/assets/images/rec2.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img
+                      (click)="selectTableTemplate(tables, 'square001')"
+                      src="/assets/images/square.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img
+                      (click)="selectTableTemplate(tables, 'circ001')"
+                      src="/assets/images/circ.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img src="/assets/images/rec.png" alt="" class="seatsImgTemplates" />
+                    <img
+                      src="/assets/images/rec2.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img
+                      src="/assets/images/square.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img
+                      src="/assets/images/circ.png"
+                      alt=""
+                      class="seatsImgTemplates"
+                    />
+                    <img src="/assets/images/rec.png" alt="" class="seatsImgTemplates" />
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="seatingTables">
+
+                  <div class="seating-invitees">
+                    <div class="seating-inviteeHeader">
+                      <h6>Invitees</h6>
+                      <button (click)="open(invite)">
+                        <mat-icon>person_add</mat-icon>
+                      </button>
+                    </div>
+  
+                    <div class="">
+                      <p class="seating-inviteeText">
+                        Click and drag your Invitees to an open table.
+                      </p>
+                      <p class="seating-inviteeText">
+                        You can re-assign attendees by dragging to a new table.
+                      </p>
+                    </div>
+                    <div class="seating-search">
+                      <input type="text" placeholder="search name or email" />
+                      <button><mat-icon>search</mat-icon></button>
+                    </div>
+                    
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" cdkDropList (cdkDropListDropped)="drag($event)">
+
+                      <!--- Note that these columns can be defined in any order.
+                            The actual rendered columns are set as a property on the row definition" -->
+                    
+                      <!-- Position Column -->
+                      <ng-container matColumnDef="invitee_info">
+                        <th mat-header-cell *matHeaderCellDef> <h6>INVITEE INFO</h6></th>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="sort_container">
+                          {{element.invitee_info}}
+                          </div>
+                      </td>
+                      </ng-container>
+                    
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="table">
+                        <th mat-header-cell *matHeaderCellDef> <h6>Table</h6> </th>
+                        <td mat-cell *matCellDef="let element"> <p class="seat_no">{{element.table}}</p> </td>
+                      </ng-container>
+                    
+                    
+                      <!-- Symbol Column -->
+                      <ng-container matColumnDef="symbol">
+                        <th mat-header-cell *matHeaderCellDef> <mat-icon>filter_list</mat-icon> </th>
+                        <td mat-cell *matCellDef="let element"> <mat-icon>sort</mat-icon> </td>
+                      </ng-container>
+                    
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"cdkDrag></tr>
+                    </table>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="mainHeader-Right">
+              <div class="mHrightHeader">
+                <div class="header-title">
+                  <p>Untitled</p>
+                  <mat-icon>border_color</mat-icon>
+                </div>
+                <div class="header-utils">
+                  <section class="zoom-util">
+                    <label class="zoom-slider">Zoom</label>
+                    <mat-slider class="zoom-slider">
+                      <input type="range" matSliderThumb />
+                    </mat-slider>
+                  </section>
+                  <div class="download-util">
+                    <mat-icon>download</mat-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="main-rightCanvas">
+                <div class="main-rightCanvasContainer" *ngIf="tableArrangements.length !='00' ">
+                  <!-- <div class="table-grids">
+                    <div class="tableGleft">
+                      <div
+                        class="chairs chair-select"
+                        (click)="open(seating)"
+                      ></div>
+                      <div class="chairs"></div>
+                    </div>
+                    <div class="tableGMid">
+                      <div class="tableGtop">
+                        <div class="chairs"></div>
+                        <div class="chairs"></div>
+                        <div class="chairs"></div>
+                      </div>
+                      <div class="tableCentral">
+                        <h6>Table 1</h6>
+                        <p>0/7</p>
+                      </div>
+                      <div class="tableGbottom">
+                        <div class="chairs"></div>
+                        <div class="chairs"></div>
+                        <div class="chairs"></div>
+                      </div>
+                    </div>
+                    <div class="tableGleft">
+                      <div class="chairs"></div>
+                      <div class="chairs"></div>
+                    </div>
+                  </div> -->
+
+                  <div class="table-grids" *ngFor="let table of tableArrangements">
+                    <div class="tableGleft">
+                      <div class="chairs"></div>
+                      <div class="chairs"></div>
+                    </div>
+
+                    <div class="tableGMid">
+                      <div class="tableGtop">
+                        <div class="chairs"></div>
+                        <div class="chairs"></div>
+                        <div class="chairs"></div>
+                      </div>
+                      <div class="tableCentral">
+                        <h6>Table {{table.label}}</h6>
+                        <p>0/{{table.chairQuatity}}</p>
+                      </div>
+                      <div class="tableGbottom">
+                        <!-- <div class="chairs"></div>
+                        <div class="chairs"></div>
+                        <div class="chairs"></div> -->
+                      </div>
+                    </div>
+
+                    <div class="tableGleft">
+                      <div class="chairs"></div>
+                      <div class="chairs"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template [ngIf]="page == 'invitations'">
+        <div class="templateGrid">
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+          <div class="template" (click)="tableSettingsPage('17')">
+            <img src="/assets/images/temp10.png" alt="">
+          </div>
+        </div>
+      </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #invite let-modal class="moddd">
+      <div class="invitee-popup">
+        <div class="popup-header">
+          <h4>Add Invitee</h4>
+          <p class="popup-subtitle">Quickly add an Invitee to your Invite list</p>
+        </div>
+        <form class="popup-form">
+          <div class="form_input">
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" />
+          </div>
+          <div class="form_input">
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" />
+          </div>
+          <div class="form_input">
+            <label for="email">Email</label>
+            <input type="email" name="email" />
+          </div>
+          <div class="form_select">
+            <label for="guest">Guest Allowed</label>
+            <div class="selectDiv">
+              <select name="guest" id="">
+                <option value="">&nbsp;</option>
+              </select>
+            </div>
+          </div>
+          <div class="pop-up-btns">
+            <button class="pop-up-btn cancel-btn" (click)="modal.dismiss()">
+              Cancel
+            </button>
+            <button class="pop-up-btn save-btn" (click)="modal.dismiss()">
+              Save & Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <ng-template #tables let-modal class="moddd">
+      <div class="table-popup">
+        <div class="tablepopup-header">
+          <h4>Add Invitee</h4>
+        </div>
+        <div class="table-popupImg" *ngIf="newTables.pattern == 'circ001'">
+          <img src="/assets/images/circ.png" />
+        </div>
+        <div class="table-popupImg" *ngIf="newTables.pattern == 'rect001'">
+          <img src="/assets/images/rec.png" alt="" />
+        </div>
+        <div class="table-popupImg" *ngIf="newTables.pattern == 'square001'">
+          <img src="/assets/images/square.png" alt="" />
+        </div>
+        <div class="tablepopup-container">
+          <div class="table_select">
+            <label for="noOfSeats">Number of seats</label>
+            <input type="number" name="seats" ngModel [(ngModel)]="newTables.chairQuatity" (ngModelChange)="getNumberOfSeats()">
+          </div>
+          <div class="table_select">
+            <label for="noOfSeats">Caption</label>
+            <input type="text" name="caption" ngModel [(ngModel)]="newTables.caption" placeholder="Quen's table">
+            <!-- <div class="tableSelectDiv">
+              <select name="noOfSeats" id="">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+              </select>
+            </div> -->
+          </div>
+          <div class="table-popupBtns">
+            <button class="table-btns popup-cancel" (click)="modal.dismiss()">
+              Cancel
+            </button>
+            <button class="table-btns popup-save" (click)="modal.dismiss();createTableArranagements() ">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #seating let-modal>
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-seatingmodal></app-seatingmodal>
+      </div>
+    </ng-template>
+  </div>

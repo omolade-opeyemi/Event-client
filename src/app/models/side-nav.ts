@@ -34,6 +34,10 @@ export const navbarData = [
         routerLink: '/wallet',
         icon:'account_balance_wallet',
         label: 'Wallet'
+    },{
+        routerLink: '/invitation',
+        icon:'badge',
+        label: 'Invitation'
     },
     // {
     //     routerLink: '/ticket',

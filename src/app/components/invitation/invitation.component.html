@@ -1,0 +1,34 @@
+<app-sidebar *ngIf="!isauthRouth()"></app-sidebar>
+
+<div class="body" [ngClass]="getBodyClass()">
+    <app-header></app-header>
+    <div class="main-header">
+        <div class="welcome">
+            <ng-template [ngIf]="page == 'invoice'">
+                <h5 class="colour">Invoice List</h5>
+                <h3>Let's Get Productive Today !</h3>
+            </ng-template>
+
+            
+        </div>
+        <div>
+            <input type="search" name="" id="" placeholder="search">
+        </div>
+    </div>
+    <div class="main">
+        <ng-template [ngIf]="ivPage == 'invitation'">
+            <app-ivpage></app-ivpage>
+        </ng-template>
+        <ng-template [ngIf]="ivPage == 'ivList'">
+            <app-invitee></app-invitee>
+        </ng-template>
+        <ng-template [ngIf]="ivPage == 'seating'">
+            <app-seating></app-seating>
+        </ng-template>
+        <ng-template [ngIf]="ivPage == 'ivGroup'">
+            <app-invitee-group></app-invitee-group>
+        </ng-template>
+        <!-- <app-add-invite></app-add-invite> -->
+        <!-- <app-import-invite></app-import-invite> -->
+    </div>    
+</div>

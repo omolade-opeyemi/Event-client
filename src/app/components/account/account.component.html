@@ -1,0 +1,26 @@
+<app-sidebar *ngIf="!isauthRouth()"></app-sidebar>
+
+<div class="body" [ngClass]="getBodyClass()">
+    <app-header></app-header>
+    <div class="main-header">
+        <div class="welcome">
+            <ng-template [ngIf]="page != 'requests'">
+                <h5 class="colour">👋 Hi Lucy</h5>
+                <h3>Let's Get Productive Today !</h3>
+            </ng-template>
+
+            <ng-template [ngIf]="page == 'requests'">
+                <h2 class="colour">Dashboard</h2>
+                <h5  class="colour">
+                    <mat-icon>chevron_left</mat-icon> Back
+                </h5>
+            </ng-template>
+        </div>
+        <div>
+            <input type="search" name="" id="" placeholder="search">
+        </div>
+    </div>
+    <div class="main">
+        <app-account-page></app-account-page>
+    </div>    
+</div>

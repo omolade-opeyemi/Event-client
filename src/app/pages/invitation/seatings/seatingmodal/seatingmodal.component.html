@@ -1,0 +1,46 @@
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+  cdkDropList
+>
+<!-- (cdkDropListDropped)="drag($event)" -->
+
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="invitee_info">
+    <th mat-header-cell *matHeaderCellDef><h5>Table (2/7)</h5></th>
+    <td mat-cell *matCellDef="let element">
+      <div class="sort_container">
+        <img class="sort_img" src="/assets/images/01 2.png" alt="" />
+        {{ element.invitee_info }}
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <!-- <ng-container matColumnDef="table">
+    <th mat-header-cell *matHeaderCellDef><h6>Table</h6></th>
+    <td mat-cell *matCellDef="let element">
+      <p class="seat_no">{{ element.table }}</p>
+    </td>
+  </ng-container> -->
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon class="seat_head_icons">delete</mat-icon
+      ><mat-icon class="seat_head_icons">edit_square</mat-icon>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon class="seat_del">delete</mat-icon
+      ><mat-icon class="seat_del">sort</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns" cdkDrag></tr>
+</table>

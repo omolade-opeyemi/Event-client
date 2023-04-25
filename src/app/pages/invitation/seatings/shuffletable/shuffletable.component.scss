@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+    .mat-elevation-z8{
+      box-shadow: none;
+      }
+      .mat-table {
+        background:#EFF1F9;
+        border-radius: 20px;
+      }
+      .seat_no{
+        height: 30px;
+        width: 30px;
+       border-radius: 50%;
+       background: #F58520;;
+       object-fit: cover;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       color: white;
+      }
+      
+      td:nth-child(3), th:nth-child(3){
+        text-align: right;
+      }
+      .sort_container{
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+      }
+      .sort_img{
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      
+      }
+      th > h6{
+        /* font-size: 20px; */
+        font-weight: 600;
+        color: #1c2b66;
+      }
+  }
+  

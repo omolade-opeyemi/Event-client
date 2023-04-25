@@ -8,7 +8,7 @@
                     <div class="ballance">
                         <p>Current balance</p>
                         <h1 *ngIf="walletHistory == null">&#8358; 0</h1>
-                        <h1 *ngIf="walletHistory != null">&#8358; {{walletHistory.totalTopup | number}}</h1>
+                        <h1 *ngIf="walletHistory != null">&#8358; {{walletHistory.balance | number}}</h1>
                     </div>
                 </div>
                 <div class="options">

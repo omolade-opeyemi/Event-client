@@ -1,220 +1,274 @@
 <app-header></app-header>
 
-    <div class="event-page">
-      <div class="event-banner">blue banner</div>
-      <div class="event-img">
-        <img
-          [src]="eventDetails.eventImageUrls[0] ? eventDetails.eventImageUrls[0] :'/assets/images/Rectangle 877.png'"
-          alt="" />
-      </div>
+<div class="event-page">
+  <div class="event-banner">blue banner</div>
+  <div class="event-img">
+    <img [src]="eventDetails.eventImageUrls[0] ? eventDetails.eventImageUrls[0] :'/assets/images/Rectangle 877.png'"
+      alt="" />
+  </div>
 
-      <div class="event-main">
-        <div class="event-top">
-          <div class="left">
-            <h1 class="event-title">{{eventDetails.eventName}}</h1>
-            <div class="event-desc">
-              <p>By <span>{{eventDetails.eventCreator}}</span></p>
-              <button>Follow</button>
-            </div>
-          </div>
-          <div class="right">
-            <h2>Free</h2>
-            <button (click)="openTicketting(ticketting)">Register</button>
-          </div>
-        </div>
-        <div class="event-location">
-          <div class="location-items">
-            <span>📆</span>
-            <p>{{eventDetails.eventStartDate}} - {{eventDetails.eventEndDate}}</p>
-          </div>
-          <div class="location-items">
-            <span>⚓</span>
-            <p>{{eventDetails.eventLocation}}</p>
-          </div>
-          <div class="location-items">
-            <span>🕒</span>
-            <p>{{eventDetails.eventStartTime}} - {{eventDetails.eventEndTime}}</p>
-          </div>
-        </div>
-        <div class="event-details">
-          
-          
-          <p>
-            {{eventDetails.eventDescription}}
-          </p>
+  <div class="event-main">
+    <div class="event-top">
+      <div class="left">
+        <h1 class="event-title">{{eventDetails.eventName}}</h1>
+        <div class="event-desc">
+          <p>By <span>{{eventDetails.eventCreator}}</span></p>
+          <button>Follow</button>
         </div>
       </div>
-      <div class="event-map">
-        <img
-          src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"
-          alt="" />
+      <div class="right" *ngIf="eventDetails.isPaid">
+        <h2>Paid</h2>
+        <button (click)="openTicketting(ticketting)">Buy Ticket</button>
       </div>
-      <ng-template #ticketting let-modal>
-        <!-- <div class="modal-header">
-          <h4 class="modal-title">Modal title</h4>
-          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-        </div> -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark close" (click)="modal.close('Save click')"><mat-icon>close</mat-icon></button>
-        </div>
-         <div class="modal-body">
-          <div class="acade"> 
-            <h2 class="colour">Arcade Fire</h2>
-            <div class="event-desc">
-              <p>By <span>Abelsworth</span></p>
-              <button>Follow</button>
-            </div>
-              <b>Thursday, September 8 . 7:00 PM - 10:00 PM WAT</b>
-              <hr>
-              <h4>Select Ticket</h4>
-              <div class="general">
-                <b>GENERAL ADMISSION</b>
-                <div class="group">
-                  <section>
-                    <span>
-                      <b class="colour">&#8358; 7,500 </b> + &#8358; 650 fee
-                    </span>
-                    <span>Sales end on September 2</span>
-                  </section>
-                  <section>
-                    <select name="" id="">
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                    </select>
-                  </section>
-                </div>
-              </div>
-              
-              <div class="general">
-                <b>VIP</b>
-                <div class="group">
-                  <section>
-                    <span>
-                      <b class="colour">&#8358; 7,500 </b> + &#8358; 650 fee
-                    </span>
-                    <span>Sales end on September 2</span>
-                  </section>
-                  <section>
-                    <select name="" id="">
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                    </select>
-                  </section> 
-                </div>
-              </div>
-              <hr>
-              <p>Powered By <strong class="colour">Event</strong></p>
-          </div>
-          <div class="purchase">
-            <h2 class="colour">Purchase Summary</h2>
-
-            <div class="table">
-              <p>3x General Admission</p>
-              <hr>
-              <div class="tabs">
-                <p>Fees</p>
-                <p>&#8358; 1950</p>
-              </div>
-              <div class="tabs">
-                <p>Subtotal</p>
-                <p>&#8358; 24,450</p>
-              </div>
-              <hr>
-              <div class="tabs">
-                <p>Total</p>
-                <h2 class="colour">&#8358; 24,450</h2>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end">
-              <button class="btn btn-dark checkout" (click)="openCheckout(checkout)">Checkout</button>
-
-            </div>
-          </div>
-        </div>
-      </ng-template>
-
-      <ng-template #checkout let-modal>
-        <!-- <div class="modal-header">
-          <h4 class="modal-title">Modal title</h4>
-          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-        </div> -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark close" (click)="modal.close('Save click')"><mat-icon>close</mat-icon></button>
-        </div>
-         <div class="modal-body">
-          <div class="check"> 
-            <p>Your ticket has been reserved, complete checkout within 15:00 to secure your ticket.</p>
-            <div class="fom">
-            <h3 class="colour"><mat-icon>arrow_back_ios</mat-icon>Check Out</h3>
-            <form class="row g-3">
-              <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-              <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck">
-                  <label class="form-check-label" for="gridCheck">
-                    Keep me updated on more events & new from this event organizer
-                  </label>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck">
-                  <label class="form-check-label" for="gridCheck">
-                    Send emails about events happening nearby
-                  </label>
-                </div>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary">Place order</button>
-              </div>
-            </form>
-          </div>
-
-            </div>
-
-          <div class="purchase">
-            <h2 class="colour">Purchase Summary</h2>
-
-            <div class="table">
-              <p>3x General Admission</p>
-              <hr>
-              <div class="tabs">
-                <p>Fees</p>
-                <p>&#8358; 1950</p>
-              </div>
-              <div class="tabs">
-                <p>Subtotal</p>
-                <p>&#8358; 24,450</p>
-              </div>
-              <hr>
-              <div class="tabs">
-                <p>Total</p>
-                <h2 class="colour">&#8358; 24,450</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-      <app-footer></app-footer>
+      <div class="right" *ngIf="!eventDetails.isPaid">
+        <h2>Free</h2>
+        <button (click)="openTicketting(ticketting)">Register</button>
+      </div>
     </div>
-    
-  
-  
+    <div class="event-location">
+      <div class="location-items">
+        <span>📆</span>
+        <p>{{eventDetails.eventStartDate}} - {{eventDetails.eventEndDate}}</p>
+      </div>
+      <div class="location-items">
+        <span>⚓</span>
+        <p>{{eventDetails.eventLocation}}</p>
+      </div>
+      <div class="location-items">
+        <span>🕒</span>
+        <p>{{eventDetails.eventStartTime}} - {{eventDetails.eventEndTime}}</p>
+      </div>
+    </div>
+    <div class="event-details">
+      <p>
+        {{eventDetails.eventDescription}}
+      </p>
+    </div>
+  </div>
+  <div class="event-map">
+    <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg" alt="" />
+  </div>
 
+  <ng-template #ticketting let-modal>
+    <!-- <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div> -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark close"
+        (click)="modal.close('Save click')"><mat-icon>close</mat-icon></button>
+    </div>
+    <div class="modal-body">
+      <div class="acade">
+        <h2 class="colour">Arcade Fire</h2>
+        <div class="event-desc">
+          <p>By <span>Abelsworth</span></p>
+          <button>Follow</button>
+        </div>
+        <b>{{eventDetails.eventStartDate}} - {{eventDetails.eventEndDate}} </b>
+        <hr>
+        <h4>Select Ticket</h4>
+        <div class="general" *ngFor="let ticket of eventDetails.tickets;let i = index">
+          <b>{{ticket.ticketName}}</b>
+          <div class="group">
+            <section>
+              <span>
+                <b class="colour">&#8358; {{ticket.price | number}} </b>
+              </span>
+              <span>Sales end on September 2</span>
+            </section>
+            <section>
+              <!-- <select name="" id="">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                    </select> -->
+              <input type="number" name="" id="" ngModel [ngModel]="qty" (input)="getTicketDetails($event, i, ticket)">
+            </section>
+          </div>
+        </div>
+
+
+        <!-- <div class="general">
+          <b>VIP</b>
+          <div class="group">
+            <section>
+              <span>
+                <b class="colour">&#8358; 7,500 </b> + &#8358; 650 fee
+              </span>
+              <span>Sales end on September 2</span>
+            </section>
+            <section>
+              <select name="" id="">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+              </select>
+            </section>
+          </div>
+        </div> -->
+        
+        <hr>
+        <p>Powered By <strong class="colour">Event</strong></p>
+      </div>
+      <div class="purchase">
+        <h2 class="colour">Purchase Summary</h2>
+
+        <div class="table">
+          <p>3x General Admission</p>
+          <hr>
+          <div class="tabs">
+            <p>Fees</p>
+            <p>&#8358; {{fee | number}}</p>
+          </div>
+          <div class="tabs">
+            <p>Subtotal</p>
+            <p>&#8358; {{subtotall | number}}</p>
+          </div>
+          <hr>
+          <div class="tabs">
+            <p>Total</p>
+            <h2 class="colour">&#8358; {{total | number}}</h2>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-dark checkout" (click)="openCheckout(checkout)">Checkout</button>
+
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #checkout let-modal>
+    <!-- <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div> -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark close"
+        (click)="modal.close('Save click')"><mat-icon>close</mat-icon></button>
+    </div>
+    <div class="modal-body">
+      <div class="check">
+        <p>Your ticket has been reserved, complete checkout within 15:00 to secure your ticket.</p>
+        <div class="fom">
+          <h3 class="colour"><mat-icon>arrow_back_ios</mat-icon>Check Out</h3>
+          <form class="row g-3" #basicInfo="ngForm">
+            <div class="col-md-6">
+              <label for="name" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="name" name="first" required ngModel
+                [(ngModel)]="ticketPayment.firstName">
+            </div>
+            <div class="col-md-6">
+              <label for="last" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="last" name="second" required ngModel
+                [(ngModel)]="ticketPayment.lastName">
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required ngMode
+                [(ngModel)]="ticketPayment.email">
+            </div>
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" name="phone" required ngModel
+                [(ngModel)]="ticketPayment.phoneNumber">
+            </div>
+
+            <div class="col-ms-12">
+              <b>Gender</b>
+            </div>
+            <div class="row">
+              <div class="form-check col-md">
+                <input class="form-check-input active" type="radio" name="gender" id="male" value="M" required ngModel
+                  [(ngModel)]="ticketPayment.gender">
+                <label class="form-check-label" for="male">
+                  Male
+                </label>
+              </div>
+              <div class="form-check col-md">
+                <input class="form-check-input" type="radio" ngModel name="gender" id="female" value="F" required
+                  #gender="ngModel" [(ngModel)]="ticketPayment.gender">
+                <label class="form-check-label" for="female">
+                  Female
+                </label>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                  Keep me updated on more events & new from this event organizer
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                  Send emails about events happening nearby
+                </label>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="eventDetails.isPaid">
+              <button type="submit" class="btn btn-primary" [disabled]="!basicInfo.valid"
+                (click)="customerPaymentForTicket(payment)">Place order</button>
+            </div>
+            <div class="col-12" *ngIf="!eventDetails.isPaid">
+              <button type="submit" class="btn btn-primary" [disabled]="!basicInfo.valid"
+                (click)="customerRegsiterForFreeTicket()">Place order</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="purchase">
+        <h2 class="colour">Purchase Summary</h2>
+
+        <div class="table">
+          <p>3x General Admission</p>
+          <hr>
+          <div class="tabs">
+            <p>Fees</p>
+            <p>&#8358; {{fee | number}}</p>
+          </div>
+          <div class="tabs">
+            <p>Subtotal</p>
+            <p>&#8358; {{subtotall | number}}</p>
+          </div>
+          <hr>
+          <div class="tabs">
+            <p>Total</p>
+            <h2 class="colour">&#8358; {{total | number}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #payment let-c="close" let-d="dismiss">
+    <!-- <div class="modal-header modal-head">
+        <h4 class="modal-title" id="modal-basic-title">&nbsp;</h4>
+        <img src="/assets/images/Logo.png" alt="">
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div> -->
+    <div class="modal-body payment-body">
+        <div class="close">
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+
+        </div>
+        
+        <iframe [src]="transform()"  style="width:100%;height:800px; overflow: auto;overflow: hidden" 
+    frameborder="0" allowfullscreen 
+    ></iframe>
+    <div class="closebtn">
+        <button class="btn btn-secondary" (click)="d('Cross click')">Close</button>
+    </div>
+</div>
+    
+
+</ng-template>
+  <app-footer></app-footer>
+</div>

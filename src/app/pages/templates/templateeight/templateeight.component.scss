@@ -1,0 +1,51 @@
+.wedding {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  
+    /* max-width: 768px;
+    height: 800px; */
+    /* margin: 2rem auto; */
+    border: 0.5px dashed black;
+    background: url("/assets/images/wedding.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .wedding-container {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .couple-names {
+    text-align: center;
+  }
+  .wedding-you {
+    text-align: center;
+  }
+  .husband,
+  .wife,
+  .wedding-dates {
+    font-size: clamp(0.5rem, -0.1654rem + 1.8235vw, 2rem);
+    font-weight: 700;
+  }
+  .wedding-address {
+    text-align: center;
+  }
+  
+  .wed-rec {
+    position: absolute;
+    bottom: 10px;
+    font-weight: 700;
+  }
+  .wedding-you,
+  .wedding-time,
+  .wedding-address,
+  .wed-rec {
+    font-size: clamp(0.5rem, 0.4412rem + 0.4706vw, 1rem);
+  }

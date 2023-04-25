@@ -45,8 +45,10 @@ eventInfo = new EventInformation('','','','','','','','')
     this.interaction.getrequestHead('non')
   }
 
+  serviceName: any=''
   selectService(data:any){
-    this.specialRequestDetail.serviceId = data;
+    this.specialRequestDetail.serviceId = data.serviceId;
+    this.serviceName = data.serviceName
     this.page = 'security'
     this.interaction.getrequestHead('non')
     this.getCreatorEventsForRequest()

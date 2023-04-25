@@ -18,18 +18,27 @@
           </div>
           <div class="row2">
             <div class="chart">
-              <ngx-donut-chart [data]="donutChartData" [title]="'Budget Build'" [radius]="100" [thickness]="50" [margin]="30">
-              </ngx-donut-chart>
+              <!-- <ngx-donut-chart [data]="donutChartData" [title]="'Budget Build'" [radius]="100" [thickness]="50" [margin]="30">
+              </ngx-donut-chart> -->
+
+              <div class="doughnut">
+                <h3></h3>
+                <canvas class="canva" baseChart [labels]="doughnutChartLabels" [datasets]="doughnutChartDatasets"
+                  [options]="doughnutChartOptions" [legend]="true" [type]="'doughnut'">
+                </canvas>
+                <!-- <h3>#1,450</h3> -->
+              </div>
             </div>
             <!-- <div class="canva">
               <canvas baseChart class="chart" [data]="doughnutChartData" [type]="doughnutChartType">
               </canvas>
 
             </div> -->
-            
+
             <div class="details">
-              <div class="food" *ngFor="let item of donutChartData"><span [style.background-color]="item.color"></span> {{item.label}}: &#8358; {{item.value}}</div>
-              
+              <div class="food" *ngFor="let item of donutChartData"><span [style.background-color]="item.color"></span>
+                {{item.label}}: &#8358; {{item.value}}</div>
+
             </div>
           </div>
           <hr>
@@ -59,19 +68,21 @@
           </mat-menu>
 
           <ng-template #delete let-c="close" let-d="dismiss">
-            
+
             <div class="modal-body deletemodal">
               <div class="delrow1">
-                <div><mat-icon>warning</mat-icon> <h4>Delete</h4></div>
+                <div><mat-icon>warning</mat-icon>
+                  <h4>Delete</h4>
+                </div>
                 <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
               </div>
               <h5>Are you sure you want to remove this item ?</h5>
               <div class="buttons">
-                <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancel</button>                
+                <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancel</button>
                 <button type="button" class="btn btn-danger" (click)="deleteBudgetItems()">Danger</button>
               </div>
             </div>
-            
+
           </ng-template>
 
           <div class="accordion" *ngFor="let item of categorised; index as i">
@@ -257,8 +268,7 @@
           <div class="cardss">
             <div class="cats-items">
               <div class="cat-item cat" [ngClass]="{'selectedCat':selectedCat == i}"
-              *ngFor="let item of selected;let i = index" 
-              (click)="foodToggle(item.categoryName, i)">
+                *ngFor="let item of selected;let i = index" (click)="foodToggle(item.categoryName, i)">
                 <img class="cat-img" src="/assets/images/food.png" alt="" />
                 <div class="cat-text">
                   <h4>{{item.categoryName}}</h4>
@@ -423,7 +433,8 @@
           <div class="foodDetails">
             <div class="foodDetails__header">
               <div class="foodDetails__header-back">
-                <h2 class="foodDetails__header-backText" (click)="backToVendors()"><mat-icon>arrow_back_ios</mat-icon> Back</h2>
+                <h2 class="foodDetails__header-backText" (click)="backToVendors()"><mat-icon>arrow_back_ios</mat-icon>
+                  Back</h2>
               </div>
               <div class="foodDetails__header-sort">
                 <h4 class="foodDetails__header-sortText">Sort By</h4>

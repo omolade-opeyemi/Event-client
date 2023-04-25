@@ -31,7 +31,8 @@
                                 invoice.status }}</div>
                         </td>
                         <td>{{ invoice.date|split: "T": 0}}</td>
-                        <td (click)="viewInvoice(review, invoice.id)" style="cursor:pointer;color: #1C2B66;">view
+                        <td (click)="viewInvoice(review, invoice.id,invoice.eventId)"
+                            style="cursor:pointer;color: #1C2B66;">view
                         </td>
                     </tr>
                 </tbody>
@@ -55,7 +56,7 @@
             <div class="event-invoiceBanner">
                 <div class="invoiceBannerTop">
                     <div class="invoiceBannerLogo">
-                        <img src="https://images.squarespace-cdn.com/content/v1/56201b5ce4b0c05fdc35713a/1526420864826-N38FTFOAVE50YOYYME85/j-logo-black-new.pnglogo"
+                        <img src="{{invoiceDetail.imageUrl}}"
                             alt="">
                     </div>
                     <div class="invoiceBannerContact">
@@ -103,23 +104,28 @@
                                 <!-- <th scope="row">1</th> -->
                                 <td>{{item.serviceType}}</td>
                                 <td>{{item.serviceCaption}}</td>
-                                <td>&#8358;{{item.rate}}</td>
-                                <td>&#8358;{{item.totalAmount}}</td>
+                                <td>&#8358;{{item.rate | number}}</td>
+                                <td>&#8358;{{item.totalAmount | number}}</td>
                             </tr>
                             <tr>
                                 <th></th>
                                 <td class="subtotal" colspan="2">SUBTOTAL</td>
-                                <td>&#8358;{{invoiceDetail.subTotal}}</td>
+                                <td>&#8358;{{invoiceDetail.subTotal | number}}</td>
                             </tr>
                             <tr>
                                 <th></th>
-                                <td class="discount" colspan="2">DISCOUNT invoiceDetail.discount %</td>
-                                <td>&#8358;{{invoiceDetail.discount * invoiceDetail.subTotal}}</td>
+                                <td class="discount" colspan="2">DISCOUNT %</td>
+                                <td>{{invoiceDetail.discount}} %</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="discount" colspan="2">COMMISSION + CHARGE</td>
+                                <td>{{invoiceDetail.discount}} %</td>
                             </tr>
                             <tr>
                                 <th scope="row"></th>
                                 <td colspan="2">TOTAL</td>
-                                <td class="total">&#8358; {{invoiceDetail.total}}</td>
+                                <td class="total">&#8358; {{invoiceDetail.total | number}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -169,21 +175,21 @@
                         <tr>
                             <th></th>
                             <td class="subtotal" colspan="2">SUBTOTAL</td>
-                            <td>&#8358;{{invoiceDetail.subTotal}}</td>
+                            <td>&#8358;{{invoiceDetail.subTotal | number}}</td>
                         </tr>
                         <tr>
                             <th></th>
-                            <td class="discount" colspan="2">DISCOUNT invoiceDetail.discount %</td>
-                            <td>&#8358;{{invoiceDetail.discount * invoiceDetail.subTotal}}</td>
+                            <td class="discount" colspan="2">DISCOUNT %</td>
+                            <td>{{invoiceDetail.discount}} %</td>
                         </tr>
                         <tr>
                             <th scope="row"></th>
                             <td colspan="2">TOTAL</td>
-                            <td class="total">&#8358; {{invoiceDetail.total}}</td>
+                            <td class="total">&#8358; {{invoiceDetail.total | number}}</td>
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn check" (click)="paymentOption(options)">Pay &#8358; {{invoiceDetail.total}}</button>
+                <button class="btn check" (click)="paymentOption(options)">Pay &#8358; {{invoiceDetail.total | number}}</button>
 
             </div>
 
@@ -211,14 +217,14 @@
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1">
                     <label class="form-check-label" for="gridCheck">
-                        Cards 
+                        Cards
                     </label>
                     <mat-icon>credit_card</mat-icon>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" disabled>
                     <label class="form-check-label" for="gridCheck">
                         Wallet
                     </label>
@@ -230,8 +236,33 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" style="width: 100%;" (click)="c('Save click')">Proceed</button>
+        <button type="button" class="btn btn-secondary" style="width: 100%;"
+            (click)="creatorPayment(payment)">Proceed</button>
     </div>
+</ng-template>
+
+
+<ng-template #payment let-c="close" let-d="dismiss">
+    <!-- <div class="modal-header modal-head">
+        <h4 class="modal-title" id="modal-basic-title">&nbsp;</h4>
+        <img src="/assets/images/Logo.png" alt="">
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div> -->
+    <div class="modal-body payment-body">
+        <div class="close">
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+
+        </div>
+        
+        <iframe [src]="transform()"  style="width:100%;height:800px;"
+    frameborder="0" allowfullscreen title="YouTube video player"
+    ></iframe>
+    <div class="closebtn">
+        <button class="btn btn-secondary" (click)="closeButton();d('Cross click')">Close</button>
+    </div>
+</div>
+    
+
 </ng-template>
 
 

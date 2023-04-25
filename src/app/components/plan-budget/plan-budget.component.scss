@@ -224,6 +224,32 @@
         justify-content: space-between;
         align-items: center;
 
+        .chart{
+          width: 50%;
+          .doughnut {
+            width: 100%;
+            // max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        
+          }
+          .doughnut h3 {
+            position: absolute;
+            top: 150px;
+            left: 100px;
+          }
+          .canva {
+            display: flex;
+            width: 100%;
+            // max-width: 300px;
+            height: 300px !important;
+          }
+          .main[_ngcontent-but-c335] .canva[_ngcontent-but-c335] {
+            // width: 40%;
+            border: 2px solid indianred;
+        }
+        }
+
         .details {
           display: flex;
           flex-direction: column;
@@ -1233,15 +1259,18 @@ ngb-carousel .picsum-img-wrapper>img {
 }
 
 .foodDetails__service-itemImg {
-  width: 30%;
+  width: 200px;
+  border: 2px solid;
+  height: 150px;
 }
 
 .foodDetails__service-itemImg img {
   /* height: 120px; */
   width: 100%;
-  object-fit: cover;
+  height: 100%;
+  // object-fit: cover;
   border-radius: 10px;
-  margin-right: 2rem;
+  // margin-right: 2rem;
 }
 
 .foodDetails__service-right {
@@ -1349,3 +1378,6 @@ ngb-carousel .picsum-img-wrapper>img {
   }
   
   ///////////// Modal Ends ////////////
+  /// 
+  
+ 

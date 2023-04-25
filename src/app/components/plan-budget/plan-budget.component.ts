@@ -10,6 +10,7 @@ import { Budgeting, BudgetDetails, PlaceHolder } from 'src/app/models/events';
 import { DeleteService } from 'src/app/models/service';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { ChartConfiguration } from 'chart.js';
 
 interface chartData {
   label: string;
@@ -60,9 +61,6 @@ export class PlanBudgetComponent implements OnInit {
 
   ];
 
-
-
-
   public chart: any;
   closeResult = '';
 
@@ -78,8 +76,33 @@ export class PlanBudgetComponent implements OnInit {
   }
   removeFood(data: any) {
     this.selected.splice(this.selected.indexOf(data), 1);
-
   }
+
+  mappedPlan:any = []
+mappedPlanTotal:any = []
+
+categorieses = [
+  {name:"food", total:100},
+  {name:"music", total:350},
+  {name:"food", total:200},
+  {name:"example", total:270},
+  {name:"example", total:210}
+]
+
+  plans = [...this.categorieses]
+
+
+  public doughnutChartLabels = this.mappedPlan;
+  public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [
+      { data: this.mappedPlanTotal, label: 'Series A' },
+      // { data: [ 50, 150, 120 ], label: 'Series B' },
+      // { data: [ 20, 130, 70 ], label: 'Series C' }
+    ];
+    // ChartConfiguration<'doughnut'>['options'] =
+  public doughnutChartOptions: any = {
+    responsive: true,
+    plugins: { legend: { position: 'right' } }
+  };
 
   constructor(private interact: InteractionService,
     public router: Router,
@@ -95,35 +118,7 @@ export class PlanBudgetComponent implements OnInit {
   authpage = ''
   sidebar = false;
 
-  createChart() {
-    this.chart = new Chart("MyChart", {
-      type: 'doughnut', //this denotes tha type of chart
-      data: {// values on X-Axis
-
-        labels: ['Red', 'Pink', 'Green', 'Yellow', 'Orange', 'Blue',],
-        datasets: [{
-          label: 'My First Dataset',
-          data: [300, 240, 100, 432, 253, 34],
-          backgroundColor: [
-            'red',
-            'pink',
-            'green',
-            'yellow',
-            'orange',
-            'blue',
-          ],
-          hoverOffset: 4,
-
-
-        }],
-      },
-
-      options: {
-        aspectRatio: 5,
-      }
-
-    });
-  }
+ 
 
   ngOnInit(): void {
     this.page = 'one'
@@ -132,6 +127,14 @@ export class PlanBudgetComponent implements OnInit {
     this.getEventDetails();
     this.getVendorCategories();
     this.getEventBudgetSummary();
+
+
+    this.plans.map((plan: { name: any; total: any; })=> {
+      this.mappedPlan.push(plan.name);
+      this.mappedPlanTotal.push(plan.total);
+         } )
+                console.log(this.mappedPlan, this.mappedPlanTotal)
+                console.log(...this.mappedPlan)
   }
 
 deleteModal(content:any){
@@ -297,13 +300,16 @@ deleteBudgetItems(){
         amount += item[h].rate * item[h].quantity;
         rString = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase();
       }
-      var doughnut = { label: this.category[g], value: Number(amount), color: rString }
+      var doughnut = { name: this.category[g], total: Number(amount)}
       var single = { category: this.category[g], services: item, totalAmount: amount };
       // this.donutChartData.push(doughnut)
       this.categorised.push(single);
       this.donutChart.push(doughnut);
     }
     // this.donutChartData = this.donutChart;
+    console.log(this.donutChart);
+
+    
   }
 
 
@@ -365,7 +371,6 @@ deleteBudgetItems(){
   servicesSelected: any[] = []
   selectedServices(data: any, item: any) {
     if (data.target.checked) {
-      console.log(item);
       this.budgetDetail.eventSupplierId = item.VendorId;
       this.budgetDetail.serviceId = item.serviceId;
       this.budgetDetail.budget = this.budgetEstimate;

@@ -1,0 +1,38 @@
+<div class="add-invitee">
+    <div class="invitee-header">
+      <div class="invitee-headerText">
+        <h2 class="invitee-headerTitle"> Invitee/RSVP</h2>
+        <p><mat-icon>chevron_left</mat-icon> Back</p>
+      </div>
+    </div>
+    <div class="invitee-container">
+      <ng-container *ngIf="drawer">
+        <div class="invite-drawer">
+          <app-sidnav></app-sidnav>
+
+          <button (click)="onDrawerClick()" class="drawer-btn"><mat-icon>chevron_left</mat-icon></button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="drawer_min">
+        <div class="invite-drawer-mini">
+          <button (click)="onDrawerClick()" class="drawer-btn-mini"><mat-icon>chevron_right</mat-icon></button>
+        </div>
+      </ng-container>
+      <div class="invitee-content">
+        <button class="back-btn" routerLink="/add-invitee"><mat-icon>chevron_left</mat-icon>Back</button>
+        <div class="invitee-containerHeader">
+          <h2 class="invitee-title">No Invitees, just yet</h2>
+          <p class="invitee-subtitle">Let us create your invite list so you can send your invitation to your exclusive
+            guest
+            list</p>
+        </div>
+        <div class="invitee-containerContent">
+          <img class="invitee-img" src="/assets/images/import.png" alt="import-list">
+          <div class="container-btns">
+            <button class="container-btn btn-invitee"><mat-icon>add_box</mat-icon>Download Template</button>
+            <button class="container-btn btn-import">Import .csv</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,61 @@
+
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
+<div class="dinner-invite">
+  <div class="dinner-container">
+    <div class="dinner-header" popoverClass="my-custom-class" [ngbPopover]='popContent8' [autoClose]="'outside'" [innerHTML]="youAre | safe : 'html'"></div>
+    <div class="dinner-title">
+      <div class="dinner-text" popoverClass="my-custom-class" [ngbPopover]='popContent' [autoClose]="'outside'" [innerHTML]="text1 | safe : 'html'"></div>
+      <div class="dinner-amp"
+      popoverClass="my-custom-class" [ngbPopover]='popContent9' [autoClose]="'outside'" [innerHTML]="and | safe : 'html'"></div>
+      <div class="dinner-text" popoverClass="my-custom-class" [ngbPopover]='popContent2' [autoClose]="'outside'" [innerHTML]="text2 | safe : 'html'"></div>
+    </div>
+    <div class="dinner-header" popoverClass="my-custom-class" [ngbPopover]='popContent6' [autoClose]="'outside'" [innerHTML]="inviter_invite | safe : 'html'">
+      
+    </div>
+    <div class="dinner-date" popoverClass="my-custom-class" [ngbPopover]='popContent3' [autoClose]="'outside'" [innerHTML]="date | safe : 'html'"></div>
+    <div class="dinner-time" popoverClass="my-custom-class" [ngbPopover]='popContent4' [autoClose]="'outside'" [innerHTML]="time | safe : 'html'"></div>
+    <div class="dinner-address" popoverClass="my-custom-class" [ngbPopover]='popContent7' [autoClose]="'outside'" [innerHTML]="address | safe : 'html'">
+    </div>
+    <div class="dinner-rsvp" popoverClass="my-custom-class" [ngbPopover]='popContent5' [autoClose]="'outside'" [innerHTML]="rsvp | safe : 'html'"></div>
+  </div>
+</div>
+
+
+
+<ng-template #popContent>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleOne()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+
+<ng-template #popContent2>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleTwo()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+
+<ng-template #popContent3>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleThree()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+
+<ng-template #popContent4>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleFour()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+
+<ng-template #popContent5>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleFive()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+
+<ng-template #popContent6>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleFive()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+
+<ng-template #popContent7>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleSeven()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent8>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleEight()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent9>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleNine()"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+</ng-template>

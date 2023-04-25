@@ -27,8 +27,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import { NgxDonutChartModule } from 'ngx-doughnut-chart';
 import { NgChartsModule } from 'ng2-charts';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-
-
+import { CKEditorModule } from 'ngx-ckeditor';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatSliderModule} from '@angular/material/slider';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -86,6 +88,29 @@ import { InvoicePageComponent } from './pages/invoice-page/invoice-page.componen
 import { TicketPageComponent } from './pages/ticket-page/ticket-page.component';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { TestpageComponent } from './pages/testpage/testpage.component';
+import { AccountPageComponent } from './pages/account-component/account-page/account-page.component';
+import { AccountComponent } from './components/account/account.component';
+import { BasicInfoComponent } from './pages/account-component/basic-info/basic-info.component';
+import { SafePipe } from './pipes/safe.pipe';
+import { IvpageComponent } from './pages/invitation/ivpage/ivpage.component';
+import { InvitationComponent } from './components/invitation/invitation.component';
+import { InviteeComponent } from './pages/invitation/invitee/invitee.component';
+import { AddInviteComponent } from './pages/invitation/add-invite/add-invite.component';
+import { ImportInviteComponent } from './pages/invitation/import-invite/import-invite.component';
+import { TemplateoneComponent } from './pages/templates/templateone/templateone.component';
+import { TemplatetwoComponent } from './pages/templates/templatetwo/templatetwo.component';
+import { SeatingComponent } from './pages/invitation/seatings/seating/seating.component';
+import { SeatingmodalComponent } from './pages/invitation/seatings/seatingmodal/seatingmodal.component';
+import { ShuffletableComponent } from './pages/invitation/seatings/shuffletable/shuffletable.component';
+import { TemplatethreeComponent } from './pages/templates/templatethree/templatethree.component';
+import { TemplatefourComponent } from './pages/templates/templatefour/templatefour.component';
+import { TemplatefiveComponent } from './pages/templates/templatefive/templatefive.component';
+import { TemplatesixComponent } from './pages/templates/templatesix/templatesix.component';
+import { TemplatesevenComponent } from './pages/templates/templateseven/templateseven.component';
+import { TemplateeightComponent } from './pages/templates/templateeight/templateeight.component';
+import { TemplatenineComponent } from './pages/templates/templatenine/templatenine.component';
+import { InviteeGroupComponent } from './pages/invitation/invitee-group/invitee-group.component';
+import { SidnavComponent } from './pages/invitation/sidnav/sidnav.component';
 
 @NgModule({
   declarations: [
@@ -134,6 +159,29 @@ import { TestpageComponent } from './pages/testpage/testpage.component';
     TicketPageComponent,
     TicketComponent,
     TestpageComponent,
+    AccountPageComponent,
+    AccountComponent,
+    BasicInfoComponent,
+    SafePipe,
+    IvpageComponent,
+    InvitationComponent,
+    InviteeComponent,
+    AddInviteComponent,
+    ImportInviteComponent,
+    TemplateoneComponent,
+    TemplatetwoComponent,
+    SeatingComponent,
+    SeatingmodalComponent,
+    ShuffletableComponent,
+    TemplatethreeComponent,
+    TemplatefourComponent,
+    TemplatefiveComponent,
+    TemplatesixComponent,
+    TemplatesevenComponent,
+    TemplateeightComponent,
+    TemplatenineComponent,
+    InviteeGroupComponent,
+    SidnavComponent
   ],
   imports: [
     BrowserModule,
@@ -151,6 +199,7 @@ import { TestpageComponent } from './pages/testpage/testpage.component';
     MatBadgeModule,
     MatSidenavModule,
     MatTableModule,
+    CKEditorModule,
     NgChartsModule,
     ToastrModule.forRoot(), // ToastrModule \
     CalendarModule.forRoot({
@@ -184,7 +233,10 @@ import { TestpageComponent } from './pages/testpage/testpage.component';
       "clockwise": false,
       "startFromZero": false,
       "showSubtitle": false,
-      "lazy": true})
+      "lazy": true}),
+      NgbPopoverModule,
+      MatSliderModule,
+      DragDropModule
 
 
 

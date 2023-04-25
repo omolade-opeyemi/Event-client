@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import Chart from 'chart.js/auto';
 import { Budgeting, BudgetDetails, PlaceHolder } from 'src/app/models/events';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import { ChartConfiguration } from 'chart.js';
 
 
 
@@ -295,6 +296,36 @@ export class PlanbudgetpageComponent implements OnInit {
     },
 
   ];
+
+  mappedPlan:any = []
+mappedPlanTotal:any = []
+
+categorieses = [
+  {name:"food", total:100},
+  {name:"music", total:350},
+  {name:"food", total:200},
+  {name:"example", total:270},
+  {name:"example", total:210}
+]
+
+plans = [...this.categorieses]
+
+  public doughnutChartLabels = this.mappedPlan;
+  public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [
+      { data: this.mappedPlanTotal, label: 'Series A' },
+      // { data: [ 50, 150, 120 ], label: 'Series B' },
+      // { data: [ 20, 130, 70 ], label: 'Series C' }
+    ];
+    // ChartConfiguration<'doughnut'>['options'] =
+  public doughnutChartOptions: any = {
+    responsive: true,
+    plugins: { legend: { position: 'right' } }
+  };
+
+  // public options: any = {
+  //   legend: { position: 'left' }
+  // }
+
   constructor(private vendorService: VendorService,
     private modalService: NgbModal,
     private endpoint: EndpointsService,
@@ -334,12 +365,25 @@ export class PlanbudgetpageComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.plans.map((plan)=> {
+      this.mappedPlan.push(plan.name);
+      this.mappedPlanTotal.push(plan.total);
+         } )
+                console.log(this.mappedPlan, this.mappedPlanTotal)
+                console.log(...this.mappedPlan)
     
     
     this.getEventDetails();
     this.getVendorCategories();
     this.getEventBudgetSummary();
     this.vendorService.requestDetail$.subscribe(message => { this.page = message })
+  }
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+
+  public chartHovered(e:any):void {
+    console.log(e);
   }
 
   open(content: any) {
@@ -387,7 +431,6 @@ export class PlanbudgetpageComponent implements OnInit {
       this.response = data;
       if(this.response.responseCode == '00'){
         this.eventDetail = this.response.responseData;
-        console.log(this.eventDetail);
         
       }
       else{
@@ -446,7 +489,6 @@ export class PlanbudgetpageComponent implements OnInit {
       // this.donutChartData.push(doughnut)
       this.categorised.push(single)
     }
-    console.log(this.categorised);
     
   }
 
@@ -491,7 +533,6 @@ export class PlanbudgetpageComponent implements OnInit {
       var single = { category: this.category[b], services: item, totalAmount:amount }
       this.categorised.push(single)
       // this.donutChartData.push(doughnut)
-      console.log(this.donutChartData);
     }
     this.notify.showInfo('Service added to plan')
   }
@@ -591,8 +632,6 @@ export class PlanbudgetpageComponent implements OnInit {
 
   vendorCategory: any;
   foodToggle(data: string) {
-    console.log(data);
-
     this.vendorCategory = data;
     this.placeHolder.serviceCategory = data
     // this.toggle = !this.toggle;

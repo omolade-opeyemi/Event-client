@@ -27,7 +27,7 @@
 
 
       <div class="bottom">
-        <div class="solution-cards" *ngFor="let item of specialRequest | paginate: { itemsPerPage: 8, currentPage: pg, totalItems:totalLength }" (click)="selectService(item.serviceId)">
+        <div class="solution-cards" *ngFor="let item of specialRequest | paginate: { itemsPerPage: 8, currentPage: pg, totalItems:totalLength }" (click)="selectService(item)">
           <div class="card-text">
             <h4>{{item.serviceName}}</h4>
             <p>
@@ -268,7 +268,7 @@
               </p>
             </div>
             <div class="req-select">
-              <p class="req-header-text">Estimated number of guards required</p>
+              <p class="req-header-text">Estimated number of {{serviceName}} required</p>
               <input type="number" placeholder="0" ngModel [(ngModel)]="specialRequestDetail.quantity"/>
             </div>
             <div *ngIf="specialRequestDetail.quantity > 0"

@@ -1,0 +1,22 @@
+.drawer-container {
+    padding: 1rem;
+    width: 90%;
+    margin: 1rem auto;
+  }
+  
+  
+  .drawer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+    color: #fff;
+  }
+  
+  .drawer-list li {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+  }

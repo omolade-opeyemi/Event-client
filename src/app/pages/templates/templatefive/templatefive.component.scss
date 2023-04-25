@@ -1,0 +1,53 @@
+.dinner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("/assets/images/dinner.jpg");
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dinner-container {
+    height: 80%;
+    width: 80%;
+    background: #fff;
+    color: black;
+    padding: 1rem;
+    margin: auto;
+    text-align: center;
+  }
+  .dinner-inner {
+    border: 2px solid gold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .dinner-text,
+  .dinner-amp {
+    text-align: center;
+    font-size: clamp(0.5rem, 0.2059rem + 2.3529vw, 3rem);
+  }
+  .dinner-header,
+  .dinner-date,
+  .dinner-address {
+    font-size: clamp(0.4375rem, 0.3566rem + 0.6471vw, 1.125rem);
+  }
+  .dinner-address {
+    width: 80%;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .dinner-inner {
+      gap: 0.8rem;
+    }
+    .dinner-container {
+      height: 90%;
+      width: 90%;
+    }
+  }

@@ -1,0 +1,85 @@
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="birthday">
+  <div class="birthday-container">
+    <div class="birthday-text" popoverClass="my-custom-class" [ngbPopover]='popContent1' [autoClose]="'outside'"
+      [innerHTML]="pleaseJoin | safe : 'html'"></div>
+    <div class="birthday-title" popoverClass="my-custom-class" popoverClass="my-custom-class" [ngbPopover]='popContent2'
+      [autoClose]="'outside'" [innerHTML]="title | safe : 'html'"></div>
+    <div class="birthday-minititle" popoverClass="my-custom-class" [ngbPopover]='popContent3' [autoClose]="'outside'"
+      [innerHTML]="celebrating | safe : 'html'"></div>
+    <div class="birthday-name" popoverClass="my-custom-class" [ngbPopover]='popContent4' [autoClose]="'outside'"
+      [innerHTML]="celebrant_name | safe : 'html'"></div>
+
+    <div class="birthday-date">
+      <div class="birthday-left">
+        <div class="birthday-day" popoverClass="my-custom-class" [ngbPopover]='popContent5' [autoClose]="'outside'"
+          [innerHTML]="day | safe : 'html'"></div>
+        <div class="birthday-time" popoverClass="my-custom-class" [ngbPopover]='popContent6' [autoClose]="'outside'"
+          [innerHTML]="time | safe : 'html'"></div>
+      </div>
+      <div class="birthday-mid" popoverClass="my-custom-class" [ngbPopover]='popContent7' [autoClose]="'outside'"
+        [innerHTML]="date | safe : 'html'"></div>
+      <div class="birthday-right">
+        <div class="birthday-month" popoverClass="my-custom-class" [ngbPopover]='popContent8' [autoClose]="'outside'"
+          [innerHTML]="month | safe : 'html'"></div>
+        <div class="birthday-year" popoverClass="my-custom-class" [ngbPopover]='popContent9' [autoClose]="'outside'"
+          [innerHTML]="year | safe : 'html'"></div>
+      </div>
+    </div>
+
+    <div class="birthday-address" popoverClass="my-custom-class" [ngbPopover]='popContent10' [autoClose]="'outside'"
+      [innerHTML]="address | safe : 'html'">
+      <!-- <div class="birthday-location" popoverClass="my-custom-class" [ngbPopover]='popContent11' [autoClose]="'outside'"
+        [innerHTML]="location | safe : 'html'"></div> -->
+
+    </div>
+  </div>
+</div>
+
+<ng-template #popContent1>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleOne()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent2>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleTwo()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent3>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleThree()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent4>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleFour()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent5>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleFive()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent6>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleSix()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent7>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleSeven()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent8>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleEight()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent9>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleNine()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<ng-template #popContent10>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleTen()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template>
+<!-- <ng-template #popContent11>
+  <ck-editor name="editor1" [(ngModel)]="valueOne" (ngModelChange)="updateCKStyleEleven()" skin="moono-lisa" language="en"
+    [fullPage]="true"></ck-editor>
+</ng-template> -->

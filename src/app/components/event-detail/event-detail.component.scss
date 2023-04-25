@@ -148,10 +148,12 @@ section{
   span{
     display: flex;
   }
-  select{
-    padding: 5px 15px;
-    background: #F1F4FA;
+  input{
+    padding: 5px;
+    width: 50px;
+    // background: #F1F4FA;
 border-radius: 5px;
+border: 0.5px solid #576499;
   }
 }
 }
@@ -223,5 +225,24 @@ border-radius: 5px;
   button{
     background: #1c2b66;
   }
+  }
+}
+
+.payment-body{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0;
+  .closebtn{
+    display: flex;
+    width: 100%;
+    padding-bottom: 10px;
+    justify-content: center;
+    button{
+      width: 50%;
+    }
+
   }
 }

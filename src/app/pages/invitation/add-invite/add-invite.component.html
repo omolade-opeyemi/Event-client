@@ -1,0 +1,80 @@
+<div class="add-invitee">
+    <div class="invitee-header">
+      <div class="invitee-headerText">
+        <h2 class="invitee-headerTitle"> Invitee/RSVP</h2>
+        <p><mat-icon>chevron_left</mat-icon> Back</p>
+      </div>
+    </div>
+    <div class="invitee-container">
+      <ng-container *ngIf="drawer">
+        <div class="invite-drawer">
+          <div class="drawer-container">
+            <ul class="drawer-list">
+              <li><mat-icon>rsvp</mat-icon>Invitation</li>
+              <li><mat-icon>receipt_long</mat-icon>Invitation List</li>
+              <li><mat-icon>chair</mat-icon>Seating</li>
+              <li><mat-icon>assignment_turned_in</mat-icon>Check in</li>
+            </ul>
+          </div>
+          <button (click)="onDrawerClick()" class="drawer-btn"><mat-icon>chevron_left</mat-icon></button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="drawer_min">
+        <div class="invite-drawer-mini">
+          <button (click)="onDrawerClick()" class="drawer-btn-mini"><mat-icon>chevron_right</mat-icon></button>
+        </div>
+      </ng-container>
+      <div class="invitee-content">
+        <div class="invitee-containerHeader">
+          <h2 class="invitee-title">No Invitees, just yet</h2>
+          <p class="invitee-subtitle">Let us create your invite list so you can send your invitation to your exclusive
+            guest
+            list</p>
+        </div>
+        <div class="invitee-containerContent">
+          <img class="invitee-img" src="/assets/images/add-tasks.png" alt="import-list">
+          <div class="container-btns">
+            <button class="container-btn btn-invitee" (click)="open(invite)"><mat-icon>add</mat-icon>Quick Add
+              Invitee</button>
+            <button class="container-btn btn-import" routerLink="/import-invitee">Import List</button>
+          </div>
+          <ng-template #invite let-modal class="moddd">
+            <div class="invitee-popup">
+              <div class="popup-header">
+                <h4>Add Invitee</h4>
+                <p class="popup-subtitle">
+                  Quickly add an Invitee to your Invite list
+                </p>
+              </div>
+              <form class="popup-form">
+                <div class="form_input">
+                  <label for="firstname">First Name</label>
+                  <input type="text" name="firstname">
+                </div>
+                <div class="form_input">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" name="lastname">
+                </div>
+                <div class="form_input">
+                  <label for="email">Email</label>
+                  <input type="email" name="email">
+                </div>
+                <div class="form_select">
+                  <label for="guest">Guest Allowed</label>
+                  <div class="selectDiv">
+                    <select name="guest" id="">
+                      <option value="">&nbsp;</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="pop-up-btns">
+                  <button class="pop-up-btn cancel-btn " (click)="modal.dismiss()">Cancel</button>
+                  <button class="pop-up-btn save-btn" (click)="modal.dismiss()">Save & Cancel</button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>

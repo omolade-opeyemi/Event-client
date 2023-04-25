@@ -138,5 +138,62 @@ export class EndpointsService {
   getClientEventDetails(eventId:number):Observable<any>{
     return this.http.get(this.baseUrl+ 'api/EventClient/GetEventDetails?eventId=' +eventId)
   }
+  getUserProfile(profileId: number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/SMSAccount/GetCustomerProfile?profileId=' +profileId)
+  }
+  updateCustomerProfile(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/SMSAccount/UpdateCustomerProfile', data)
+  }
+  creatorPayment(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/CustomerPayment/EventCreatorPaymentToVendor', data)
+  }
+  getInvoiceDetailForSpecialRequest(profileId:number, invoiceId:number):Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventSpecialRequest/GetInvoiceDetailsForSpecialRequests?profileId='+profileId +'&invoiceId='+invoiceId)
+  }
+  specialRequestCardPayment(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ '/api/CustomerPayment/EventCreatorPaymentForSpecialRequest',data)
+  }
+  specialRequestWalletPayment(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/CustomerPayment/EventCreatorPaymentForSpecialRequestWithWallet',data)
+  }
+  customerPaymentForTicket(data:any): Observable<any>{
+    return this.http.post(this.baseUrl + 'api/CustomerPayment/CustomerPaymentForTicket', data)
+  }
+  customerRegsiterForFreeTicket(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/CustomerPayment/CustomerRegsiterForFreeTicket', data)
+  }
+  createInvitation(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventInvites/CreateInvitation', data)
+  }
+  getAllInvitees(profileId: number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventInvites/GetAllInvitees?profileId='+profileId)
+  }
+  AddSingleInvite(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventInvites/AddSingleInvitee', data)
+  }
+  createTableArranagements(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventInvites/CreateTableArranagements', data)
+  }
+  getAllInvitations(profileId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventInvites/GetAllInvitations?profileId=' + profileId)
+  }
+  getTableArranagements(invitationId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventInvites/GetTableArranagements?invitationId=' + invitationId)
+  }
+  assignInviteeToTable(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventInvites/AssignInviteeToTable', data)
+  }
+  getRawHTMLFromURL(siteLink:any): Observable<any>{
+    return this.http.get(this.baseUrl+ 'api/EventInvites/GetRawHTMLFromURL?siteLink='+ siteLink)
+  }
+  getAllInviteeGroup(invitationId:number): Observable<any>{
+    return this.http.get(this.baseUrl+ '/api/EventInvites/GetAllInviteeGroups?invitationId='+invitationId)
+  }
+  createInviteeGroup(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventInvites/CreateInviteeGroup', data)
+  }
+  assignInviteesToGroup(data:any): Observable<any>{
+    return this.http.post(this.baseUrl+ 'api/EventInvites/AssignInviteesToGroup', data)
+  }
 
 }

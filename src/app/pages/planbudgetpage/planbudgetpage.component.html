@@ -1,7 +1,6 @@
 
 
 <div class="event">
-  
   <!-- -------------drawer ------------------ -->
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
@@ -12,8 +11,16 @@
         </div>
         <div class="row2">
           <div class="chart">
-            <ngx-donut-chart [data]="donutChartData" [title]="'Session'" [radius]="88" [thickness]="50" [margin]="30">
-            </ngx-donut-chart>
+            <!-- <ngx-donut-chart [data]="donutChartData" [title]="'Session'" [radius]="88" [thickness]="50" [margin]="30">
+            </ngx-donut-chart> -->
+
+            <h3 style="text-align: center">Company A Employes in 2017 & 2018</h3>
+
+            <div class="doughnut">
+              <canvas class="canva" baseChart [labels]="doughnutChartLabels" [datasets]="doughnutChartDatasets"
+                [options]="doughnutChartOptions" [legend]="true" [type]="'doughnut'">
+              </canvas>
+            </div>
           </div>
           <div class="details">
             <div class="food">🟧 Food: &#8358;500,000</div>
@@ -126,7 +133,8 @@
                   <tbody>
                     <tr *ngFor="let country of item.services; index as i">
                       <!-- <th scope="row">{{ i + 1 }}</th> -->
-                      <th><input type="checkbox" name=i id="" (change)="selectedServices($event,item)" [disabled]="country.status != 'pending'"></th>
+                      <th><input type="checkbox" name=i id="" (change)="selectedServices($event,item)"
+                          [disabled]="country.status != 'pending'"></th>
                       <td>
                         <img [src]="country.vendorImage ? country.vendorImage : '/assets/images/food.jpg'" class="me-2"
                           style="width: 20px" />
@@ -136,13 +144,11 @@
                       <td>{{ country.quantity | number }}</td>
                       <td>&#8358;{{ country.rate }}</td>
                       <td>&#8358;{{ country.quantity * country.rate| number }}</td>
-                      <td 
-                      [ngClass]="{'red':country.status == 'Request Declined',
+                      <td [ngClass]="{'red':country.status == 'Request Declined',
                     'green':country.status == 'Request Accepted',
                   'yellow':country.status == 'Request Sent',
-                'blue':country.status == 'Pending'}"
-                      >{{ country.status }}
-                    </td>
+                'blue':country.status == 'Pending'}">{{ country.status }}
+                      </td>
                       <td></td>
                     </tr>
                   </tbody>
@@ -158,7 +164,7 @@
           </ngb-accordion>
         </div>
 
-        
+
 
       </div>
     </mat-drawer>
@@ -172,14 +178,13 @@
   </mat-drawer-container>
   <!-- ------------------------- Drawer Ends --------------- -->
 
- 
+
   <div class="event-page">
     <div class="event-banner">
       <div class="event-img">
         <img
-        [src]="eventDetail.imageUrl ? eventDetail.imageUrl:'https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414'"
-          src=""
-          alt="" />
+          [src]="eventDetail.imageUrl ? eventDetail.imageUrl:'https://cdn-az.allevents.in/events6/banners/6a99707868dd21455d51a4c21edcbcc1bbe31df71b995190bf1c3f13f17e7ee2-rimg-w960-h365-gmir.jpg?v=1655994414'"
+          src="" alt="" />
       </div>
     </div>
 
@@ -222,7 +227,8 @@
           <div class="modal-body">
             <h4 class="modal-title" id="modal-basic-title">How much would you like to budget for this event ?</h4>
             <div class="mb-3">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="&#8358;" ngModel [(ngModel)]="budgetEstimate">
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="&#8358;" ngModel
+                [(ngModel)]="budgetEstimate">
             </div>
           </div>
           <div class="modal-footer">
@@ -233,7 +239,8 @@
 
         <div class="card-item build">
           <h3>Budget Build <mat-icon>more_horiz</mat-icon></h3>
-          <h2>&#8358; {{budgetBuild | number}} <button class="btn btn-primary" (click)="drawer.toggle()">view</button></h2>
+          <h2>&#8358; {{budgetBuild | number}} <button class="btn btn-primary" (click)="drawer.toggle()">view</button>
+          </h2>
         </div>
         <div class="card-item act">
           <h3>Actualized <mat-icon>more_horiz</mat-icon></h3>
@@ -473,9 +480,11 @@
                     </div>
                     <div class="foodDetails__service-right">
                       <button class="foodDetails__btn" (click)="serviceQnty('-',i)">-</button>
-                        <span class="foodDetails__btnSpan"><input type="text" id="serviceQty" #serviceQty ngModel [(ngModel)]="qty[i]" placeholder="0"></span>
+                      <span class="foodDetails__btnSpan"><input type="text" id="serviceQty" #serviceQty ngModel
+                          [(ngModel)]="qty[i]" placeholder="0"></span>
                       <button class="foodDetails__btn" (click)="serviceQnty('+',i)">+</button>
-                      <button class="foodDetails__btn-add" (click)="addToPlan(serviceQty.value,item)">Add to Plan</button>
+                      <button class="foodDetails__btn-add" (click)="addToPlan(serviceQty.value,item)">Add to
+                        Plan</button>
                     </div>
                   </div>
                 </div>

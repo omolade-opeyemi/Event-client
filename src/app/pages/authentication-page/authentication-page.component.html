@@ -1,5 +1,210 @@
 <div class="main">
-  <ng-template [ngIf]="page == 'landing'">
+<ng-template [ngIf]="page == 'landing'">
+  <div class="landing-page">
+    <div class="section-one">
+      <div class="section-text">
+        <h3>Better Events, Together</h3>
+        <p>Fusce justo mi, vehicula id arcu et, dapibus tristique lectus. Vivamus a elit sodales, tincidunt nunc non,
+          maximus lacus. Fusce a augue sed dolor auctor iaculis vitae id mauris. Integer ut lectus non neque suscipit
+          luctus. Mauris et erat id ipsum condimentum cursus. Sed tempus enim non massa mattis iaculis. In quis massa
+          risus</p>
+  
+        <div class="section-btn">
+          <button class="section-cta" (click)="getStarted()">
+            Get Started <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="section-img">
+        <img class="landing-img" src="/assets/images/landing-one.png" alt="landing-page">
+      </div>
+    </div>
+    <div class="section-two">
+      <div class="section-img">
+        <img class="landing-img" src="/assets/images/landing-two.png" alt="landing-page">
+      </div>
+      <div class="section-text">
+        <h3>About Events</h3>
+        <p>Fusce justo mi, vehicula id arcu et, dapibus tristique lectus. Vivamus a elit sodales, tincidunt nunc non,
+          maximus lacus. Fusce a augue sed dolor auctor iaculis vitae id mauris. Integer ut lectus non neque suscipit
+          luctus. Mauris et erat id ipsum condimentum cursus. Sed tempus enim non massa mattis iaculis. In quis massa
+          risus</p>
+  
+        <div class="section-btn">
+          <button class="section-cta">
+            Learn More <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+  
+    </div>
+    <div class="section-partners">
+      <h3 class="partner-title">Our Partners</h3>
+      <div class="partner-grid">
+        <div class="partner-grid-img">
+          <img src="/assets/images/google.png" alt="google">
+        </div>
+        <div class="partner-grid-img">
+          <img src="/assets/images/microsoft.png" alt="microsoft">
+        </div>
+        <div class="partner-grid-img">
+          <img src="/assets/images/airbnb.png" alt="airbnb">
+        </div>
+        <div class="partner-grid-img">
+          <img src="/assets/images/axure.png" alt="axure">
+        </div>
+        <div class="partner-grid-img">
+          <img src="/assets/images/apple.png" alt="apple">
+        </div>
+        <div class="partner-grid-img">
+          <img src="/assets/images/facebook.png" alt="facebook">
+        </div>
+        <div class="partner-grid-img">
+          <img src="/assets/images/nokia.png" alt="nokia">
+        </div>
+        <div class="partner-grid-img">
+          <img src="/assets/images/oracle.png" alt="oracle">
+        </div>
+      </div>
+      <div class="partner-btn">
+        <button class="partner-cta">Become a Partner</button>
+      </div>
+    </div>
+    <div class="section-clients">
+      <h3 class="client-title">What Our Clients Have To Say</h3>
+      <!-- test -->
+      <!-- carousel -->
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <div class="cards-wrapper">
+              <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item active">
+            <div class="cards-wrapper">
+              <div class="card">
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Card title</h5> -->
+                  <p class="card-text">" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an "</p>
+                </div>
+                <img src="/assets/images/google.png" class="card-img-top" alt="...">
+              </div>
+              <div class="card card-two d-none d-md-block">
+                <div class="card-body special">
+                  <!-- <h5 class="card-title">Card title</h5> -->
+                  <p class="card-text">" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an "</p>
+                </div>
+                <img src="/assets/images/microsoft.png" class="card-img-top" alt="...">
+  
+              </div>
+              <div class="card card-three d-none d-md-block">
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Card title</h5> -->
+                  <p class="card-text">" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an ."</p>
+                </div>
+                <img src="/assets/images/oracle.png" class="card-img-top" alt="...">
+  
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="cards-wrapper">
+              <div class="card">
+                <img src="/assets/images/microsoft.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="/assets/images/microsoft.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="/assets/images/microsoft.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" role="button" data-bs-target="#carouselExampleControls" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" data-bs-target="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <footer>
+      <div class="newsletter">
+        <div class="newsletter-text">
+          <h2 class="newsletter-title">Get Our Newsletter</h2>
+          <p class="newsletter-subtitle">To join the worldwide community</p>
+        </div>>
+        <div class="newsletter-form">
+          <input placeholder="Type Your Email Address Here" type="text">
+          <button>Send Now</button>
+        </div>
+      </div>
+      <div class="footer-menu">
+        <div class="footer-logo">
+          <h1>Events</h1>
+        </div>
+        <ul class="footer-links">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/">About</a></li>
+          <li><a routerLink="/">Services</a></li>
+          <li><a routerLink="/">Pricing</a></li>
+          <li><a routerLink="/">Log In</a></li>
+        </ul>
+      </div>
+      <hr>
+      <p class="footer-copyright">Copyright © 2021 . All Rights Reserved.</p>
+    </footer>
+  </div>
+
+</ng-template>
+
+
+  <ng-template >
     <div class="landingPage">
       <div class="first">
         <div class="top">
@@ -91,6 +296,7 @@
 
     </div>
   </ng-template>
+
   <div class="section1">
     <ng-template [ngIf]="page=='one'">
       <div class="sectionin" @fade>
@@ -509,6 +715,7 @@
 
     </ng-template>
 
+
     <ng-template [ngIf]="page=='eleven'">
       <div class="sectionin" @fade>
         <div class="contain">
@@ -593,7 +800,10 @@
   <ng-template [ngIf]="section == 'two'">
     <div class="section2">
       <div class="inner">
-        <img src="assets/images/auth.jpg" alt="">
+        <h1>Better events,</h1>
+        <h1>together</h1>
+        <p>Plan for the unplannable with the world's most collaborative platform .</p>
+        
       </div>
     </div>
   </ng-template>

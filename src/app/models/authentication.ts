@@ -72,3 +72,19 @@ export class CreateBussiness {
     public accountLogin: AccountLogin
   ) { }
 }
+
+export class PartnerProfile {
+  constructor(
+      public profileId: number,
+      public phoneNumber: string,
+      public email: string,
+      public profileImage: string,
+      public stateId: number,
+      public stateName: string,
+      public lgaId: number,
+      public lgaName: string,
+      public street: string,
+      public name: string,
+      
+  ){}
+}

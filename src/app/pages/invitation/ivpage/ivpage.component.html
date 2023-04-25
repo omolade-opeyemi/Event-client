@@ -1,0 +1,188 @@
+<ngx-spinner type="ball-scale-multiple">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="invite-page">
+  <div class="invite-page-innerContainer">
+    <ng-container *ngIf="drawer">
+      <div class="invite-drawer">
+        <app-sidnav></app-sidnav>
+        <button (click)="onDrawerClick()" class="drawer-btn"><mat-icon>chevron_left</mat-icon></button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="drawer_min">
+      <div class="invite-drawer-mini">
+        <button (click)="onDrawerClick()" class="drawer-btn-mini"><mat-icon>chevron_right</mat-icon></button>
+      </div>
+    </ng-container>
+
+    <div class="invite-content">
+      <div class="invite-pageTop">
+        <div class="pageTopTabs">
+          <div class="topTabsNav">
+            <button class="tabsNavBtn" (click)="seeDesign()">Design</button>
+            <button class="tabsNavBtn tabsNavBtn-active" (click)="seePreview()">Preview</button>
+            <button class="tabsNavBtn" (click)="open(content)">Save</button>
+          </div>
+        </div>
+
+          <div class="pageTopBottomTabs" *ngIf="!preview">
+            <div class="bottomTabsLeft">
+              <mat-tab-group (selectedTabChange)="onEditClick($event)" mat-align-tabs="start">
+                <mat-tab label="Select Template"></mat-tab>
+                <mat-tab label="Edit Invites"></mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+
+        <div class="pageTopBottomTabs" *ngIf="preview">
+          <div class="bottomTabsLeftt">
+            <p>
+              Here is a preview of how your invite will appear in your
+              recipient's inbox.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="invite-pageCanvas">
+        <div class="pageCanvasTop" *ngIf="!preview">
+          <div class="pageCanvasTopBtns">
+            <button><mat-icon>restart_alt</mat-icon> reset</button>
+            <button><mat-icon>undo</mat-icon> undo</button>
+            <button><mat-icon>redo</mat-icon> Re-do</button>
+            <button *ngIf="edit"><mat-icon>title</mat-icon> Add Text</button>
+            <button *ngIf="edit"><mat-icon>add_photo_alternate</mat-icon> Add Image</button>
+            <button *ngIf="edit"><mat-icon>link</mat-icon>Add link</button>
+          </div>
+          <hr *ngIf="edit">
+          <div class="canvasToolbar" *ngIf="edit">
+            <div class="fontTypeSection">
+              <div class="fontTypeSectionSelect">
+                <select name="" id="">
+                  <option value="">Montserrat Classic</option>
+                  <option value="">Comic Sans</option>
+                  <option value="">Open Sans</option>
+                </select>
+              </div>
+              <div class="fontTypeSectionInput">
+                <label for="textSize">Text Size</label>
+                <input type="number" name="textSize" id="">
+              </div>
+            </div>
+            <div class="fontColorSection">
+              <p>Text Color</p>
+              <div class="colorSectionDiv"></div>
+              <input type="text" placeholder="#637393">
+            </div>
+            <div class="fontStyleSection">
+              <p>style</p>
+              <div class="style-icons">
+                <mat-icon>text_format</mat-icon>
+                <mat-icon>format_bold</mat-icon>
+                <mat-icon>format_italic</mat-icon>
+                <mat-icon>format_underlined</mat-icon>
+                <mat-icon>format_size</mat-icon>
+                <mat-icon>list</mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pageCanvasContent">
+          <!-- <ng-template> -->
+            <div class="canvasContentTemplates">
+              <div class="canvasSearch" *ngIf="!preview">
+                <input type="text" placeholder="Search templates">
+                <button><mat-icon>search</mat-icon></button>
+              </div>
+
+
+              <div class="canvasTemplatesGrid" *ngIf="!preview">
+                <img *ngFor="let image of images; index as i" src="{{image}}" class="imgTemplates" alt=""
+                  (click)="selectTemplate(i+1)">
+
+                <!-- <img src="/assets/images/157174974_2067107246762868_8375639145711985094_n.jpg" class="imgTemplates" alt="">
+                <img src="/assets/images/Card.png" class="imgTemplates" alt="">
+                <img src="/assets/images/Flutterwave-logo 2.png" class="imgTemplates" alt="">
+                <img src="/assets/images/Rectangle 877.png" class="imgTemplates" alt="">
+                <img src="/assets/images/157174974_2067107246762868_8375639145711985094_n.jpg" class="imgTemplates" alt="">
+                <img src="/assets/images/Card.png" class="imgTemplates" alt="">
+                <img src="/assets/images/Flutterwave-logo 2.png" class="imgTemplates" alt="">
+                <img src="/assets/babe.png" class="imgTemplates" alt="">
+                <img src="/assets/babe.png" class="imgTemplates" alt=""> -->
+              </div>
+            </div>
+          <!-- </ng-template> -->
+
+          <div class="canvasContentMain">
+            <h4 *ngIf="preview">Peter Ndukwe sent you an invitation for</h4>
+
+            <div class="canvasDiv">
+              <ng-template [ngIf]="template == ''">
+              </ng-template>
+
+              <ng-template [ngIf]="template == '1'">
+                <!-- <app-templatenine></app-templatenine> -->
+                <app-templateone></app-templateone>
+              </ng-template>
+
+              <ng-template [ngIf]="template == '2'">
+                <app-templatetwo></app-templatetwo>
+              </ng-template>
+              <ng-template [ngIf]="template == '3'">
+                <app-templatethree></app-templatethree>
+              </ng-template>
+              <ng-template [ngIf]="template == '4'">
+                <app-templatefour></app-templatefour>
+              </ng-template>
+              <ng-template [ngIf]="template == '5'">
+                <app-templatefive></app-templatefive>
+              </ng-template>
+              <ng-template [ngIf]="template == '6'">
+                <app-templatesix></app-templatesix>
+              </ng-template>
+              <ng-template [ngIf]="template == '7'">
+                <app-templateseven></app-templateseven>
+              </ng-template>
+              <ng-template [ngIf]="template == '8'">
+                <app-templateeight></app-templateeight>
+              </ng-template>
+              <!-- <img src="{{template}}" class="chosenTemplate" alt="" width="100%"> -->
+            </div>
+            <div class="previewBtns" *ngIf="preview">
+              <button class="previewBtn">Will Attend</button>
+              <button class="previewBtn">Will Not Attend</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Additional Information</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <p>Add Caption and Description to your invite</p>
+		<form class="row g-3" >
+      <div class="col-md-12">
+        <label for="caption" class="form-label">Caption</label>
+        <input type="text" class="form-control" id="caption" ngModel [(ngModel)]="caption" name="caption">
+      </div>
+      <div class="col-md-12">
+        <label for="label" class="form-label">Description</label>
+        <input type="text" class="form-control" id="label" ngModel [(ngModel)]="description" name="label">
+      </div>
+    </form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="captionLabel()">Save</button>
+	</div>
+</ng-template>
+
+
